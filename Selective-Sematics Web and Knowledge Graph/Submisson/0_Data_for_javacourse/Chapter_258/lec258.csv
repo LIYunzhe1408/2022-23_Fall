@@ -1,0 +1,223 @@
+_id:id,_labels:label,Name,description,feature,_start:id,_end:id,_type:label,name
+710,:Chapter,运算符、表达式和语句,,,,,,
+711,:Chapter,常用实用类,,,,,,
+712,:Chapter,内部类与异常类,,,,,,
+713,:Chapter,JDBC数据库操作,,,,,,
+714,:Content,语句概述,,common,,,,
+715,:Content,if条件分支语句,,common,,,,
+716,:Content,switch开关语句,,common,,,,
+717,:Content,循环语句,,common,,,,
+718,:Content,break和continue语句,,common,,,,
+719,:Content,for语句与数组,,common,,,,
+720,:Content,运算符与表达式,,common,,,,
+721,:Content,String类,,common,,,,
+722,:Content,StringTokenizer类 ,,common,,,,
+723,:Content,Scanner类,,common,,,,
+724,:Content,Date与Calendar类,,common,,,,
+725,:Content,Calendar类,,common,,,,
+726,:Content,日期的格式化,,common,,,,
+727,:Content,Math、BigInteger和Random类,,common,,,,
+728,:Content,数字格式化,,common,,,,
+729,:Content,StringBuffer类,,common,,,,
+730,:Content,Pattern与Matcher类,,common,,,,
+731,:Content,Class类,,common,,,,
+732,:Content,内部类,,common,,,,
+733,:Content,匿名类,,common,,,,
+734,:Content,异常类,,common,,,,
+735,:Content,断言,,common,,,,
+736,:Content,Microsoft Access 数据库管理系统 ,,common,,,,
+737,:Content,JDBC,,common,,,,
+738,:Content,连接数据库 ,,common,,,,
+739,:Content,查询操作,,common,,,,
+740,:Content,更新、添加与删除操作,,common,,,,
+741,:Content,使用预处理语句,,common,,,,
+742,:Content,事务,,common,,,,
+743,:Content,批处理,,common,,,,
+744,:Content,CachedRowSetImpl类,,common,,,,
+745,:Knowledge,Date类,"Date()使用Date类的无参数构造方法创建的对象可以获取本地当前时间,Date(long time)使用long型参数创建指定的时间,System类的静态方法 public long currentTimeMillis() 获取系统当前时间",key,,,,
+746,:Knowledge,使用Class实例化一个对象,步骤如下：（1）使用Class的类方法得到一个和某类（参数className指定的类）相关的Class对象：public static Class forName(String className) throws ClassNotFoundException上述方法返回一个和参数className指定的类相关的Class对象。 （2）步骤（1）中获得的Class对象调用 public Object newInstance() throws InstantiationExceptionIllegalAccessException 方法就可以得到一个className类的对象。,common,,,,
+747,:Knowledge,顺序查询,1.连接对象con调用getMetaData()方法可以返回一个DatabaseMetaData对象，例如： DatabaseMetaData metadata=con.getMetaData();2. Metadata对象再调用getColumns可以将表的字段信息以行列的形式存储在一个ResultSet对象中，例如：ResultSetnull “goods" null); 3. tableMessage对象调用next方法使游标向下移动一行（游标的初始位置在第1行之前），然后tableMessage调用getXXX方法可以查看该行中列的信息 tableMessage=metadata.getColumns(null,key,,,,
+748,:Knowledge,使用默认分隔标记解析字符串,创建Scanner对象，并将要解析的字符串传递给所构造的对象,key,,,,
+749,:Knowledge,if语句,if语句是单条件分支语句，即根据一个条件来控制程序执行的流程。,key,,,,
+750,:Knowledge,异常的声明,在产生异常的方法名后面加上要抛出(throws)的异常的列表,key,,,,
+751,:Knowledge,控制游标 ,"需要在结果集中前后移动、显示结果集指定的一条记录或随机显示若干条记录等。这时，必须要返回一个可滚动的结果集。为了得到一个可滚动的结果集，需使用下述方法先获得一个Statement对象：Statement stmt=con.createStatement(int type int concurrency);然后根据参数的type、concurrency的取值情况,stmt返回相应类型的结果集：ResultSet  re=stmt.executeQuery(SQL语句)",key,,,,
+752,:Knowledge,switch开关语句,switch 语句是单条件多分支的开关语句,key,,,,
+753,:Knowledge,排序查询,可以在SQL语句中使用ORDER BY子语句对记录排序，例如，按price排序查询的SQL语句：SELECT * FROM goods ORDER BY price,key,,,,
+754,:Knowledge,建立连接,编写连接数据库代码不会出现数据库的名称，只能出现数据源的名字。 首先使用java.sql包中的Connection类声明一个对象，然后再使用类DriverManager调用它的静态方法getConnection创建这个连接对象，建立连接时应捕获SQLException异常 ,key,,,,
+755,:Knowledge,字符串与字符数组,字符串与字符数组String 类的构造方法：String(char[])；String(char[]，int offset，int length)分别用字符数组中的全部字符和部分字符创建字符串对象 ，String类提供了将字符串存放到数组中的方法：， public void getChars(int start int end char c[] int offset ) ，将字符串中的全部字符存放在一个字符数组中的方，public char[] toCharArray() 字符串与字节数组 ，String(byte[])用指定的字节数组构造一个字符串对象。，String(byte[]，int offset，int length) 用指定的字节数组的一部分，即从数组起始位置offset开始取length个字节构造一个字符串对象。public byte[] getBytes() 方法使用平台默认的字符编码，将当前字符串转化为一个字节数组。public byte[] getBytes(String charsetName) 使用参数指定字符编码，将当前字符串转化为一个字节数组。,key,,,,
+756,:Knowledge,Statement对象调用方法,public int executeUpdate（String sqlStatement）;,common,,,,
+757,:Knowledge,对象的字符串表示,Object类有一个public String toString()方法，一个对象通过调用该方法可以获得该对象的字符串表示。,key,,,,
+758,:Knowledge,Class类常用类方法,String getName() 返回类的名字◆ Constructor[] getDeclaredConstructors()  返回类的全部构造方法。◆ Field[] getDeclaredFields()  返回类的全部成员变量。◆ Method[] getDeclaredMethods()  返回类的全部方法。,common,,,,
+759,:Knowledge,String 类的常用方法,1．public int length():获取一个字符串的长度 2．public boolean equals(String s):比较当前字符串对象的实体是否与参数s指定的字符串的实体相同  例题1  说明了equals的用法。3．public boolean startsWith(String s)public boolean endsWith(String s方法:判断当前字符串对象的前缀（后缀）是否参数s指定的字符串  4. public int compareTo(String s):按字典序与参数s指定的字符串比较大小 5.public boolean contains(String s):判断当前字符串对象是否含有参数指定的字符串s 6.public int indexOf (String s):从当前字符串的头开始检索字符串s，并返回首次出现s的位置其相关方法： indexOf(String s int startpoint)lastIndexOf (String s)7. public String substring(int startpoint):获得一个当前字符串的子串  8．public String trim() :得到一个s去掉前后空格后的字符串对象。,key,,,,
+760,:Knowledge,语句概述,方法调用语句：如：System.out.println(" Hello");表达式语句：表达式尾加上分号。比如赋值语句：x=23;复合语句：可以用{  }把一些语句括起来构成复合语句，  空语句：一个分号也是一条语句，称做空语句。控制语句：控制语句分为条件分支语句、开关（switch)语句和循环语句。package语句和 import语句：它们和类、对象有关,key,,,,
+761,:Knowledge,连接方式的选择,使用JDBC─ODBC桥接器连接数据库的3个步骤(1)建立JDBC-ODBC桥接器(2)建ODBC数据源(3)和ODBC数据源建立连接,common,,,,
+762,:Knowledge,while 循环,while语句的语法格式： while (表达式) {若干语句 }while语句的执行规则是：(1)计算表达式的值如果该值是true时，就进行(2)否则执行(3)。 (2)执行循环体，再进行(1)。 (3)结束while语句的执行。,key,,,,
+763,:Knowledge,StringBuffer类的常用方法,1) StringBuffer append(String s):将一个字符串对象追加到当前StringBuffer对象中 StringBuffer append(int n)：将一个int型数据转化为字符串对象后再追加到当前StringBuffer对象中  StringBuffer append(Object o)：将一个Object对象的字符串表示追加到当前StringBuffer对象中 2)public char charAt(int n ):得到参数n指定的置上的单个字符 ：public void setCharAt(int n char ch):将当前StringBuffer对象实体中的字符串位置n处的字符用参数ch指定的字符替换3)StringBuffer insert(int index String str) :将参数str指定的字符串插入到参数index指定的位置 4)public StringBuffer reverse() :将该对象实体中的字符翻转5)StringBuffer delete(int startIndex int endIndex):从当前StringBuffer对象实体中的字符串中删除一个子字符串 ,common,,,,
+764,:Knowledge,赋值运算符,=,key,,,,
+765,:Knowledge,JDBC事务处理步骤,1．使用setAutoCommit(boolean autoCommit)方法 2．使用commit()方法 3．使用rollback()方法 ,common,,,,
+766,:Knowledge,和子类有关的匿名类,创建子类对象时，除了使用父类的构造方法外还有类体，此类体被认为是一个子类去掉类声明后的类体，称作匿名类。 ,common,,,,
+767,:Knowledge,break和continue语句,如果在某次循环中执行了break语句，那么整个循环语句就结束。如果在某次循环中执行了continue语句，那么本次循环就结束，即不再执行本次循环中循环体中continue语句后面的语句，而转入进行下一次循环。,key,,,,
+768,:Knowledge,得到匹配对象,模式对象pattern调用matcher(CharSequence input)方法返回一个Matcher对象matcher，称为匹配对象 Matcher matcher = pattern.matcher(input); Matcher对象matcher可以使用下列方法寻找字符串input中是否有和模式regex匹配的子序列（regex是创建模式对象pattern时使用的正则表达式）。public boolean find():寻找input和regex匹配的下一子序列，如果成功该方法返回true，否则返回false。public boolean matches()：matcher调用该方法判断input是否完全和regex匹配。public boolean lookingAt()：matcher调用该方法判断从input的开始位置是否有和regex匹配的子序列。public boolean find(int start) : matcher调用该方法判断input从参数start指定位置开始是否有和regex匹配的子序列 。public String replaceAll(String replacement) matcher调用该方法可以返回一个字符串该字符串是通过把input中与模式regex匹配的子字符串全部替换为参数replacement指定的字符串得到的.public String replaceFirst(String replacement) matcher调用该方法可以返回一个字符串，该字符串是通过把input中第1个与模式regex匹配的子字符串替换为参数replacement指定的字符串得到的,common,,,,
+769,:Knowledge,运算符综述,Java的表达式就是用运算符连接起来的符合Java规则的式子。运算符的优先级决定了表达式中运算执行的先后顺序。在编写程序时尽量使用括号（）运算符号来实现想要的运算次序，以免产生难以阅读或含糊不清的计算顺序。运算符的结合性决定了具有相同级别运算符的先后顺序 。 ,key,,,,
+770,:Knowledge,位运算符,&，|，^，~,key,,,,
+771,:Knowledge,不同区域的星期格式重载,如果想用特定地区的星期格式来表示日期中的星期，可以用format的重载方法： format (Locale locale格式化模式，日期列表);其中的参数locale是一个Locale类的实例，用于表示地域。Locale类的static常量都是Locale对象，其中US是表示美国的static常量。,common,,,,
+772,:Knowledge,算数运算符,加减运算符:  +，-乘、除和求余运算符： *    /      %,key,,,,
+773,:Knowledge,for语句与数组,语法格式如下：for(声明循环变量：数组的名字) { …… },key,,,,
+774,:Knowledge,JDBC,Java提供了专门用于操作数据库的API，即JDBC （Java DataBase Connection）。,common,,,,
+775,:Knowledge,Math类,Math类的常用类方法：public static long abs(double a)  返回a的绝对值。public static double max(double a，double b) 返回a、b的最大值。public static double min(double a，double b) 返回a、b的最小值。public static double random()  产生一个0到1之间的随机数（不包括0和1）。public static double pow(double a，double b) 返回a的b次幂。public static double sqrt(double a) 返回a的平方根。public static double log(double a)  返回a的对数。public static double sin(double a) 返回正弦值。public static double asin(double a)  返回反正弦值。,key,,,,
+776,:Knowledge,try~catch语句,Java使用try~catch语句来处理异常，将可能出现的异常操作放在try~catch语句的try部分，将发生异常后的处理放在catch部分。 try~catch语句的格式如下： try {包含可能发生异常的语句 }catch(ExceptionSubClass1  e) {  …}catch(ExceptionSubClass2  e) { …},key,,,,
+777,:Knowledge,正则表达式及字符串的替换与分解 ,1．正则表达式：一个正则表达式是含有一些具有特殊意义字符的字符串，这些特殊字符称作正则表达式中的元字符2．字符串的替换 public String replaceAll(String regexString replacement)方法返回一个字符串，该字符串是当前字符串中所有和参数regex指定的正则表达式匹配的子字符串被参数replacement指定的字符串替换后的字符串3．字符串的分解public String[] split(String regex)使用参数指定的正则表达式regex做为分隔标记分解出其中的单词，并将分解出的单词存放在字符串数组中。,key,,,,
+778,:Knowledge,CachedRowSetImpl类,com.sun.rowset包提供了CachedRowSetImpl类，该类实现了CachedRowSet接口。CachedRowSetImpl对象可以保存ResultSet对象中的数据，而且CachedRowSetImpl对象不依赖Connnection对象.将ResultSet对象rs中的数据保存到CachedRowSetImpl对象rowSet中的代码如下： rowSet.populate(rs); ,common,,,,
+779,:Knowledge,Random类, Random类的如下构造方法：public Random();public Random(long seed);使用参数seek指定的种子创建一个Random对象随机数生成器random调用不带参数的nextInt()方法：Random random=new Random(); random.nextInt();返回一个0至n之间（包括0，但不包括n）的随机数 随机数生成器random调用带参数的nextInt(int m)方法（参数m必须取正整数值）,key,,,,
+780,:Knowledge,内部类介绍,Java支持在一个类中声明另一个类，这样的类称作内部类，而包含内部类的类成为内部类的外嵌类,key,,,,
+,,,,,,,,
+781,:Knowledge,内部类的使用规则,声明内部类如同在类中声明方法或变量一样，一个类把内部类看作是自己的成员。外嵌类的类体中可以用内部类声明的对象，作为外嵌类的成员。外嵌类的成员变量在内部类中仍然有效，内部类中的方法也可以调用外嵌类中的方法。内部类的类体中不可以声明类变量和方法。外嵌类和内部类在编译时，生成两个.class文件。  ,key,,,,
+782,:Knowledge,事务及处理,事务由一组SQL语句组成，所谓事务处理是指：应用程序保证事务中的SQL语句要么全部都执行，要么一个都不执行。,common,,,,
+783,:Knowledge,算术混合运算的精度,java中数据类型的精度从“低”到“高”排列的顺序是：byte  short  char  int  long  float  double,key,,,,
+784,:Knowledge,预处理语句优点,预处理不仅减轻了数据库的负担，而且也提高了访问数据库的速度,common,,,,
+785,:Knowledge,StringTokenizer对象方法,1) nextToken()：逐个获取字符串中的语言符号（单词），字符串分析器中的负责计数的变量的值就自动减一  。(2) hasMoreTokens()：只要字符串中还有语言符号，即计数变量的值大于0，该方法就返回true，否则返回false。 (3)countTokens()：得到分析器中计数变量的值。,key,,,,
+786,:Knowledge,批处理,JDBC为Statement对象提供了批处理功能，即Statement对象调用executeBatch()方法可以一次执行多个SQL语句，只要事先让Statement对象调用addBatch(String sql)方法将要执行的SQL语句添加到该对象中即可,common,,,,
+787,:Knowledge,和接口有关的匿名类,假设Computable是一个接口，那么，Java允许直接用接口名和一个类体创建一个匿名对象，此类体被认为是实现了Computable接口的类去掉类声明后的类体，称作匿名类,common,,,,
+788,:Knowledge,使用正则表达式作为分隔标记解析字符串 ,Scanner对象可以调用 useDelimiter(正则表达式); 方法将一个正则表达式作为分隔标记，即和正则表达式匹配的字符串都是分隔标记。 ,key,,,,
+789,:Knowledge,条件查询,分别按类查询。主类将查询条件传递Query类的实例,key,,,,
+790,:Knowledge,自增、自减运算符,++，--,key,,,,
+791,:Knowledge,逻辑运算符,逻辑运算符包括： &&、||、!，其中：&&、|| 为二目运算符，实现逻辑与、逻辑或；！为单目运算符，实现逻辑非。,key,,,,
+792,:Knowledge,模糊查询,可以用SQL语句操作符LIKE进行模式般配，使用“%”代替零个或多个字符，用一个下划线“_”代替一个字符，用[abc]代替a、b、c中的任何一个。,key,,,,
+793,:Knowledge,Formatter 类方法,1）格式化模式  format方法中的“格式化模式”是一个用双引号括起的字符序列(字符串)，该字符序列中的字符由格式符和普通字符所构成。format方法返回的字符串就是“格式化模式”中的格式符被替换为它得到的格式化结果后的字符串。2）值列表   format方法中的“值列表”是用逗号分隔的变量、常量或表达式。 3）格式化顺序 format方法默认按从左到右的顺序使用“格式化模式”中的格式符来格式化“值列表”中对应的值，而“格式化模式”中的普通字符保留原样,common,,,,
+794,:Knowledge,if-else 语句,if-else 语句是双条件分支语句，即根据一个条件来控制程序执行的流程。,key,,,,
+795,:Knowledge,建立数据库,建立一个名字为shop的数据库。操作步骤如下：单击“开始”→“所有程序”→“Microsoft Access”，在新建数据库界面选择“空Access数据库”，然后命名、保存新建的数据库,key,,,,
+796,:Knowledge,format方法 ,Formatter类的format方法：format(格式化模式，日期列表)，按着“格式化模式”返回“日期列表”中所列各个日期中所含数据（年，月，日，小时等数据）的字符串表示。format方法中的“格式化模式”是一个用双引号括起的字符序列（字符串），该字符序列中的字符由时间格式符和普通字符所构成。 可以在“格式化模式”中使用“<”，比如："%ty-%<tm-%<td"中的三个格式符将格式化同一日期，即含有“<”的格式符和它前面的格式符格式同一个日期,common,,,,
+797,:Knowledge,创建表,在shop数据库中创建名字为goods的表。在shop管理的“表”的界面上选择“使用设计器创建表”，然后单击界面上的“设计”菜单，将出现相应的建表界面，我们建立的表是goods，该表的字段(属性)为：number(文本)  name(文本)  madeTime(日期)  price(数字，双精度)。,key,,,,
+798,:Knowledge,建立模式对象,使用正则表达式regex做参数得到一个称为模式的Pattern类的实例pattern.模式对象是对正则表达式的封装。Pattern类调用类方法compile(String regex)返回一个模式对象，其中的参数regex是一个正则表达式称为模式对象使用的模式。                               ,common,,,,
+799,:Knowledge,do-while循环,do-while语句的语法格式： do {若干语句} while(表达式);  do- while语句的执行规则是：(1)执行循环体，再进行(2)。 (2)计算表达式的值，如果该值是true时，就进行(1)否则执行(3)。 (3)结束while语句的执行。    ,key,,,,
+800,:Knowledge,instanceof 运算符,instanceof 运算符是二目运算符，左面的操作元是一个对象；右面是一个类。当左面的对象是右面的类或子类创建的对象时，该运算符运算的结果是true ，否则是false。,key,,,,
+801,:Knowledge,for循环语句,for (表达式1; 表达式2; 表达式3) { 若干语句 } ,key,,,,
+802,:Knowledge, StringBuffer对象的创建,StringBuffer类有三个构造方法：1)StringBuffer()2)StringBuffer(int size)3)StringBuffer(String s),common,,,,
+803,:Knowledge,构造方法,StringTokenizer(String s)StringTokenizer(String s，String delim),key,,,,
+804,:Knowledge,ODBC数据源,1)创建、修改或删除数据源2)为数据源选择驱动程序 3)数据源名称及对应数据库的所在位置   ,common,,,,
+805,:Knowledge,Calendar类,calendar对象可以调用方法：public long getTimeInMillis() 可以将时间表示为毫秒。public final void setTime(Date?date)使用给定的 Date 设置此 Calendar 的时间 ，public int get(int field) ：可以获取有关年份、月份、小时、星期等信息,key,,,,
+806,:Knowledge,关系运算符, > ， <，>= ，<=，== ，!=,key,,,,
+807,:Knowledge,断言格式,assert booleanExpression;assert booleanExpression:messageException;,common,,,,
+808,:Knowledge,获取类的有关信息,当一个类被加载且创建对象时，和该类相关的一个类型为Calss的对象就会自动创建，任何对象调用getClass()方法都可以获取和该对象相关的一个Class对象，这个Class对象调用如下的方法可以获取对象的有关信息,common,,,,
+809,:Knowledge,BigInteger类,构造方法：public BigInteger(String val)  构造一个十进制的BigInteger对象。 常用类方法：public BigInteger add(BigInteger val)  返回当前大整数对象与参数指定的大整数对象的和。public BigInteger subtract(BigInteger val)返回当前大整数对象与参数指定的大整数对象的差。public BigInteger multiply(BigInteger val)返回当前大整数对象与参数指定的大整数对象的积。public BigInteger divide(BigInteger val)返回当前大整数对象与参数指定的大整数对象的商。public BigInteger remainder(BigInteger val)返回当前大整数对象与参数指定的大整数对象的余。public int compareTo(BigInteger val) 返回当前大整数对象与参数指定的大整数的比较结果，返回值是1、-1或0，分别表示当前大整数对象大于、小于或等于参数指定的大整数。public BigInteger pow(int a)  返回当前大整数对象的a次幂。public String toString()  返回当前大整数对象十进制的字符串表示。public String toString(int p)  返回当前大整数对象p进制的字符串表示。,key,,,,
+810,:Knowledge,构造字符串对象,字符串对象声明：String s; String类较常用构造方法:String(s)，String(char a[]，int startIndex，int count),key,,,,
+811,:Knowledge,断言概念,断言语句用于调试代码阶段。在调试代码阶段让断言语句发挥作用，这样就可以发现一些致命的错误，当程序正式运行时就可以关闭断言语句，但仍把断言语句保留在源代码中，如果以后应用程又需要调试，可以重新启用断言语句。,common,,,,
+812,:Knowledge,建立JDBC-ODBC桥接器,JDBC使用java.lang包中的Class类建立JDBC-ODBC桥接器。,common,,,,
+813,:Knowledge,自定义异常类,一个方法在声明时可以使用throws关键字声明要产生的若干个异常，并在该方法的方法体中具体给出产生异常的操作，即用相应的异常类创建对象，并使用throw关键字抛出该异常对象，导致该方法结束执行。,key,,,,
+814,:Knowledge,更新、添加和删除记录的SQL语法,UPDATE <表名>  SET <字段名> = 新值 WHERE <条件子句>，INSERT INTO 表(字段列表) VALUES （对应的具体的记录）或INSERT INTO 表(VALUES （对应的具体的记录），DELETE  FROM  <表名> WHERE <条件子句> ,common,,,,
+815,:Knowledge,符串与基本数据的相互转化,public static int parseInt(String s)public static String valueOf(byte/int/long/float n) public static String valueOf(byte n)public static String valueOf(int n)public static String valueOf(long n)  public static String valueOf(float n)public static String valueOf(double n),key,,,,
+816,:Knowledge,格式化整数 ,1）%d，%o，%x和%格式符可格式化byte、Byte、short、Short、int、Integer、long和Long型数据2）修饰符：加号修饰符"+"格式化正整数时，强制添加上正号，例如，%+d将123格式化为"+123"。,common,,,,
+817,:Knowledge,if-else if-else 语句,if-elseif 语句是多条件分支语句，即根据多个条件来控制程序执行的流程。,key,,,,
+818,:Knowledge,格式化浮点数 ,%d，%o，%x和%格式符,common,,,,
+819,:Knowledge,使用统配符,在对SQL进行预处理时可以使用统配符“？”来代替字段的值，只要在预处理语句执行之前再设置统配符所表示的具体值即可。预处理语句设置统配符“？”的值的常用方法有： void setDate(int parameterIndex，Date x)；void setDouble(int parameterIndex，double x)；void setFloat(int parameterIndex，float x)；void setInt(int parameterIndex，int x)；void setLong(int parameterIndex，long x)；void setString(int parameterIndex，String x) ,common,,,,
+820,:Course,Java,,,,,,
+,,,,,715,710,Content_Of,知识点3.3
+,,,,,736,713,Content_Of,知识点11.1
+,,,,,729,711,Content_Of,知识点8.8
+,,,,,738,713,Content_Of,知识点11.3
+,,,,,727,711,Content_Of,知识点8.6
+,,,,,732,712,Content_Of,知识点7.1
+,,,,,741,713,Content_Of,知识点11.6
+,,,,,722,711,Content_Of,知识点8.2
+,,,,,737,713,Content_Of,知识点11.2
+,,,,,739,713,Content_Of,知识点11.4
+,,,,,720,710,Content_Of,知识点3.1
+,,,,,726,711,Content_Of,知识点8.5
+,,,,,731,711,Content_Of,知识点8.10
+,,,,,717,710,Content_Of,知识点3.5
+,,,,,734,712,Content_Of,知识点7.3
+,,,,,743,713,Content_Of,知识点11.8
+,,,,,719,710,Content_Of,知识点3.7
+,,,,,744,713,Content_Of,知识点11.9
+,,,,,742,713,Content_Of,知识点11.7
+,,,,,723,711,Content_Of,知识点8.3
+,,,,,714,710,Content_Of,知识点3.2
+,,,,,740,713,Content_Of,知识点11.5
+,,,,,721,711,Content_Of,知识点8.1
+,,,,,735,712,Content_Of,知识点7.4
+,,,,,725,711,Content_Of,知识点8.4
+,,,,,730,711,Content_Of,知识点8.9
+,,,,,716,710,Content_Of,知识点3.4
+,,,,,724,711,Content_Of,知识点8.4
+,,,,,733,712,Content_Of,知识点7.2
+,,,,,718,710,Content_Of,知识点3.6
+,,,,,728,711,Content_Of,知识点8.7
+,,,,,756,740,Knowledge_Of,知识点11.5.1
+,,,,,762,717,Knowledge_Of,知识点3.5.2
+,,,,,770,720,Knowledge_Of,知识点3.1.7
+,,,,,791,720,Knowledge_Of,知识点3.1.5
+,,,,,748,723,Knowledge_Of,知识点8.3.1
+,,,,,775,727,Knowledge_Of,知识点8.6.1
+,,,,,763,729,Knowledge_Of,知识点8.8.2
+,,,,,799,717,Knowledge_Of,知识点3.5.3
+,,,,,765,742,Knowledge_Of,知识点11.7.2
+,,,,,810,721,Knowledge_Of,知识点8.1.1
+,,,,,750,734,Knowledge_Of,知识点7.3.2
+,,,,,764,720,Knowledge_Of,知识点3.1.6
+,,,,,807,735,Knowledge_Of,知识点7.4.2
+,,,,,781,732,Knowledge_Of,知识点7.1.2
+,,,,,814,740,Knowledge_Of,知识点11.5.2
+,,,,,752,716,Knowledge_Of,知识点3.4.1
+,,,,,816,728,Knowledge_Of,知识点8.7.2
+,,,,,758,731,Knowledge_Of,知识点8.10.3
+,,,,,811,735,Knowledge_Of,知识点7.4.1
+,,,,,817,715,Knowledge_Of,知识点3.3.3
+,,,,,796,726,Knowledge_Of,知识点8.5.1
+,,,,,801,717,Knowledge_Of,知识点3.5.1
+,,,,,761,738,Knowledge_Of,知识点11.3.1
+,,,,,771,726,Knowledge_Of,知识点8.5.2
+,,,,,766,733,Knowledge_Of,知识点7.2.1
+,,,,,802,729,Knowledge_Of,知识点8.8.1
+,,,,,786,743,Knowledge_Of,知识点11.8.1
+,,,,,774,737,Knowledge_Of,知识点11.2.1
+,,,,,803,722,Knowledge_Of,知识点8.2.1
+,,,,,759,721,Knowledge_Of,知识点8.1.2
+,,,,,812,738,Knowledge_Of,知识点11.3.2
+,,,,,792,739,Knowledge_Of,知识点11.4.5
+,,,,,782,742,Knowledge_Of,知识点11.7.1
+,,,,,772,720,Knowledge_Of,知识点3.1.1    
+,,,,,776,734,Knowledge_Of,知识点7.3.1
+,,,,,815,721,Knowledge_Of,知识点8.1.3
+,,,,,751,739,Knowledge_Of,知识点11.4.2
+,,,,,777,721,Knowledge_Of,知识点8.1.6
+,,,,,804,738,Knowledge_Of,知识点11.3.3
+,,,,,789,739,Knowledge_Of,知识点11.4.3
+,,,,,805,725,Knowledge_Of,知识点8.4.2
+,,,,,797,736,Knowledge_Of,知识点11.1.2
+,,,,,798,730,Knowledge_Of,知识点8.9.1
+,,,,,760,714,Knowledge_Of,知识点3.2.1
+,,,,,767,718,Knowledge_Of,知识点3.6.1
+,,,,,806,720,Knowledge_Of,知识点3.1.4
+,,,,,753,739,Knowledge_Of,知识点11.4.4
+,,,,,745,724,Knowledge_Of,知识点8.4.1
+,,,,,813,734,Knowledge_Of,知识点7.3.3
+,,,,,818,728,Knowledge_Of,知识点8.7.3
+,,,,,785,722,Knowledge_Of,知识点8.2.2
+,,,,,746,731,Knowledge_Of,知识点8.10.1
+,,,,,768,730,Knowledge_Of,知识点8.9.2
+,,,,,787,733,Knowledge_Of,知识点7.2.2
+,,,,,808,731,Knowledge_Of,知识点8.10.2
+,,,,,790,720,Knowledge_Of,知识点3.1.2
+,,,,,773,719,Knowledge_Of,知识点3.7.1
+,,,,,778,744,Knowledge_Of,知识点11.9.1
+,,,,,779,727,Knowledge_Of,知识点8.6.3
+,,,,,800,720,Knowledge_Of,知识点3.1.8
+,,,,,755,721,Knowledge_Of,知识点8.1.5
+,,,,,780,732,Knowledge_Of,知识点7.1.1
+,,,,,754,738,Knowledge_Of,知识点11.3.4
+,,,,,769,720,Knowledge_Of,知识点3.1.9
+,,,,,809,727,Knowledge_Of,知识点8.6.2
+,,,,,783,720,Knowledge_Of,知识点3.1.3
+,,,,,793,728,Knowledge_Of,知识点8.7.1
+,,,,,747,739,Knowledge_Of,知识点11.4.1
+,,,,,794,715,Knowledge_Of,知识点3.3.2
+,,,,,795,736,Knowledge_Of,知识点11.1.1
+,,,,,784,741,Knowledge_Of,知识点11.6.1
+,,,,,788,723,Knowledge_Of,知识点8.3.2
+,,,,,749,715,Knowledge_Of,知识点3.3.1
+,,,,,819,741,Knowledge_Of,知识点11.6.2
+,,,,,757,721,Knowledge_Of,知识点8.1.4
+,,,,,710,820,Chapter_Of,第三章
+,,,,,711,820,Chapter_Of,第八章
+,,,,,712,820,Chapter_Of,第七章
+,,,,,713,820,Chapter_Of,第十一章

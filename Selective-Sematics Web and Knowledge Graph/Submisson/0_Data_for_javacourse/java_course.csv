@@ -1,0 +1,1382 @@
+_id,_labels,description,feature,name,_start,_end,_type,name
+1,:Chapter,,,组件及事件处理,,,,
+171,:Chapter,,,类和对象,,,,
+201,:Chapter,,,基本数据类型与数组,,,,
+205,:Chapter,,,子类与继承_R,,,,
+206,:Chapter,,,接口与实现,,,,
+210,:Chapter,输入、输出流提供一条通道程序，可以使用这条通道读取源中的数据或把数据传送到目的地。把输入流的指向称作源，程序从指向源的输入流中读取源中的数据；而输出流的指向是数据要去的一个目的地，程序通过向输出流中写入数据把数据传送到目的地。,,输入、输出流,,,,
+211,:Chapter,,,JAVA概述和基本数据类型,,,,
+710,:Chapter,,,运算符、表达式和语句,,,,
+711,:Chapter,,,常用实用类,,,,
+712,:Chapter,,,内部类与异常类,,,,
+713,:Chapter,,,JDBC数据库操作,,,,
+2,:Content,"通过图形用户界面（GUI：Graphics User Interface），用户和程序之间可以方便地进行交互。Java的Swing工具包中包含了许多类来支持GUI设计。如：按钮、菜单、列表、文本框等组件类，同时它还包含窗口、面板等容器类。
+
+javax.swing包提供了功能更为强大的用来设计GUI的类。java.awt和javax.swing包中一部分类的层次关系的UML类图
+
+在学习GUI编程时，必须要很好的掌握两个概念：容器类和组件类。
+javax.swing包中JComponent类是java.awt包中Container类的一个直接子类、是java.awt包中Component类的一个间接子类，学习GUI编程主要是学习掌握使用Component类的一些重要的子类及其使用方法。
+以下是GUI编程经常提到的基本知识点 。
+ (1)Java把Component类的子类或间接子类创建的对象称为一个组件.
+ (2)Java把Container的子类或间接子类创建的对象称为一个容器.
+ (3)可以向容器添加组件。Container类提供了一个public方法：add( )，一个容器可以调用这个方法将组件添加到该容器中。
+ (4)容器调用removeAll()方法可以移掉容器中的全部组件；调用remove(Component c)方法可以移掉容器中参数c指定的组件。
+ (5)注意到容器本身也是一个组件，因此可以把一个容器添加到另一个容器中实现容器的嵌套。
+ (6)每当容器添加新的组件或移掉组件时，应当让容器调用validate()方法，以保证容器中的组件能正确显示出来
+如：
+    import javax.swing.*;
+    JFrame f=new JFrame();
+    JButton  button=new JButton(""确定"")
+    f.add(button);
+    …….
+    f.remove(button);
+",common,Java Swing概述,,,,
+3,:Content,"Java语言是面向对象语言，它的源程序是由若干个类组成，源文件是扩展名为.java的文本文件。
+类是Java语言中最重要的“数据类型”，类声明的变量被称作对象（见后面的4.3节），即类是用来创建对象的模板。 
+class是关键字，用来定义类。“class  类名”是类的声明部分，类名必须是合法的Java标识符。两个大括号以及之间的内容是类体。",common,类,,,,
+5,:Content,"类是面向对象语言中最重要的一种数据类型，那么就可以用它来声明变量。在面向对象语言中，用类声明的变量被称作对象。
+
+和基本数据类型不同，在用类声明对象后，还必须要创建对象，即为声明的对象分配变量(确定对象所具有的属性)，当使用一个类创建一个对象时，也称给出了这个类的一个实例。通俗的讲，类是创建对象的“模板”，没有类就没有对象。构造方法和对象的创建密切相关 。",common,构造方法与对象的创建,,,,
+6,:Content,/,common,编程语言的几个发展阶段,,,,
+19,:Content,"Java提供的JFrame类的实例是一个底层容器，即通常所称的窗口。其他组件必须被添加到底层容器中，以便借助这个地层容器和操作系统进行信息交互。 
+JFrame类是Container类的间接子类。当需要一个窗口时，可使用JFrame或其子类创建一个对象。",common,窗口,,,,
+21,:Content,一个Java应用程序（也称为一个工程）是由若干个类所构成，这些类可以在一个源文件中，也可以分布在若干个源文件中。,common,类与程序的基本结构,,,,
+22,:Content,方法中最重要的部分之一就是方法的参数，参数属于局部变量，当对象调用方法时，参数被分配内存空间，并要求调用者向参数传递值，即方法被调用时，参数变量必须有具体的值。,common,参数传值,,,,
+26,:Content,一个类可以把对象作为自己的成员变量，如果用这样的类创建对象，那么该对象中就会有其它对象，也就是说该对象将其他对象作为自己的组成部分，或者说该对象是由几个对象组合而成。,common,对象的组合,,,,
+29,:Content,"1 实例变量和类变量的声明
+在声明成员变量时，用关键字static给予修饰的称作类变量，否则称作实例变量（类变量也称为static变量，静态变量）。
+2  实例变量和类变量的区别
+不同对象的实例变量互不相同 
+所有对象共享类变量 
+通过类名直接访问类变量
+3  实例方法和类方法的定义
+类中的方法也可分为实例方法和类方法。方法声明时，方法类型前面不加关键字static修饰的是实例方法、加static关键字修饰的是类方法(静态方法)。
+4 实例方法和类方法的区别 
+ 1）对象调用实例方法
+当对象调用实例方法时，该方法中出现的实例变量就是分配给该对象的实例变量；该方法中出现的类变量也是分配给该对象的变量，只不过这个变量和所有的其他对象共享而已。
+ 2）类名调用类方法
+从而类方法不仅可以被类创建的任何对象调用执行，也可以直接通过类名调用。和实例方法不同的是，类方法不可以操作实例变量，这是因为在类创建对象之前，实例成员变量还没有分配内存。",common,实例成员与类成员,,,,
+30,:Content,方法重载的意思是：一个类中可以有多个方法具有相同的名字，但这些方法的参数必须不同，即或者是参数的个数不同，或者是参数的类型不同。,common,方法重载与多态,,,,
+31,:Content,"this是Java的一个关键字，表示某个对象。this可以出现在实例方法和构造方法中，但不可以出现在类方法中。
+this关键字出现在类的构造方法中时，代表使用该构造方法所创建的对象.
+当this关键字出现实例方法中时，this就代表正在调用该方法的当前对象。
+
+实例方法必须只能通过对象来调用，不能用类名来调用。
+实例方法可以操作类的成员变量，当实例成员变量在实例方法中出现时，默认的格式是：
+ this.成员变量;
+当static成员变量在实例方法中出现时，默认的格式是：
+           类名.成员变量; ",common,this关键字,,,,
+32,:Content,"包是Java语言中有效地管理类的一个机制。
+包名的目的是有效的区分名字相同的类。不同Java源文件中两个类名字相同时，它们可以通过隶属不同的包来相互区分。 ",common,包,,,,
+36,:Content,"一个类可能需要另一个类声明的对象作为自己的成员或方法中的局部变量，如果这两个类在同一个包中，当然没有问题。 
+如果一个类想要使用的那个类和它不在一个包中，要使用import语句完成使命。",key,import语句,,,,
+38,:Content,"当用一个类创建了一个对象之后，该对象可以通过“.”运算符操作自己的变量、使用类中的方法，但对象操作自己的变量和使用类中的方法是有一定限制的。
+所谓访问权限是指对象是否可以通过“.”运算符操作自己的变量或通过“.”运算符使用类中的方法。 
+访问限制修饰符有private、protected和public，都是Java的关键字，用来修饰成员变量或方法。",key,访问权限,,,,
+44,:Content,"Java的基本数据类型包括
+byte、int、short、long、float、double、char。
+Java提供了基本数据类型相关的类，实现了对基本数据类型的封装。
+Byte、Integer、Short、Long、Float、Double和Character类。这些类在java.lang包中。",common,基本类型的类封装,,,,
+48,:Content,"如果程序需要某个类的若干个对象，比如Student类的10个对象，显然如下声明10个Student对象是不可取的：
+    Student stu1,stu2, stu3,stu4,stu5,stu6,stu7,stu8, stu9,stu10;
+正确的做法是使用对象数组，即数组的元素是对象，例如：
+       Student [] stu;
+       stu = new Student[10];
+需要注意的是，上述代码仅仅定义了数组stu有10个元素，并且每个元素都是一个Student类型的对象，但这些对象目前都是空对象，因此在使用数组stu中的对象之前，应当创建数组所包含的对象。
+    例如：            stu[0] = new Student();  ",common,对象数组,,,,
+49,:Content,"反编译器javap.exe可以将字节码反编译为源码，以便查看源码类中的public方法名字和public成员变量的名字。
+            例如：javap java.awt.Button
+使用javadoc.exe可以制做源文件类结构的html格式文档。
+            例如： javadoc  Example.java ",common,反编译和文档生成器,,,,
+50,:Content,可以使用jar.exe命令把一些类的字节码文件压缩成一个jar文件，然后将这个jar文件存放到Java运行环境的扩展中，即将该jar文件存放在JDK安装目录的jre\lib\ext文件夹中。这样，Java应用程序就可以使用这个jar文件中的类来创建对象了。,common,jar文件,,,,
+51,:Content,有理数有两个重要的成员：分子和分母，另外还有重要的四则运算。,common,应用举例,,,,
+53,:Content,"可以使用JComponent的子类JTextField创建各种组件。利用组件可以完成应用程序与用户的交互及事件处理等。
+也可以在命令行窗口反编译组件即时查看组件所具有的属性及常用方法，例如：
+          C:\>javap javax.swing.JComponent
+也可以查看类库帮助文档.例如下载Java类库帮助文档：jdk-6-doc.zip。",common,常用组件与布局,,,,
+57,:Content,"学习组件除了要熟悉组件的属性和功能外，一个更重要的方面是学习怎样处理组件上发生的界面事件。当用户在文本框中键入文本后按回车键、单击按钮、在一个下拉式列表中选择一个条目等操作时，都发生界面事件。
+
+程序有时需对发生的事件作出反应，来实现特定的任务，例如，用户单击一个名字叫“确定”或名字叫“取消”的按钮，程序可能需要作出不同的处理。",key,处理事件,,,,
+68,:Content,"模型-视图-控制器（Model-View-Controller），简称为MVC。
+MVC是一种先进的设计结构，其目的是以会话形式提供方便的GUI支持。
+MVC是一种通过三个不同部分构造一个软件或组件的理想办法：
+模型(model)  用于存储数据的对象。
+视图(view)   为模型提供数据显示的对象。
+控制器(controller)处理用户的交互操作，对于用户的操作作出响应，让模型和视图进行必要的交互，即通过视图修改、获取模型中的数据；当模型中的数据变化时，让视图更新显示。",common,使用MVC结构,,,,
+69,:Content,"JDialog类和JFrame都是Window的子类，二者的实例都是底层容器。
+JDialog类创建的对话框必须要依赖于某个窗口。 
+对话框分为无模式和有模式两种。
+有模式的对话框：当这个对话框处于激活状态时，只让程序响应对话框内部的事件，而且将堵塞其它线程的执行，用户不能再激活对话框所在程序中的其它窗口，直到该对话框消失不可见。
+无模式对话框：当这个对话框处于激活状态时，能再激活其它窗口，也不堵塞其它线程的执行。",common,对话框,,,,
+75,:Content,,common,树组件与表格组件,,,,
+78,:Content,"按钮帮定到键盘的步骤如下:
+(1) 获取输入映射.   按钮首先调用
+   public final InputMap getInputMap(int condition)  
+   方法返回一个InputMap对象.
+(2)绑定按钮的键盘操作.   步骤（1）返回的输入映射首先调用方法
+   public void put(KeyStroke keyStroke,Object actionMapKey)
+  将敲击键盘上的某键指定为按钮的键盘操作.
+(3)为按钮的键盘操作指定监视器.    按钮调用方法
+    public final ActionMap getActionMap()
+    返回一个ActionMap对象：
+    ActionMap actionmap = button.getActionMap();
+    然后，该对象actionmap调用方法：
+    public void put(Object key,Action action) 
+    为按钮的键盘操作指定监视器",common,按钮绑定到键盘,,,,
+79,:Content,"步骤如下：
+1.获取ToolKit对象
+       让组件调用getToolkit()方法返回系统提供的Toolkit对象。
+2.获得PrintJob对象
+       Toolkit对象调用getPrintJob()方法返回一个PrintJob对象。
+3.获取Graphics对象
+       PrintJob对象使用getGraphics()方法获得一个Graphics对象。
+4.打印组件
+      步骤3获取的Graphics对象是g，组件调用
+ paintAll(g)
+ 将打印出该组件及其子组件。如果调用方法：
+ pain(g)
+ 将打印出该组件本身，但不打印子组件。",common,打印组件,,,,
+80,:Content,"可以使用jar.exe把一些文件压缩成一个JAR文件，来发布我们的应用程序。
+生成一个Jar文件的步骤如下：
+ 1．首先用文本编辑器（比如Windows下的记事本）编写一个清单文件 ，扩展名为.mf，如Mymoon.mf 。 
+ 2．生成JAR文件 
+如果目录test下的字节码文件刚好是应用程序需要的全部字节码文件，也可以如下生成JAR文件：
+ D:\test\jar cfm Tom.jar Mymoon.mf  *.class 
+可以将Tom.jar文件复制到任何一个安装了java运行环境的计算机上，只要用鼠标双击该文件就可以运行该java应用程序了。 ",common,发布GUI程序,,,,
+203,:Content,,common,File类,,,,
+204,:Content,,common,文件字节输入、输出流,,,,
+207,:Content,,common,文件字符输入、输出流,,,,
+208,:Content,,common,缓冲流,,,,
+209,:Content,,common,随机流,,,,
+212,:Content,,common,地位,,,,
+213,:Content,,common,诞生,,,,
+214,:Content,,common,特点,,,,
+215,:Content,,common,JDK安装,,,,
+216,:Content,,common,简单程序,,,,
+217,:Content,,common,编程风格,,,,
+234,:Content,,common,数组流,,,,
+235,:Content,,common,数据流,,,,
+244,:Content,,common,对象流,,,,
+245,:Content,,common,序列化与对象克隆,,,,
+249,:Content,"8种基本数据类型习惯上可分为以下四大类型：
+逻辑类型：boolean
+整数类型：byte、short、int、long
+字符类型：char
+浮点类型：float、double ",common,基本数据类型,,,,
+250,:Content,,common,使用Scanner解析文件,,,,
+263,:Content,,common,文件锁,,,,
+267,:Content,数组是相同类型的数据按顺序组成的一种复合数据类型。通过数组名加数组下标，来使用数组中的数据。下标从0开始排序。,common,数组,,,,
+275,:Content,应用举例,common,数组的应用,,,,
+276,:Content,,common,标识符和关键字,,,,
+281,:Content,,common,类型转换,,,,
+282,:Content,从命令行输入与输出数据,common,输入与输出,,,,
+284,:Content,,common,子类与父类,,,,
+285,:Content,类可以有两种重要的成员：成员变量和方法。子类的成员中有一部分是子类自己声明定义的，另一部分是从它的父类继承的。 所谓子类继承父类的成员变量就是把继承来的变量作为自己的一个成员变量，就好象它们是在子类中直接声明一样，可以被子类中自己定义的任何实例方法操作。所谓子类继承父类的方法就是把继承来的方法作为子类中的一个方法，就好象它们是在子类中直接定义了一样，可以被子类中自己定义的任何实例方法调用。,common,子类的继承性,,,,
+286,:Content,类继承了父类的很多东西，那么子类在创建对象的时候，他又是怎么生成自己的对象的呢。子类生成的对象会有哪些东西呢。,common,子类与对象,,,,
+287,:Content,,common,成员变量的隐藏和方法重写,,,,
+288,:Content,,common,super关键字,,,,
+289,:Content,,common,final关键字,,,,
+290,:Content,,common,对象的上转型对象,,,,
+291,:Content,,common,继承与多态,,,,
+292,:Content,,common,abstract类与abstract方法,,,,
+293,:Content,,common,面向抽象编程,,,,
+294,:Content,,common,开闭原则,,,,
+322,:Content,,common,接口,,,,
+323,:Content,,common,实现接口,,,,
+324,:Content,,common,理解接口,,,,
+325,:Content,,common,接口回调,,,,
+326,:Content,,common,接口与多态,,,,
+327,:Content,,common,接口变量作参数,,,,
+328,:Content,,common,面向接口编程,,,,
+337,:Content,,common,接口的UML图,,,,
+338,:Content,,common,abstract类与接口的比较,,,,
+354,:Content,,common,文件对话框,,,,
+714,:Content,,common,语句概述,,,,
+715,:Content,,common,if条件分支语句,,,,
+716,:Content,,common,switch开关语句,,,,
+717,:Content,,common,循环语句,,,,
+718,:Content,,common,break和continue语句,,,,
+719,:Content,,common,for语句与数组,,,,
+720,:Content,,common,运算符与表达式,,,,
+721,:Content,,common,String类,,,,
+722,:Content,,common,StringTokenizer类 ,,,,
+723,:Content,,common,Scanner类,,,,
+724,:Content,,common,Date与Calendar类,,,,
+725,:Content,,common,Calendar类,,,,
+726,:Content,,common,日期的格式化,,,,
+727,:Content,,common,Math、BigInteger和Random类,,,,
+728,:Content,,common,数字格式化,,,,
+729,:Content,,common,StringBuffer类,,,,
+730,:Content,,common,Pattern与Matcher类,,,,
+731,:Content,,common,Class类,,,,
+732,:Content,,common,内部类,,,,
+733,:Content,,common,匿名类,,,,
+734,:Content,,key,异常类,,,,
+735,:Content,,common,断言,,,,
+736,:Content,,common,Microsoft Access 数据库管理系统 ,,,,
+737,:Content,,common,JDBC,,,,
+738,:Content,,common,连接数据库 ,,,,
+739,:Content,,common,查询操作,,,,
+740,:Content,,common,更新、添加与删除操作,,,,
+741,:Content,,common,使用预处理语句,,,,
+742,:Content,,common,事务,,,,
+743,:Content,,key,批处理,,,,
+744,:Content,,common,CachedRowSetImpl类,,,,
+4,:Knowledge,"写类的目的是为了描述一类事物共有的属性和功能。给类命名时，遵守下列编程风格(这不是语法要求,但应当遵守):
+1.如果类名使用拉丁字母，那么名字的首字母使用大写字母。
+2.类名最好容易识别、见名知意。当类名由几个“单词”复合而成时，每个单词的首字母使用大写。 
+",common,类声明,,,,
+7,:Knowledge,计算机处理信息的早期语言是所谓的机器语言，使用机器语言进行程序设计需要面向机器来编写代码，即需要针对不同的机器编写诸如0101 1100这样的指令序列。 ,common,面向机器语言,,,,
+8,:Knowledge,"随着计算机硬件功能的提高,在20世纪60年代出现了面向过程设计语言，如C语言等。用这些语言编程也称为面向过程编程。语言把代码组成叫做过程或函数的块。每个块的目标是完成某个任务。使用这些语言编写代码指令时，不必再去考虑机器指令的细节，只要按着具体语言的语法要求去编写“源文件”。",common,面向过程语言,,,,
+9,:Knowledge,基于对象的编程更加符合人的思维模式，使得编程人员更容易编写出易维护、易扩展和易复用的程序代码，更重要的是，面向对象编程鼓励创造性的程序设计。面向对象编程主要体现下列三个特性：封装性 ；继承；多态,common,面向对象语言,,,,
+10,:Knowledge,"类声明之后的一对大括号“{”，“}”以及它们之间的内容称作类体，大括号之间的内容称作类体的内容。 
+类体的内容由两部分构：一部分是变量的声明，用来刻画属性；另一部分是方法的定义，用来刻画行为功能。",key,类体,,,,
+11,:Knowledge,"1.变量分为成员变量和局部变量
+类体中变量定义部分所定义的变量被称为类的成员变量。
+成员变量在整个类内都有效，其有效性与它在类体中书写的先后位置无关。
+成员变量在定义时有默认值。
+在方法体中定义的变量和方法的参数被称为局部变量。
+局部变量只在定义它的方法内有效。
+局部变量在定义时没有默认值。
+2.成员变量又分为实例成员变量（简称实例变量）和类变量（也称静态变量）。
+如果成员变量的类型前面加上关键字static，这样的成员变量称做是类变量或静态变量。 
+其他的变量统称为实例变量。
+3．区分成员变量和局部变量
+如果局部变量的名字与成员变量的名字相同，则成员变量被隐藏，即该成员变量在这个方法内暂时失效。
+4．局部变量没有默认值
+成员变量有默认值（见后面的4.3节），但局部变量没有默认值，因此在使用局部变量之前，必须保证局部变量有具体的值 。例如:下列InitError类无法通过编译。
+",key,成员变量与局部变量,,,,
+12,:Knowledge,"方法的定义包括两部分:方法声明和方法体.一般格式为：
+            方法声明部分 {
+                 方法体的内容
+            } ",key,方法,,,,
+13,:Knowledge,"类体的内容由两部分构成：一部分是变量的声明，另一部分是方法的定义。
+定义类需要注意的地方：
+1)对成员变量的操作只能放在方法中，方法可以对成员变量和该方法体中声明的局部变量进行操作。在声明成员变量时可以同时赋予初值，但是不可以在类体中有单独的赋值语句，但局部变量必须赋初值。
+2)实例方法既能对类(静态）变量操作也能对实例变量操作，而类（静态方法）方法只能对类（静态）变量进行操作
+3)一个类中的方法可以互相调用，实例方法可以调用该类中的其他方法，类中的类（静态）方法只能调用该类的类（静态）方法。 ",key,需要注意的问题,,,,
+14,:Knowledge,"UML(Unified Modeling Language Diagram)
+是被用于描述一个系统的静态结构。一个UML中通常包含有类(Class)的UML图，接口(Interface)的UML图以及泛化关系(Generalization)的UML图、关联关系(Association)的UML图、依赖关系(Dependency)的UML图和实现关系(Realization)的UML图。 
+在类的UML图中，使用一个长方形描述一个类的主要构成，将长方形垂直地分为三层。
+第1层是名字层；
+第2层是变量层，也称属性层；
+第3层是方法层，也称操作层。",common,类的UML图,,,,
+15,:Knowledge,"构造方法： 
+构造方法是一种特殊方法，它的名字必须与它所在的类的名字完全相同，而且没有类型。
+允许一个类中编写若干个构造方法，但必须保证他们的参数不同，即参数的个数不同，或者是参数的类型不同。
+他的作用是在创建对象时使用，主要是用来初始化各个成员变量，以便给类所创建的对象一个合理的初始状态。 
+
+需要注意的是如果类中没有编写构造方法，系统会默认该类只有一个构造方法，该默认的构造方法是无参数的，且方法体中没有语句。
+如果类里定义了一个或多个构造方法，那么Java不提供默认的构造方法。 
+需要特别注意的是，构造方法没有类型。
+",common,构造方法,,,,
+16,:Knowledge,"创建一个对象包括对象的声明和为对象分配变量两个步骤。
+    1.对象的声明
+     一般格式为：    类的名字   对象名字;
+          如： XiyoujiRenwu zhubajie;
+    2.为声明的对象分配变量
+使用new运算符和类的构造方法为声明的对象分配变量，并返回一个引用值给对象名称。即创建对象。如果类中没有构造方法，系统会调用默认的构造方法，默认的构造方法是无参数的，且方法体中没有语句。
+例如:  zhubajie = new XiyoujiRenwu(); 
+当用类创建一个对象时，类中的成员变量被分配内存空间，这些内存空间称作该对象的实体或对象的变量，而对象中存放着引用值。
+",key,创建对象,,,,
+17,:Knowledge,"对象创建成功后，可以操作类中的变量和方法：
+1．对象操作自己的变量（体现对象的属性）
+通过使用运算符“.” 对象操作自己的变量（对象的属性）。 
+2．对象调用类中的方法（体现对象的行为） 
+对象创建之后，可以使用点运算符“.”调用创建它的类中的方法，从而产生一定的行为（功能）。
+★强调：当对象调用变量时，是指调用分配给该对象自己的变量。在讲述类的时候讲过：类中的方法可以操作成员变量；当对象调用方法时，方法中出现的成员变量就是指分配给该对象的那个变量。",common,使用对象,,,,
+18,:Knowledge,一个类创建的两个对象，如果具有相同的引用，那么就具有完全相同的实体。,key,对象的引用和实体,,,,
+20,:Knowledge,"JFrame构造方法:
+      JFrame() 创建一个无标题的窗口。
+    JFrame(String s) 创建标题为s的窗口。
+常用方法:
+ 1)public void setBounds(int a,int b,int width,int height 设置窗口的初始位置是(a,b)，即距屏幕左面a个像素、距屏幕上方b个像素；窗口的宽是width，高是height。
+ 2)public void setSize(int width,int height) 设置窗口的大小。
+ 3)public void setLocation(int x,int y) 设置窗口的位置，默认位置是(0,0)。
+ 4)public void setVisible(boolean b) 设置窗口是否可见，窗口默认是不可见的。
+ 5)public void setResizable(boolean b) 设置窗口是否可调整大小，默认可调整大小。
+ 6)public void dispose() 撤消当前窗口，并释放当前窗口所使用的资源。
+7)public void setExtendedState(int state) 设置窗口的扩展状态.
+8)public void setDefaultCloseOperation(int operation)  该方法用来设置单击窗体右上角的关闭图标后，程序会做出怎样的处理。如：EXIT_ON_CLOSE
+9)public void setLayout(LayoutManager?mgr) 设置此容器的布局管理器。
+10)public Component add(Component?comp) 将指定组件追加到此容器的尾部。
+11)public void setMenuBar(MenuBar?mb) 将此 frame 的菜单栏设置为指定的菜单栏。
+12)public void validate() 使用 validate 方法会使容器再次布置其子组件。在修改此容器的子组件的时候（在容器中添加或移除组件，或者更改与布局相关的信息），应该调用上述方法。",common,JFrame常用方法,,,,
+23,:Knowledge,"在Java中，方法的所有参数都是“传值”的，也就是说，方法中参数变量的值是调用者指定的值的拷贝。
+ 1）对于基本数据类型的参数，向该参数“传值”，传递的是值的拷贝.
+ 例如，如果向方法的int型参数x传递一个int值，那么参数x得到的值是传递的值的拷贝。
+ 2）对于参数是引用类型时，“传值”传递的是变量的引用而不是变量所引用的实体。Java的引用型数据包括对象、数组和接口。",common,传值机制,,,,
+24,:Knowledge,对于基本数据类型的参数，传递的是值的拷贝。同时向该参数传递的值的级别不可以高于该参数的级别 。,common,基本数据类型参数的传值,,,,
+25,:Knowledge,当参数是引用类型时，“传值”传递的是变量中存放的“引用”，而不是变量所引用的实体。,common,引用类型参数的传值,,,,
+27,:Knowledge,如果一个对象a组合了对象b，那么对象a就可以委托对象b调用其方法，即对象a以组合的方式复用对象b的方法。,common,组合与复用,,,,
+28,:Knowledge,/,common,关联关系和依赖关系的UML图,,,,
+33,:Knowledge,"通过关键字package声明包语句。
+package语句作为Java源文件的第一条语句， 为该源文件中声明的类指定包名。
+package语句的一般格式为：
+                  package 包名;",common,包语句,,,,
+34,:Knowledge,"程序如果使用了包语句，例如：
+             package tom.jiafei;
+那么存储文件的目录结构中必须包含有如下的结构    
+          …\tom\jiafei
+ 如：c:\1000\tom\jiafei
+并且要将源文件编译得到的类的字节码文件保存在目录c:\1000\tom\jiafei中（源文件可以任意存放）。",common,有包名的类的存储目录,,,,
+35,:Knowledge,"如果主类的包名是tom.jiafei，那么主类的字节码一定存放在…\tom\jiefei目录中，运行时必须到tom\jiefei的上一层（即tom的父目录）目录中去运行主类。
+假设tom\jiefei的上一层目录是1000，那么，必须如下格式来运行：
+  C:\1000\java tom.jiafei.主类名 ",common,运行有包名的主类,,,,
+37,:Knowledge,"用户程序也可以使用import语句引入非类库中有包名的类，如：
+         import tom.jiafei.*;
+在用户程序所在目录下建立和包相对应的子目录结构，比如用户程序所在目录是C:\ch4，想使用import语句引入tom.jiafei包中的类，那么根据包名建立如下的目录结构：
+        C:\ch4\tom\jiafei",common,引入自定义包中的类,,,,
+39,:Knowledge,"用关键字private修饰的成员变量和方法称为私有变量和私有方法。
+对于私有成员变量或方法，只有在本类中创建该类的对象时，这个对象才能访问自己的私有成员变量和类中的私有方法。
+某个类在另外一个类中创建对象后，如果不希该对象直接访问自己的变量，即通过“.”运算符来操作自己的成员变量，就应当将该成员变量访问权限设置为private。
+面向对象编程提倡对象应当调用方法来改变自己的属性，类应当提供操作数据的方法，这些方法可以经过精心的设计，使得对数据的操作更加合理。",common,私有变量和私有方法,,,,
+40,:Knowledge,"用public修饰的成员变量和方法被称为公有变量和公有方法 。 
+我们在任何一个类中用类Tom 创建了一个对象后，该对象能访问自己的public变量和类中的public方法（也可以通过类名来操作成员变量、方法） 。",common,公有变量和公有方法,,,,
+41,:Knowledge,"当在另外一个类中用类Tom 创建了一个对象后，如果这个类与Tom类在同一个包中，那么该对象能访问自己的友好变量和友好方法。
+在任何一个与Tom同一包中的类中，也可以通过Tom类的类名访问Tom类的类友好成员变量和类友好方法。",common,友好变量和友好方法,,,,
+42,:Knowledge,用protected修饰的成员变量和方法被称为受保护的成员变量和受保护的方法 。,common,受保护的成员变量和方法,,,,
+43,:Knowledge,"类声明时，如果在关键字class前面加上public关键字，就称这样的类是一个public 类 。
+可以在任何另外一个类中,使用public类创建对象。 
+如果一个类不加public修饰，这样的类被称作友好类。
+在另外一个类中使用友好类创建对象时，要保证它们是在同一包中。",common,public类与友好类,,,,
+45,:Knowledge,"Double类和Float类实现了对double和float基本型数据的类包装。
+Double类的构造方法：Double(double num)
+Float类的构造方法：   Float(float num)
+Double对象调用doubleValue()方法可以返回该对象中含有的double型数据。
+Float对象调用floatValue()方法可以返回该对象中含有的float型数据。 ",common,Double和Float类,,,,
+46,:Knowledge,"上述类的构造方法分别 ：
+            Byte(byte num)
+            Short(short num)
+            Integer(int num)
+            Long(long num)
+Byte、Short、Integer和Long对象分别调用byteValue ()、shortValue()、intValue()和longValue ()方法返回该对象含有的基本型数据。",common,Byte、Short 、Integer、Long类,,,,
+47,:Knowledge,"Character类实现了对char基本型数据的类包装。
+      Character类的构造方法：Character(char c)
+Character类中的一些常用类方法：
+public static boolean isDigit(char ch)  ch是数字字符返回true.
+public static boolean isLetter(char ch) ch是字母返回 true。",common,Character类,,,,
+52,:Knowledge,"1．菜单条
+  JComponent类的子类JMenubar负责创建菜单条，JFrame类有一个将菜单条放置到窗口中的方法:setJMenuBar(JMenuBar bar);该方法将菜单条添加到窗口的顶端。
+菜单条JMenuBar类构造方法：JMenuBar(); JMenuBar  Mbar=new JMenuBar()
+2．菜单
+  JComponent类的子类JMenu负责创建菜单。
+菜单JMenu类构造方法：JMenu() ; JMenu(String?s) ; JMenu m=new JMenu();
+常用方法：
+    public void add(JMenuItem item) 向菜单增加由参数item指定的菜单项
+  public JMenuItem getItem(int n) 得到指定索引处的菜单选项。
+  public int getItemCount() 得到菜单选项的数目。
+3.菜单项 
+  JComponent类的子类JMenuItem负责创建菜单项,JMenuItem类的主要方法有以下几种：
+  JMenuItem(String s) 构造有标题的菜单项。
+  JMenuItem(String text, Icon icon) 构造有标题和图标的菜单项
+  public void setAccelerator(KeyStroke keyStroke)为菜单项设置快捷键",common,菜单条、菜单、菜单项,,,,
+54,:Knowledge,"1．文本框：由JComponent的子类JTextField创建文本框。
+构造函数：JTextField( ) ; JTextField(int?columns) ;
+常用方法：public String getText();
+                    public void setText(String?t);
+2．文本区：由JComponent的子类JTexArea创建文本区。
+构造函数：JTextArea() ;JTextArea(int?rows, int?columns) 
+常用方法：public String getText();
+                    public void setText(String?t);
+3．按钮：由JComponent的子类JButton类用来创建按钮。
+构造函数：JButton() ; JButton(String?text) ;
+常用方法：public void addActionListener(ActionListener?l);
+4.标签：由JComponent的子类JLabel类用来创建标签。
+构造函数：JLabel() ; JLabel(String?text) ; JLabel(Icon?image) ;
+常用方法：public String getText(); 
+                    public void setText(String?t);
+5.选择框：由JComponent的子类JCheckBox类用来创建选择框
+构造函数： JCheckBox() ;JCheckBox(String?text) ;
+常用方法： public void addItemListener(ItemListener?l) 
+                     public void addActionListener(ActionListener?l) 
+ItemListener接口中：Object getItemSelectable()相当于getSource();
+                                public int getStateChange();
+                                若被选中SELECTED/DESEELCTED
+6.单选按钮：由JComponent的子类JRadioButton类用来创建单项选择框。
+构造函数： JRadioButton() ; JRadioButton(String?text) ;
+常用方法： public void addItemListener(ItemListener?l)
+7.下拉列表：由JComponent的子类JComboBox类用来创建下拉列表。
+构造函数：JComboBox() ; JComboBox(Object[]?items) 
+常用方法： public void addItemListener(ItemListener?l) 
+                    public Object getSelectedItem();
+                    public int getSelectedIndex()
+8.密码框：由JComponent的子类JPasswordField创建密码框.
+构造函数：JPasswordField() ; JPasswordField(int?columns) 
+常用方法：public String getText();
+                    public void setText(String?t);
+public void setEchoChar(char?c)使用该方法重新设置回显字符.                       
+public char[] getPassword()方法可以返回实际的密码",key,常用组件,,,,
+55,:Knowledge,"JComponent是Container的子类，因此JComponent子类创建的组件也都是容器。容器经常用来添加组件。JFrame是底层容器，本节提到的容器被习惯地称做中间容器，中间容器必须被添加到底层容器中才能发挥作用。
+1．JPanel 面板: 
+   构造方法：JPanel() ；如： JPanel p=new JPanel(); 
+   常用方法：public void add();
+   使用JPanel创建面板，再向这个面板添加组件，然后把这个面板添加到其它容器中。JPanel面板的默认布局是FlowLayout布局。
+2．滚动窗格JScrollPane:
+  构造方法：JScrollPane() ;JScrollPane(Component?view)                       JScrollPane(int?vsbPolicy, int?hsbPolicy) 
+  其中参数：int HORIZONTAL_SCROLLBAR_ALWAYS 等
+  常用方法：public JViewport getViewport()
+                      public void setViewport(JViewport?viewport)  
+  例如：可以将文本区放到一个滚动窗格中。
+       JScorollPane scroll=new JScorollPane(new JTextArea()); 
+3.拆分窗格JSplitPane:窗格有两种类型：水平拆分和垂直拆分
+ 常用的构造方法：
+  (1)JSplitPane(int a,Component left,Component right) 
+    创建一个具有指定方向和不连续重绘的指定组件的新 JSplitPane.
+其中:JSplitPane.HORIZONTAL_SPLIT 或 JSplitPane.VERTICAL_SPLIT  
+  (2)JSplitPane(int a, boolean b,Component c,Component d)  
+   创建一个具有指定方向、重绘方式和指定组件的新 JSplitPane.
+ 常用方法：
+   public void setLeftComponent(Component?comp)
+   public void setRightComponent(Component?comp) ",key,常用容器,,,,
+56,:Knowledge,"当把组件添加到容器中时，希望控制组件在容器中的位置，这就需要学习布局设计的知识。
+我们将分别介绍java.awt包中的FlowLayout、BorderLayout、CardLayout、GridLayout布局类和java.swing.border包中的BoxLayout布局类。
+   
+容器可以使用方法：
+           setLayout(布局对象);
+   来设置自己的布局，控制组件在容器中的位置
+1．FlowLayout布局:是JPanel型容器的默认布局
+ 1)创建布局对象 : FlowLayout flow=new FlowLayout();
+ 2)容器con使用布局对象: con.setLayout(flow);
+ 3)con可以使用Container类提供的add方法将组件顺序地添加到容器中
+    FlowLayout布局对象调用相应的方法可以重新设置布局的对齐方式等.
+    如： public void setAlignment(int?align) 
+2．BorderLayout布局:
+ BorderLayout 布局是Window型容器的默认布局 。
+ 使用BorderLayout布局的容器con，可以使用add方法将一个组件b添加到中心区域：con.add(b,BorderLayout.CENTER);
+            或  con.add(BorderLayour.CENTER,b); 
+3．CardLayout 布局 :  使用CardLayout的一般步骤如下：
+   1)创建CardLayout对象 CardLayout card=new CardLayout();
+   2)为容器设置布局 con.setLayout(card);
+   3)容器调用add(String s,Component b)将组件b加入容器，并给出了显示该组件的代号s。
+   4)布局对象card用CardLayout类提供的show()方法，显示容器con中组件代号为s的组件：card.show(con,s);
+   使用CardLayout 的容器可以容纳多个组件，但是实际上同一时刻容器只能从这些组件中选出一个来显示，就像一叠“扑克牌”每次只能显示最上面一张一样，这个被显示的组件将占据所有的容器空间，依次排序
+4．GridLayout布局 :
+   GridLayout布局策略是把容器划分成若干行乘若干列的网格区域，组件就位于这些划分出来的小格中。 GridLayout布局编辑器的一般步骤如下：
+   1)创建布局对象，指定划分网格的行数m和列数n
+   GridLayout grid=new new GridLayout(10,8); 
+   2)使用GridLayout布局的容器调用方法add(Component c)将组件c加入容器。 
+5．BoxLayout布局:
+   使用盒式布局的容器将组件排列在一行或一列 .BoxLayout布局的一般步骤如下：
+   1)创建布局对象，使用BoxLayou的构造方法BoxLayout(Container con，,int axis)可以创建一个盒式布局对象. 
+  2)可以使用Box类的类（静态）方法 createHorizontalBox()获得一个具有行型盒式布局的盒式容器；  使用Box类的类（静态）方法 createVerticalBox()获得一个具有列型盒式布局的盒式容器。 
+   3)控制盒式布局容器中组件之间的距离 
+   Box类调用静态方法createHorizontalStrut(int width)可以得到一个不可见的水平Struct对象，称做水平支撑。 Box类调用静态方法createVertialStrut(int height)可以得到一个不可见的垂直Struct对象，称做垂直支撑。
+   例子5  Example9_5.java  WindowBoxLayout.java 
+   两个列型盒式容器boxV1、boxV2和一个行型盒式容器baseBox。
+   在列型盒式容器的组件之间添加垂直支撑，控制组件之间的距离，将boxV1、boxV2添加到baseBox中，并在它俩之间添加了水平支撑。程序运行效果如图9.6。
+ 6．null布局 : 
+   空布局容器可以准确地定位组件在容器的位置和大小。组件调用setBounds(int a,int b,int width,int height)方法可以设置本身的大小和在容器中的位置     
+
+",key,常用布局,,,,
+58,:Knowledge,"1．事件源 :能够产生事件的对象都可以成为事件源 .
+
+ 2．监视器 :事件源通过调用相应的方法将某个对象注册为自己的监视器。对于文本框，这个方法是：addActionListener(监视器);
+       java语言中监视器都是使用接口来实现的。事件源注册监视器之后，相应的操作就会导致相应的事件的发生，并通知监视器，监视器就会作出相应的处理。 
+ 3．处理事件的接口:
+   监视器负责处理事件源发生的事件。监视器是一个对象，为了处理事件源发生的事件，监视器这个对象会自动调用接口中一个方法来处理事件。 
+    Java规定：为了让监视器这个对象能对事件源发生的事件进行处理，创建该监视器对象的类必须声明实现相应的接口，那么当事件源发生事件时，监视器就自动调用被类重写的某个接口方法(如图9.7)。
+
+",key,事件处理模式,,,,
+59,:Knowledge,"1.ActionEvent事件源 :
+    文本框、按纽、菜单项、密码框和单选按纽都可以触发ActionEvent事件，即都可以成为ActionEvent事件的事件源。 
+ 2.注册监视器: ActionListener接口作为监视器
+    事件源.addActionListener(ActionListener listen)
+   将实现ActionListener接口的类的实例注册为事件源的监视器。 
+ 3.ActionListener接口：重写接口中的方法作为事件处理。
+    ActionListener接口在java.awt.event包中,该接口中只有一个方法:
+    public void actionPerformed(ActinEvent e) 
+        事件源触发ActionEvent事件后，监视器将发现触发的ActionEvent事件，然后调用接口中的这个方法对发生的事件作出处理。ActionEvent类事先创建的事件对象就会传递给该方法的参数e。  
+4.ActionEvent类中的方法:下面的方法能够获取发生动作的事件源。
+   public Object getSource() 
+      调用该方法可以获取发生ActionEvent事件的事件源对象的引用。
+   public String getActionCommand() 
+      调用该方法可以获取发生ActionEvent事件时，和该事件相关的一个命令字符串",key,ActionEvent事件,,,,
+60,:Knowledge,"1．ItemEvent事件源 :选择框、下拉列表都可以触发ItemEvent事件。
+2．注册监视器:ItemListener接口作为监视器
+     事件源.addItemListener(ItemListener listen)
+     将实现ItemListener接口的类的实例注册为事件源的监视器。 
+3．ItemListener接口:重写方法作为事件处理
+    ItemListener接口在java.awt.event包中,该接口中只有一个方法
+    public void itemStateChanged(ItemEvent e) 
+    事件源触发ItemEvent事件后，监视器将发现触发的ItemEvent事件，然后调用接口中的itemStateChanged(ItemEvent  e)方法对发生的事件作出处理。ItemEvent类事先创建的事件对象就会传递给该方法的参数e。 
+4．ItemEvent类中的方法 :
+    getSource()方法返回发生Itemevent事件的事件源外
+    getItemSelectable()方法返回发生Itemevent事件的事件源。",key,ItemEvent事件,,,,
+61,:Knowledge,"1．DocumentEvent事件源 :文本区所维护的文档能触发DocumentEvent事件  2．注册监视器:DocumentListener作为监视器
+     addDucumentListener(DocumentListener listen)
+     将实现DocumentListener接口的类的实例注册为事件源的监视器。 
+3．DocumentListener接口:重写接口中的方法作为事件处理
+    DocumentListener接口在javax.swing.event包中，该接口中有三个方法：
+          public void changedUpdate(DocumentEvent e)    
+    public void removeUpdate(DocumentEvent e)
+    public void insertUpdate(DocumentEvent e)
+",key,DocumentEvent事件,,,,
+62,:Knowledge,"任何组件上都可以发生鼠标事件，如：鼠标进入组件、退出组件、在组件上方单击鼠标、拖动鼠标等都触发鼠标事件，即导致MouseEvent类自动创建一个事件对象。 
+1．使用MouseListener接口可以处理以下5种操作触发的鼠标事件
+    在事件源上按下鼠标键、在事件源上释放鼠标键、在事件源上击鼠标键、鼠标进入事件源、鼠标退出事件源。
+注册监视器:MouseListener接口作为监视器
+     事件源.addMouseListener(MouseListener listener)。 
+MouseListener接口中有如下方法：重写方法作为事件源的处理 
+   mousePressed(MouseEvent) 负责处理在组件上按下鼠标键触发的鼠标事件
+   mouseReleased(MouseEvent) 负责处理在组件上释放鼠标键触发的鼠标事件
+   mouseEntered(MouseEvent) 负责处理鼠标进入组件触发的鼠标事件
+   mouseExited(MouseEvent) 负责处理鼠标离开组件触发的鼠标事件
+   mouseClicked(MouseEvent) 负责处理在组件上单击鼠标键触发的鼠标事件
+MouseEvent 中有下列几个重要的方法：
+     getX() 获取鼠标指针在事件源坐标系中的x-坐标。
+     getY() 获取鼠标指针在事件源坐标系中的y-坐标。
+     getModifiers() 获取鼠标的左键或右键。
+     getClickCount() 获取鼠标被单击的次数。
+     getSource() 获取发生鼠标事件的事件源。
+2．使用MouseMotionListener接口可以处理以下两种操作触发的鼠标事件，  在事件源上拖动鼠标、在事件源上移动鼠标。
+ 事件源注册监视器的方法是
+     addMouseMotionListener(MouseMotionListener listener)。 
+ MouseMotionListener接口中有如下方法：
+     mouseDragged(MouseEvent)  负责处理拖动鼠标触发的鼠标事件。
+    mouseMoved(MouseEvent)  负责处理移动鼠标触发的鼠标事件。",key,MouseEvent事件,,,,
+63,:Knowledge,"1．焦点事件源 :组件可以触发焦点事件。 
+ 2．注册监视器:组件可以使用
+    addFocusListener(FocusListener listener)
+     注册焦点事件监视器。 
+ 3．FocusListener接口 :
+        创建监视器的类必须要实现FocusListener接口，该接口有两个方法：
+      public void focusGained(FocusEvent e)
+      public void focusLost(FocusEvent e)
+        当发生FocusEvent事件时，监视器调用类实现的接口中的相应方法。
+ 4．组件也可调用
+       public boolean requestFocusInWindow()
+    方法可以获得输入焦点。 ",key,焦点事件,,,,
+64,:Knowledge,"当一个组件处于激活状态时，敲击键盘上一个键就导致这个组件触发键盘事件。
+1.某个组件使用addKeyListener方法注册监视器。
+2.接口KeyListener中有如下方法：
+     public void keyPressed(KeyEvent e),
+  public void keyTyped(KeyEvent e),
+  public void KeyReleased(KeyEvent e)  
+3.相关方法：
+   public int getKeyCode()判断哪个键被按下、敲击或释放,返回一个键码值 。      
+   getKeyChar()判断哪个键被按下、敲击或释放，返回键上的字符。",key,键盘事件,,,,
+65,:Knowledge,"JFrame及子类创建的窗口可以调用
+        setDefaultCloseOperation(int operation);
+方法设置窗口的关闭方式（如前面各个例子所示）.
+但是setDefaultCloseOperation方式可能不能满足程序的需要，比如，用户单击窗口上的关闭图标时，可能程序需要提示用户是否需要保存窗口中的有关数据到磁盘等 .",key,窗口事件,,,,
+66,:Knowledge,"匿名类的方便之处是匿名类的外嵌类的成员变量在匿名类中仍然有效，当发生事件时，监视器就比较容易操作事件源所在的外嵌类中的成员.当事件的处理比较简单、系统也不复杂时，使用匿名类做监视器是一个不错的选择。
+   让事件源所在的类的实例作为监视器，能让事件的处理比较方便，这是因为，监视器可以方便的操作事件源所在的类中的其他成员。当事件的处理比较简单，系统也不复杂时，让事件源所在的类的实例作为监视器是一个不错的选择。",key,匿名类实例或窗口做监视器,,,,
+67,:Knowledge,"1.授权模式
+   Java的事件处理是基于授权模式，即事件源调用调用方法将某个对象注册为自己的监视器。
+2.接口回调 
+   addXXXListener(XXXListener listener)方法中的参数是一个接口，listener可以引用任何实现了该接口的类所创建的对象，当事件源发生事件时，接口listener立刻回调被类实现的接口中的某个方法。
+3.方法绑定 
+   当事件源触发事件发生后，监视器准确知道去调用哪个方法。
+4.保持松耦合 
+   当事件源触发事件发生后，系统知道某个方法会被执行，但无须关心到底是哪个对象去调用了这个方法，因为任何实现接口的类的实例(做为监视器)都可以调用这个方法来处理事件。    ",key,事件总结,,,,
+70,:Knowledge,"消息对话框是有模式对话框，进行一个重要的操作动作之前,最好能弹出一个消息对话框。可以用javax.swing包中的JOptionPane类的静态方法:
+    public static void showMessageDialog(
+                       Component parentComponent,
+                       String message,
+                       String title,
+                       int messageType)
+    创建一个消息对话框。",common,消息对话框,,,,
+71,:Knowledge," 输入对话框含有供用户输入文本的文本框、一个确认和取消按钮，是有模式对话框 。
+     可以用javax.swing包中的JOptionPane类的静态方法：
+  public static 
+         String showInputDialog(Component parentComponent,
+                                      Object message,
+                                      String title,
+                                      int messageType)
+  创建一个输入对话框。",common,输入对话框,,,,
+72,:Knowledge,"确认对话框是有模式对话框。
+可以用javax.swing包中的JOptionPane类的静态方法:
+public static int showConfirmDialog(Component parentComponent,
+                                    Object message,
+                                    String title,
+                                    int optionType)
+得到一个确认对话框。",common,确认对话框,,,,
+73,:Knowledge,"可以用javax.swing包中的JColorChooser类的静态方法: public static Color showDialog（Component component,        
+                                        String title,
+                                        Color initialColor）
+创建一个有模式的颜色对话框。",common,颜色对话框,,,,
+74,:Knowledge,"创建对话框与创建窗口类似，通过建立JDialog的子类来建立一个对话框类，然后这个类的一个实例，即这个子类创建的一个对象，就是一个对话框。对话框是一个容器，它的默认布局是BorderLayout，对话框可以添加组件，实现与用户的交互操作。 
+
+构造对话框的2个常用构造方法
+JDialog() 构造一个无标题的初始不可见的对话框，对话框依赖一个默认的不可见的窗口，该窗口由Java运行环境提供。
+JDialog(JFrame owner) 构造一个无标题的初始不可见的无模式的对话框，owner是对话框所依赖的窗口，如果owner取null，对话框依赖一个默认的不可见的窗口，该窗口由Java运行环境提供。",common,自定义对话框,,,,
+76,:Knowledge,"1．DefaultMutableTreeNode节点
+DefaultMutableTreeNode类的两个常用的构造方法是：
+DefaultMutableTreeNode(Object userObject)
+DefaultMutableTreeNode(Object userObject,boolean allowChildren)
+2．树上的TreeSelectionEvent事件 
+addTreeSelectionListener(TreeSelectionListener listener)
+方法获得一个监视器。",common,树组件,,,,
+77,:Knowledge,"表格组件以行和列的形式显示数据，允许对表格中的数据进行编辑。表格的模型功能强大、灵活并易于执行。表格是最复杂的组件，对于初学者，这里只介绍默认的表格模型。
+ JTable有7个构造方法，这里介绍常用的三个。
+     JTable() 创建默认的表格模型。
+     JTable(int a,int b) 创建a行,b列的默认模型表格
+     JTable (Object data[][],Object  columnName[]) 创建默认表格模型对象，并且显示由data指定的二维数组的值，其列名由数组columnName指定。
+ 通过对表格中的数据进行编辑，可以修改表格中二维数组data中对应的数据数据。在表格中输入或修改数据后，需按回车或用鼠标单击表格的单元格确定所输入或修改的结果。当表格需要刷新显示时，让表格调用repaint方法。",common,表格组件,,,,
+218,:Knowledge,Java的平台无关性让Java成为编写网络应用程序的佼佼者，而且Java也提供了许多以网络应用为核心的技术，使得Java特别适合于网络应用软件的设计与开发,common,网络地位,,,,
+219,:Knowledge,"是一门很好的面向对象语言,通过学习Java语言可以学习怎样使用对象来完成某些任务、掌握面向对象编程的基本思想. ",common,语言地位,,,,
+220,:Knowledge,IT行业对Java人才的需求正在不断的增长，掌握Java语言及其相关技术意味着较好的就业前景和工作酬金。,common,需求地位,,,,
+221,:Knowledge,Java是1995年6月由Sun公司引进到我们这个世界的革命性的编程语言。,common,先导知识,,,,
+222,:Knowledge,1990年Sun公司成立了由James Gosling领导的开发小组，开始致力于开发一种可移植的、跨平台的语言，该语言能生成正确运行于各种操作系统、各种CPU芯片上的代码。他们的精心专研和努力促成了Java语言的诞生。,common,后继技术,,,,
+223,:Knowledge,Java要比C++简单，C++中许多容易混淆的概念，或者被Java弃之不用了，或者以一种更清楚更容易理解的方式实现。,common,简单,,,,
+224,:Knowledge,Java是面向对象的编程语言，本书将在第4章、第5章和第6章详细、准确地讨论类、对象、继承、多态、接口等重要概念。,common,面向对象,,,,
+225,:Knowledge,在一个计算机上编译得到的字节码文件可以复制到任何一个安装了Java运行环境的计算机上直接使用。字节码由Java虚拟机负责解释运行，即Java虚拟机负责将字节码翻译成本地计算机的机器码，并将机器码交给本地的操作系统来运行。,key,平台无关,,,,
+226,:Knowledge,Java的特点之一就是内置对多线程的支持。多线程允许同时完成多个任务。,common,多线程,,,,
+227,:Knowledge,使用支持Java的浏览器时，可以放心地运行Java Applet程序，不必担心病毒的感染和恶意的企图。Java Applet程序由浏览器内置的Java运行环境负责解释执行，浏览器内置的Java运行环境不允许Java Applet程序访问当前浏览器上下文环境以外的其它部分。,common,安全,,,,
+228,:Knowledge,Java程序的基本组成单元就是类，有些类是自己编写的，有一些是从类库中引入的，而类又是运行时动态装载的，这就使得Java可以在分布环境中动态地维护程序及类库。,common,动态,,,,
+229,:Knowledge,"目前Java平台主要分为下列3个版本: 
+	（1）Java SE（曾称为J2SE）称为Java标准版或Java 标准平台.  
+	（2）Java EE（曾称为J2EE）称为Java企业版或Java企业平台.
+	（3）Java ME（曾称为J2ME）称为Java微型版或Java小型平台.",common,三种平台,,,,
+230,:Knowledge,"（1）下载JDK1.6。 本书将使用针对Window操作系统平台的JDK，因此下载的版本为jdk-6u13-windows-i586-p.exe。
+（2）选择安装路径界面。为了便于今后设置环境变量，建议修改默认的安装路径为：D:\jdk1.6 。 ",common,Java SE安装,,,,
+232,:Knowledge,JDK平台提供的Java编译器（javac.exe）和Java解释器（java.exe）位于Java安装目录的in文件夹中，为了能在任何目录中使用编译器和解释器，应在系统特性中设置path。对于Windows2000/2003/XP，右键单击“我的电脑”，在弹出的快捷菜单中选择“属性”，弹出“系统特性”对话框，再单击该对话框中的“高级选项”，然后单击按钮“环境变量”，添加系统环境变量。如果曾经设置过环境变量path，可单击该变量进行编辑操作，将需要的值(D:\jdk1.6in)加入即可 。,common,path设置,,,,
+233,:Knowledge,"一般不需要设置环境变量classpath的值。如果计算机安装过一些商业化的Java开发产品或带有Java技术的一些产品，安装这些产品后，classpath的值可能会被修改了。如果希望使用最新的Java运行环境,就重新设置 classpath的值。
+Classpath值中的( .; ) 是指可以加载应用程序当前目录及其子目录中的类。",common,classpath设置,,,,
+236,:Knowledge,"（1）使用一个文本编辑器，编写源文件。
+（2）Java源程序中语句所涉及到的小括号及标点符号都是英文状态下输入的括号和标点符号，比如“大家好!”中的引号必须是英文状态下的引号，而字符串里面的符号不受汉字符或英文字符的限制。",key,编写源文件,,,,
+237,:Knowledge,如果源文件中有多个类，那么只能有一个类是public类；如果有一个类是public类，那么源文件的名字必须与这个类的名字完全相同，扩展名是java；如果源文件没有public类，那么源文件的名字只要和某个类的名字相同，并且扩展名是java就可以了。,key,保存源文件,,,,
+238,:Knowledge,进入逻辑分区C的chapter1目录中，使用编译器javac编译源文件,key,编译器,,,,
+239,:Knowledge,一个Java应用程序必须有一个类含有public static void main（String args[ ]）方法，称这个类是应用程序的主类。,common,主类,,,,
+240,:Knowledge,使用Java虚拟机中的Java解释器（java.exe）来解释执行其字节码文件。Java应用程序总是从主类的main方法开始执行。因此，需进入主类字节码所在目录，比如C:\chapter1，然后使用Java解释器（java.exe）运行主类的字节码。,key,解释器,,,,
+241,:Knowledge,Allmans风格也称“独行”风格，即左、右大括号各自独占一行，如下列代码所示意 .当代码量较小时适合使用“独行”风格，代码布局清晰，可读性强,common,Allmans风格,,,,
+242,:Knowledge,Kernighan风格也称“行尾”风格，即左大括号在上一行的行尾，而右大括号独占一行，如下列代码所示意。当代码量较大时不适合使用“独行”风格，因为该风格将导致代码的左半部分出现大量的左、右大括号，导致代码清晰度下降，这时应当使用“行尾”风格。,common,Kernighan风格,,,,
+243,:Knowledge,"Java支持两种格式的注释：单行注释和多行注
+单行注释使用“//”表示单行注释的开始，即该行中从“//”开始的后续内容为注释 .
+多行注释的使用“/*”表示注释的开始，以“*/”表示注释结束。
+",common,注释,,,,
+246,:Knowledge,用来标识类名、变量名、方法名、类型名、数组名、文件名的有效字符序列称为标识符，简单地说，标识符就是一个名字 。,key,标识符,,,,
+247,:Knowledge,"标识符由字母、下划线、美元符号和数字组成，长度不受限制。
+标识符的第一个字符不能是数字字符。
+标识符不能是关键字。
+标识符不能是true、false和null（尽管true、false和null不是关键字）。",common,Java语言规定,,,,
+248,:Knowledge,"关键字就是具有特定用途或被赋予特定意义的一些单词，不可以把关键字作为标识符来用 。
+例如： boolean、byte、short、int、float、double、char、if、else等。
+关键字都是小写的。遇到大写肯定不是关键字。",common,关键字,,,,
+251,:Knowledge,使用关键字boolean来声明逻辑变量，声明时也可以赋给初值。,common,变量,,,,
+252,:Knowledge,true、false。,common,常量,,,,
+253,:Knowledge,"变量：使用关键字int来声明int型变量,声明时也可以赋给初值.
+                例如： int x= 12,平均=9898,jiafei;
+常量：int型常量共有三种表示方法：
+十进制： 123，6000（十进制）
+八进制： 077（八进制，是零开头）；
+十六进制： 0x3ABC（十六进制）
+对于int型变量，内存分配给4个字节（byte）,占32位.
+",common,int 型,,,,
+254,:Knowledge,"变量：使用关键字byte来声明byte 型变量.
+例如： byte x= -12,  tom=28,  漂亮=98; 
+常量：一定范围内的int型常量赋值给byte型变量.  
+对于byte型内存分配给1个字节，占8位 ",common,byte 型,,,,
+255,:Knowledge,"变量：使用关键字short来声明short型变量。
+例如： short x=12,y=1234; 
+常量：和byte型类似，Java中也不存在short型常量的表示法，但可以把一定范围内的int型常量赋值给short型变量。 
+对于short型变量，内存分配给2个字节，占16位.",common,short 型,,,,
+256,:Knowledge,"变量：使用关键字long来声明long型变量。
+常量：long型常量用后缀L来表示，例如108L(十进制)、07123L(八进制)、 0x3ABCL(十六进制) 。 
+例如： long width=12L,height=2005L,length;
+对于long型变量，内存分配给8个字节，占64位。",common,long 型,,,,
+257,:Knowledge,"常量：‘A’，‘b’，‘?’，‘!’，‘9’，‘好’，‘	’，‘き’，‘モ’等，即用单引号扩起的Unicode表中的一个字符。  
+变量： 使用关键字char来声明char型变量，对于char型变量，内存分配给2个字节，占16位 
+例如：char ch=‘A’,home=‘家’,handsome=‘酷’。",common,Char类型,,,,
+258,:Knowledge,"有些字符（如回车符）不能通过键盘输入到字符串或程序中，就需要使用转意字符常量,
+例如：
+(换行), (退格),	(水平制表),\‘(单引号),\“(双引号),\(反斜线)等。 
+Java语言使用Unicode标准字符集，最多可以识别65536个字符。",common,转意字符常量,,,,
+259,:Knowledge,"常量：453.54F(小数表示法)，2e40f(2乘10的40次方，指数表示法). 
+变量：使用关键字float来声明float型变量，
+例如：float x=22.76f,tom=1234.987f,weight=1e-12F; 
+精度:float变量在存储时保留8位有效数字。
+对于float型变量，内存分配给4个字节，占32位。",common,float型,,,,
+260,:Knowledge,"常量：238.539d，231.987(小数表示法)，1e-90(1乘10的-90次方，指数表示法).对于double常量，后缀有“d”或“D”，但允许省略后缀. 
+变量：使用关键字double来声明double型变量， 
+例如：double height=23.345,width=34.56D,length=1e12; 
+对于double型变量，内存分配给8个字节，占64位 。
+精度:double变量在存储double型数据时保留16位有效数字，实际精度取决于具体数值。
+特别注意，一个具有小数部分的数据的缺省类型是double而不是float。所以float常量后面必须要有后缀“f”或“F”。",common,double型,,,,
+261,:Knowledge,"Java中数据的基本类型(不包括逻辑类型)按精度从“低”到“高”排列：
+byte  short  char  int  long  float  double ",common,类型精度排序,,,,
+262,:Knowledge,"当把级别低的变量的值赋给级别高的变量时，系统自动完成数据类型的转换。
+例如：float x=100; 
+当把级别高的变量的值赋给级别低的变量时，必须使用显示类型转换运算。显示转换的格式：（类型名）要转换的值;例如：int x=(int)34.89; 
+当把一个int型常量赋值给一个byte和short型变量时，不可以超出这些变量的取值范围，否则必须进行类型转换运算。",common,类型转换规则,,,,
+264,:Knowledge,"可以使用Scanner类创建一个对象：
+Scanner reader=new Scanner(System.in);
+其中：reader对象调用下列方法，读取用户在命令行输入的各种基本类型数据：
+nextBoolean()、 nextByte()、 nextShort()、 nextInt() 、  
+nextLong()、nextFloat()、nextDouble()。
+上述方法执行时都会堵塞，程序等待用户在命令行输入数据回车确认。",common,输入基本型数据,,,,
+265,:Knowledge,"java使用System类中的方法实现数据输出
+例如：System.out.println()或System.out.print()输出串值，表达式的值。二者的区别是前者输出数据后换行，后者不换行。如：
+System.out.println(m+""个数的和为""+sum);
+System.out.println("":""+123+""大于""+122);
+如果需要输出的字符串的长度较长，可以将字符串分解成几部分，然后使用并置符号：“+”将它们首尾相接，
+例如：System.out.println(""你好，""+""很高兴认识你"" );",common,输出基本型数据,,,,
+266,:Knowledge,"DK1.5新增了和C语言中printf函数类似的输出数据的方法，格式如下：
+System.out.printf(""格式控制部分""，表达式1，表达式2，…表达式n)
+格式控制部分由格式控制符号：%d、%c、%f、%s和普通的字符组成，普通字符原样输出。格式符号用来输出表达式的值。
+%d输出int类型数据值；%c输出char型数据；%f输出浮点型数据，小数部分最多保留6位；%s输出字符串数据。
+输出数据时也可以控制数据在命令行的位置，例如：%md输出的int型数据占m列；%m.nf输出的浮点型数据占m列，小数点保留n位。
+例如：System.out.printf(""%d,%f"",12, 23.78); ",common,printf输出,,,,
+268,:Knowledge,"声明一维数组有下列两种格式：
+数组的元素类型 数组名[];
+数组的元素类型 [] 数组名; 
+例如：
+float boy[];
+char [] cat; 
+",common,声明一维数组,,,,
+269,:Knowledge,"声明二维数组有下列两种格式：
+数组的元素类型 数组名[][];
+数组的元素类型 [][] 数组名; 
+例如：
+float a[][];
+Char [][] b; 
+",common,声明二维数组,,,,
+270,:Knowledge,为数组分配元素的格式如下：数组名 = new 数组元素的类型[数组元素的个数];例如：boy = new float[4];注意：数组的声明和分配空间可以结合完成：float   boy  []=new float[4];,key,数组空间分配,,,,
+271,:Knowledge,一维数组通过索引符访问自己的元素。如：boy[0]，boy[1]等。需要注意的是索引从0开始，因此，数组若有4个元素，那么索引到3为止，如果程序使用了如下语句：boy[4] = 384.98f；程序可以编译通过，但运行时将发生ArrayIndexOutOfBoundsException异常，因此在使用数组时必须谨慎，防止索引越界。,key,数组元素使用,,,,
+272,:Knowledge,对于一维数组，“数组名.length”的值就是数组中元素的个数；对于二维数组“数组名.length”的值是它含有的一维数组的个数，例如： float   boy  []=new float[4]；boy.length的值为4。,key,Length字段的使用,,,,
+273,:Knowledge,"创建数组后，系统会给数组的每个元素一个默认的值，例如，float型是0.0。如果需要赋值，就要为每个元素赋值：例如：float   boy  []=new float[4]；boy[0] = 12；boy[1] = 23.908F；boy[2] = 100；boy[3] = 10.23f；在声明数组的同时也可以给数组的元素一个初始值,如；float boy[] = { 21.3f,23.89f,2.0f,23f,778.98f}。",key,数组初始化,,,,
+274,:Knowledge,数组属于引用型变量，两个相同类型的数组如果具有相同的引用，它们就有完全相同的元素。,key,数组的引用,,,,
+277,:Knowledge,,key,逻辑类型,,,,
+278,:Knowledge,,key,整数类型,,,,
+279,:Knowledge,,key,字符类型,,,,
+280,:Knowledge,,key,浮点类型,,,,
+283,:Knowledge,,key,声明数组,,,,
+295,:Knowledge,对于从小到大排序的数组，我们只要判断数据是否和数组中间的值相等，如果不相等，当该数据小于数组中间元素的值，就在数组的前一半数据中继续折半找，否则就在数组的后一半数据中继续折半找，如此这般，就可以比较快地判断该数据是否在数组中。,common,折半法,,,,
+296,:Knowledge,"1．Reader类提供的read方法以字符为单位顺序地读取源中的数据。
+int read()：
+int read(char b[])：
+int read(char b[], int off, int len)：
+void close():
+long skip(long numBytes):
+2． Writer流以字符为单位顺序地写文件，每次调用write方法就顺序地向目的地写入内容。 Writer类有如下常用的方法。
+void write(int n):  向输出流写入一个字符。
+void write(byte b[]):  向输出流写入一个字符数组。
+void write(byte b[],int off,int length):  从给定字符数组中起始于偏移量off处取len个字符写到输出流。
+void close():  关闭输出流。",key,文件字符输入、输出流,,,,
+297,:Knowledge,用Runtime 类声明一个对象( Runtime类在java.lang包) Runtime ec；然后使用该类的getRuntime()静态方法创建这个对象：ec=Runtime.getRuntime()；ec可以调用exec(String command)方法打开本地机的可执行文件或执行一个操作。,common,运行可执行文件,,,,
+298,:Knowledge,"File对象主要用来获取文件本身的一些信息，不涉及对文件的读写操作。
+创建一个File对象的构造方法有3个：
+File(String filename);
+File(String directoryPath,String filename);
+File(File f, String filename);",common,File类,,,,
+299,:Knowledge,"1.上转型对象不能操作子类新增的成员变量；不能调用子类新增的方法。
+2.上转型对象可以访问子类继承或隐藏的成员变量，也可以调用子类继承的方法或子类重写的实例方法。
+3. 如果子类重写了父类的某个实例方法后，当用上转型对象调用这个实例方法时一定是调用了子类重写的实例方法。",key,上转型对象的使用,,,,
+300,:Knowledge,继承是一种由已有的类创建新类的机制。利用继承，我们可以先创建一个共有属性的一般类，根据该一般类再创建具有特殊属性的新类，新类继承一般类的状态和行为，并根据需要增加它自己的新的状态和行为。,common,继承,,,,
+301,:Knowledge,由继承而得到的类称为子类。,common,子类,,,,
+302,:Knowledge,被继承的类称为父类（超类）。,common,父类,,,,
+303,:Knowledge,Java不支持多重继承（子类只能有一个父类）。,common,一对一,,,,
+304,:Knowledge,"使用关键字extends来定义一个类的子类,格式如下：
+class 子类名  extends  父类名 {
+ … 
+} 
+例如：
+class Student extends People {
+ … 
+}
+说明：把Student类定义为People类的子类、People类是Student类的父类",common,声明子类,,,,
+305,:Knowledge,Java的类按继承关系形成树形结构，这个树形结构中，根节点是Object类（Object是java.lang包中的类），即Object是所有类的祖先类。除了Object类，每个类都有且仅有一个父类，一个类可以有多个或零个子类。如果一个类（除了Object类）的声明中没有使用extends关键字，这个类被系统默认为是Object的子类，即类声明“class A”与“class A extends Object”是等同的。,common,类的树形结构,,,,
+306,:Knowledge,如果子类和父类在同一个包中，那么，子类自然地继承了其父类中不是private的成员变量作为自己的成员变量，并且也自然地继承了父类中不是private的方法作为自己的方法，继承的成员变量或方法的访问权限保持不变。,key,子类与父类在同一包中的继承性,,,,
+307,:Knowledge,如果子类和父类不在同一个包中，那么，子类继承了父类的protected、public成员变量做为子类的成员变量，并且继承了父类的protected、public方法为子类的方法，继承的成员或方法的访问权限保持不变。,key,子类与父类不在同一包中的继承性,,,,
+308,:Knowledge,如果一个类是另一个类的子类，那么UML通过使用一个实线连接两个类的UML图来表示二者之间的继承关系，实线的起始端是子类的UML图，终点端是父类的UML图，但终点端使用一个空心的三角形表示实线的结束。,key,继承关系(Generalization)的UML图,,,,
+309,:Knowledge,"子类创建对象时，子类的构造方法总是先调用父类的某个构造方法，完成父类部分的创建；然后再调用子类自己的构造方法，完成子类部分的创建。如果子类的构造方法没有明显地指明使用父类的哪个构造方法，子类就调用父类的不带参数的构造方法 。子类在创建一个子类对象时，不仅子类中声明的成员变量被分配了内存，而且父类的所有的成员变量也都分配了内存空间，但子类只能操作继承的那部分成员变量 。子类可以通过继承的方法来操作子类未继承的变量和方法 。
+结论：
+1）创建子类对象时，子类总是按层次结构从上到下的顺序调用所有超类的构造函数。如果继承和组合联用，要先构造基类的构造函数，然后调用组合对象的构造函数（组合按照声明的顺序调用）。
+2）如果父类没有不带参数的构造方法，则在子类的构造方法中必须明确的告诉调用父类的某个带参数的构造方法，通过super关键字，这条语句还必须出现在构造方法的第一句。
+",common,子类对象生成,,,,
+310,:Knowledge,instanceof运算符是Java独有的双目运算符，其左面的操作元是对象，右面的操作元是类，当左面的操作元是右面的类或其子类所创建的对象时，instanceof运算的结果是true，否则是false 。,common,instanceof运算符,,,,
+311,:Knowledge,对于子类可以从父类继承的成员变量，只要子类中声明的成员变量和父类中的成员变量同名时，子类就隐藏了继承的成员变量。在子类中要操作这个与父类同名的成员变量时，子类操作的是子类重新声明的这个成员变量。而不是被隐藏掉的。,common,成员变量的隐藏,,,,
+312,:Knowledge,"1．重写的语法规则
+如果子类继承了父类的实例方法，那么子类就有权利重写这个方法。
+方法重写是指：子类中定义一个方法，这个方法的类型和父类的方法的类型一致或是父类方法的类型的子类型，且这个方法的名字、参数个数、参数的类型和父类的方法完全相同.
+2．重写的目的
+子类通过方法的重写可以隐藏继承的方法，子类通过方法的重写可以把父类的状态和行为改变为自身的状态和行为。
+3.  重写后方法的调用
+子类创建的一个对象，如果子类重写了父类的方法，则运行时系统调用的是子类重写的方法;
+子类创建的一个对象，如果子类未重写父类的方法，则运行时系统调用的是子类继承的方法;",common,方法重写,,,,
+313,:Knowledge,子类可以隐藏从父类继承的成员变量和方法，如果在子类中想使用被子类隐藏的成员变量或方法就可以使用关键字super。比如super.x、super.play()就是访问和调用被子类隐藏的成员变量x和方法play()。,common,用super操作被隐藏的成员变量和方法,,,,
+314,:Knowledge,子类不继承父类的构造方法，因此，子类如果想使用父类的构造方法，必须在子类的构造方法中使用，并且必须使用关键字super来表示，而且super必须是子类构造方法中的头一条语句。,common,super父类调用,,,,
+315,:Knowledge,"final关键字可以修饰类、成员变量和方法中的局部变量。
+可以使用final将类声明为final类。final类不能被继承，即不能有子类。
+如： final class A {
+		   … …
+   	           } 
+如果用final修饰父类中的一个方法，那么这个方法不允许子类重写。
+如果成员变量或局部变量被修饰为final的，就是常量。",common,final关键字修饰,,,,
+316,:Knowledge,假设，A类是B类的父类，当用子类创建一个对象，并把这个对象的引用放到父类的对象中时，称对象a是对象b的上转型对象。,key,上转型对象,,,,
+317,:Knowledge,多态性就是指父类的某个方法被其子类重写时，可以各自产生自己的功能行为。,key,继承与多态,,,,
+318,:Knowledge,用关键字abstract修饰的类称为abstract类（抽象类）。abstract类有如下特点：和普通的类相比，abstract类里可以有abstract方法。也可以没有。对于abstract方法，只允许声明，不允许实现，而且不允许使用final修饰abstract方法。对于abstract类，不能使用new运算符创建该类的对象，只能产生其子类，由子类创建对象。如果一个类是abstract类的子类，它必须具体实现父类的所有的abstract方法。,common,abstract类,,,,
+319,:Knowledge,"用关键字abstract修饰的方法称为abstract方法(抽象方法)，例如：abstract int min(int x,int y)。",common,abstract方法,,,,
+320,:Knowledge,"在设计一个程序时，可以先声明一个abstract类，通过在类中声明若干个abstract方法，表明这些方法在整个系统设计中的重要性，方法体的内容细节由它的非abstract子类去完成。然后利用多态实现编程。使用多态进行程序设计的核心技术是使用方法重写和上转型对象，即将abstract类声明对象作为其子类的上转型对象，那么这个上转型对象就可以调用子类重写的方法。所谓面向抽象编程，是指当设计某种重要的类时，不让该类面向具体的类，而是面向抽象类，即所设计类中的重要数据是抽象类声明的对象，而不是具体类声明的对象。
+",common,面向抽象编程,,,,
+321,:Knowledge,所谓“开-闭原则”(Open-Closed Principle)就是让设计的系统应当对扩展开放，对修改关闭。 在设计系统时，应当首先考虑到用户需求的变化，将应对用户变化的部分设计为对扩展开放，而设计的核心部分是经过精心考虑之后确定下来的基本结构，这部分应当是对修改关闭的，即不能因为用户的需求变化而再发生变化，因为这部分不是用来应对需求变化的。如果系统的设计遵守了“开-闭原则”，那么这个系统一定是易维护的，因为在系统中增加新的模块时，不必去修改系统中的核心模块。,common,开闭原则,,,,
+329,:Knowledge,"为了克服Java单继承的缺点，Java使用了接口，一个类可以实现多个接口。使用关键字interface来定义一个接口。接口的定义和类的定义很相似，分为接口的声明和接口体。
+1.接口声明。接口通过使用关键字interface来声明；格式：interface 接口的名字 。
+2.接口体。接口体中包含常量定义和方法定义两部分。接口体中只进行方法的声明，不许提供方法的实现，所以，方法的定义没有方法体，且用分号“；”结尾。",common,接口的概念,,,,
+330,:Knowledge,"接口中的变量自动都是public、static，final，
+接口中的方法默认为public abstract；接口也产生class文件。
+接口中的方法不能被static和final修饰，因为要重写所有接口中的方法。
+接口中没有构造函数，方法可以抛出异常。
+",common,接口的变量和方法的构成规则,,,,
+331,:Knowledge,"一个类通过使用关键字implements声明自己实现一个或多个接口。如：class A implements Printable,Addable 。
+如果一个类实现了某个接口，那么这个类必须重写该接口的所有方法。
+接口可以通过继承产生新的接口。
+Java提供的接口都在相应的包中，通过import语句不仅可以引入包中的类，也可以引入包中的接口。",common,实现接口,,,,
+332,:Knowledge,"接口的思想在于它可以增加很多类都需要实现的功能，使用相同的接口类不一定有继承关系.
+同一个类也可以实现多个接口。接口只关心功能，并不关心功能的具体实现.
+比如，各式各样的电器产品，它们可能归属不同的种类，但国家标准要求电器产品都必须提供一个名称为on的功能（为达到此目的，只需要求它们实现同一接口，该接口中有名字为on的方法），但名称为on的功能的具体行为由各个电器产品去实现。",key,理解接口,,,,
+333,:Knowledge,接口回调是指：可以把实现某一接口的类创建的对象的引用赋给该接口声明的接口变量中，那么该接口变量就可以调用被类重写的接口方法。实际上，当接口变量调用被类重写的接口方法时，就是通知相应的对象调用这个方法。,common,接口回调,,,,
+334,:Knowledge,"File类的下列方法获取文件本身的一些信息。 
+public String getName() 获取文件的名字。
+public boolean canRead() 判断文件是否是可读的。
+public boolean canWrite() 判断文件是否可被写入。
+public boolean exits() 判断文件是否存在。
+public long length() 获取文件的长度（单位是字节）。
+public String getAbsolutePath() 获取文件的绝对路径。
+public String getParent() 获取文件的父目录。
+public boolean isFile() 判断文件是否是一个普通文件，而不是目录。
+public boolean isDirectroy() 判断文件是否是一个目录。
+public boolean isHidden() 判断文件是否是隐藏文件。
+public long lastModified() 获取文件最后修改的时间。",common,文件的属性,,,,
+335,:Knowledge,如果一个方法的参数是接口类型，我们就可以将任何实现该接口的类的实例的引用传递给该接口参数，那么接口参数就可以回调类实现的接口方法。,common,接口参数,,,,
+336,:Knowledge,"面向接口去设计程序，可以通过在接口中声明若干个abstract方法，表明这些方法的重要性，方法体的内容细节由实现接口的类去完成。
+使用接口进行程序设计的核心思想是使用接口回调，即接口变量存放实现该接口的类的对象的引用，从而接口变量就可以回调类实现的接口方法。",common,面向接口编程,,,,
+339,:Knowledge,可以通过在接口中声明若干个abstract方法，表明这些方法的重要性，方法体的内容细节由实现接口的类去完成。使用接口进行程序设计的核心思想是使用接口回调，即接口变量存放实现该接口的类的对象的引用，从而接口变量就可以回调类实现的接口方法。,common,接口与多态,,,,
+340,:Knowledge,"表示接口的UML图和表示类的UML图类似，使用一个长方形描述一个接口的主要构成，将长方形垂直地分为三层。
+第1层是名字层；
+第2层是常量层；
+第3层是方法层 。",common,接口的UML图,,,,
+341,:Knowledge,"接口和abstract类的比较如下：
+1．abstract类和接口都可以有abstract方法。
+2．接口中只可以有常量,不能有变量；而abstract类中即可以有常量也可以有变量。
+3．abstract类中也可以有非abstract方法,接口不可以。",key,abstract类与接口的比较,,,,
+342,:Knowledge,"1. 创建目录 public boolean mkdir()
+2. 列出目录中的文件 
+public String[] list() 用字符串形式返回目录下的全部文件。
+public File [] listFiles() 用File对象形式返回目录下的全部文件。 
+public String[] list(FilenameFilter obj) 用字符串形式返回目录下的指定类型的所有文件。
+public File [] listFiles(FilenameFilter obj) 用File对象形式返回目录下的指定类型所有文件。
+上述两方法的参数FilenameFilter是一个接口，该接口有一个方法：
+public boolean accept(File dir,String name);",common,目录,,,,
+343,:Knowledge,"当使用File类创建一个文件对象后，例如File file=new File(""c:\myletter"",""letter.txt"");如果c:\myletter目录中没有名字为letter.txt文件，文件对象file调用方法public boolean createNewFile()。文件对象调用方法 public boolean delete()可以删除当前文件，例如：file.delete()。",common,文件的创建与删除,,,,
+344,:Knowledge,"java.io包提供了大量的流类，Java把InputStream抽象类的子类创建的流对象称作字节输入流；OutputStream抽象类的子类创建的流对象称作字节输出流。Java把Reader抽象类的子类创建的流对象称作字符输入流；Writer抽象类的子类创建的流对象称作字符输出流。
+针对不同的源或目的地。java.io包为程序提供了相应的输入流或输出流。这些输入、输出流绝大部分都是InputStream、OutputStream、Reader或Writer的子类。",key,文件字节输入流,,,,
+345,:Knowledge,"使用输入流通常包括4个基本步骤：
+(1)设定输入流的源
+(2)创建指向源的输入流
+(3)让输入流读取源中的数据
+(4)关闭输入流。
+1构造方法:设定输入流源
+使用FileInputStream类的下列构造方法创建指向文件的输入流。
+FileInputStream(String name);
+FileInputStream(File file); 
+其中：参数name和file指定的文件称为输入流的源。
+2．使用输入流读取字节 
+文件字节流可以调用从父类继承的read方法顺序地读取文件，只要不关闭流，每次调用read方法就顺序地读取文件中的其余内容，直到文件的末尾或文件字节输入流被关闭。
+int read() 读取单个字节的数据，返回字节值（0~255整数），如果未读出字节就返回-1。
+int read(byte b[]) 读取b.length个字节到字节数组b中，返回实际读取的字节数。如果到达文件的末尾，则返回-1。
+int read(byte b[], int off, int len) 读取len个字节到字节数组b中，并返回实际读取的字节数目。如果到达文件的末尾，则返回-1，参数off指定从字节数组的某个位置开始存放读取的数据。",key,字节输入流步骤,,,,
+346,:Knowledge,"使用输出流通常包括4个基本步骤：
+(1)给出输出流的目的地
+(2)创建指向目的地的输出流
+(3)让输出流把数据写入到目的地
+(4)关闭输出流。
+1．构造方法
+使用FileOutputStream类的下列具有刷新功能的构造方法创建指向文件的输出流。
+FileOutputStream(String name);
+FileOutputStream(File file);
+其中：参数name和file指定的文件称为输出流的目的地
+2．使用输出流写字节
+输出流的wirie方法以字节单位向目的地写数据。
+void write(int n) 向目的地写入单个字节。
+void write(byte b[]) 向目的地写入一个字节数组。
+void write(byte b[],int off,int len) 从字节数组中偏移量off处取len个字节写到目的地。
+FileOutputStream流顺序地写文件，只要不关闭流，每次调用write方法就顺序地向目的地写入内容，直到流被关闭。 
+3．关闭流
+通过调用close()方法，可以保证操作系统把流缓冲区的内容写到它的目的地，即关闭输出流可以把该流所用的缓冲区的内容冲洗掉(通常冲洗到磁盘文件上)",key,文件字节输出流,,,,
+347,:Knowledge,"1．BufferedReader和BufferedWriter类创建的对象称作缓冲输入、输出流。二者的源和目的地必须是字符输入流和字符输出流。  
+构造方法：
+BufferedReader(Reader in); 
+BufferedWriter (Writer out); 
+2.BufferedReader和BufferedWriter类读写文件的方法：
+readLine() 读取文本行
+write(String s,int off,int len) 把字符串s写到文件中
+newLine(); 向文件写入一个回行符
+",key,缓冲流,,,,
+348,:Knowledge,"DataInputStream和DataOutputStream类创建的对象称为数据输入流和数据输出流。 
+构造方法:
+   DataInputStream（InputStream in）创建的数据输入流指向一个由参数in指定的底层输入流
+   DataOutputStream（OutnputStream out）创建的数据输出流指向一个由参数out指定的底层输出流",key,数据流,,,,
+349,:Knowledge,"ObjectInputStream和ObjectOutputStream类创建的对象称为对象输入流和对象输出流。 
+它的构造方法是：
+ObjectInputStream(InputStream in)
+ObjectOutputStream(OutputStream out) 
+
+相关方法：
+writeObject(Object obj) 将一个对象obj写入到一个文件
+readObject() 读取一个对象到程序中  
+所谓序列化：一个类如果实现了Serializable接口，那么这个类创建的对象就是所谓序列化的对象。",common,对象流,,,,
+350,:Knowledge,"如果一个“复制品”实体的变化不会引起原对象实体发生变化，反之亦然。这样的复制品称为原对象的一个克隆对象或简称克隆。
+一个对象调用clone()方法就可以获取该对象的克隆对象。
+对象输入流通过对象的序列化信息来得到当前对象的一个克隆。",common,序列化与对象克隆,,,,
+351,:Knowledge,"创建Scanner对象，并指向要解析的文件,例如：
+File file = new File(""hello.java"");
+Scanner sc = new Scanner(file); 
+sc将空白作为分隔标记
+相关方法  next()依次返回file中的单词
+hasNext()判断file最后一个单词是否已被next()方法返回.",common,使用默认分隔标记解析文件,,,,
+352,:Knowledge,"创建Scanner对象，指向要解析的文件，并使用useDelimiter方法指定正则表达式作为分隔标记，例如:
+File file = new File(""hello.java"");
+Scanner sc = new Scanner(file);
+sc.useDelimiter(正则表达式); 
+sc将正则表达式作为分隔标记 
+相关方法：next() 依次返回file中的单词
+hasNext() 判断file最后一个单词是否已被next()方法返回",common,使用正则表达式作为分隔标记解析文件,,,,
+353,:Knowledge,"FileLock、FileChannel类处理Java提供的文件锁功能。它们分别在java.nio和java.nio.channels包中。
+输入、输出流读写文件时可以使用文件锁。  
+RondomAccessFile创建的流在读写文件时使用文件锁的步骤如下：
+1．先使用RondomAccessFile流建立指向文件的流对象，该对象的读写属性必须是rw，例如：RandomAccessFile input=new RandomAccessFile(""Example.java"",""rw"");
+2．input流调用方法getChannel()获得一个连接到地层文件的FileChannel对象（信道），例如：FileChannel channel=input.getChannel();
+3．信道调用tryLock()或lock()方法获得一个FileLock（文件锁）对象，这一过程也称作对文件加锁。例如：FileLock lock=channel.tryLock();",common,文件锁,,,,
+355,:Knowledge,"构造方法JFileChooser()创建初始不可见的有模式的文件对话框。然后文件对话框调用下述2个方法：
+showSaveDialog(Component a);
+showOpenDialog(Component a);
+都可以使得对话框可见，只是呈现的外观有所不同，showSaveDialog方法提供保存文件的界面，showOpenDialog方法提供打开文件的界面。上述两个方法中的参数a指定对话框可见时的位置，当a是null时，文件对话框出现在屏幕的中央；如果组件a不空，文件对话框在组件a的正前面居中显示。",common,文件对话框,,,,
+356,:Knowledge,"使用RandomAccessFile类来创建一个随机访问文件流。RandomAccessFile类创建的流的指向既可以作为源也可以作为目的地。     
+构造方法：
+RandomAccessFile(String name,String mode) ; 
+RandomAccessFile(File file,String mode) ;
+相关方法：
+seek(long a)  定位RandomAccessFile流的读写位置 
+getFilePointer() 获取流的当前读写位置  
+例子8(把几个int型整数写入到一个名字为tom.dat文件 ) 
+readLine()方法在读取含有非ASCII字符的文件时出现“乱码”现象的解决方法：
+1．读取  String str=in.readLine();		
+2．用“iso-8859-1”重新编码   byte b[]=str.getBytes(""iso-8859-1"");
+3．使用当前机器的默认编码将字节数组转化为字符串
+String content=new String(b);",key,随机流,,,,
+357,:Knowledge,"1．字节数组流
+字节数组输入流ByteArrayInputStream和字节数组输出流ByteArrayOutputStream分别使用字节数组作为流的源和目标。 
+ByteArrayInputStream构造方法及常用方法
+  ByteArrayInputStream(byte[] buf);
+  ByteArrayInputStream(byte[] buf,int offset,int length);
+  public int read();顺序地从源中读出一个字节 
+  public int read(byte[] b,int off,int len);顺序地从源中读出参数len指定的字节数 
+ByteArrayOutputStream流构造方法及常用方法
+  ByteArrayOutputStream();
+  ByteArrayOutputStream(int size);
+  public void write(int b); 顺序地向缓冲区写入一个字节  
+  public void write(byte[] b,int off,int len); 将参数b中指定的len个字节顺序地写入缓冲区 
+  public byte[] toByteArray(); 返回输出流写入到缓冲区的全部字节 
+2．字符数组 
+  CharArrayReader和CharArrayWriter类是字符数组流，使用字符数组作为流的源和目标。",key,数组流,,,,
+745,:Knowledge,"Date()使用Date类的无参数构造方法创建的对象可以获取本地当前时间,Date(long time)使用long型参数创建指定的时间,System类的静态方法 public long currentTimeMillis() 获取系统当前时间",key,Date类,,,,
+746,:Knowledge,步骤如下：（1）使用Class的类方法得到一个和某类（参数className指定的类）相关的Class对象：public static Class forName(String className) throws ClassNotFoundException上述方法返回一个和参数className指定的类相关的Class对象。 （2）步骤（1）中获得的Class对象调用 public Object newInstance() throws InstantiationExceptionIllegalAccessException 方法就可以得到一个className类的对象。,common,使用Class实例化一个对象,,,,
+747,:Knowledge,,key,顺序查询,,,,
+748,:Knowledge,创建Scanner对象，并将要解析的字符串传递给所构造的对象,key,使用默认分隔标记解析字符串,,,,
+749,:Knowledge,if语句是单条件分支语句，即根据一个条件来控制程序执行的流程。,key,if语句,,,,
+750,:Knowledge,在产生异常的方法名后面加上要抛出(throws)的异常的列表,key,异常的声明,,,,
+751,:Knowledge,需要在结果集中前后移动、显示结果集指定的一条记录或随机显示若干条记录等。这时，必须要返回一个可滚动的结果集。,key,控制游标 ,,,,
+752,:Knowledge,switch 语句是单条件多分支的开关语句,key,switch开关语句,,,,
+753,:Knowledge,可以在SQL语句中使用ORDER BY子语句对记录排序，例如，按price排序查询的SQL语句：SELECT * FROM goods ORDER BY price,key,排序查询,,,,
+754,:Knowledge,编写连接数据库代码不会出现数据库的名称，只能出现数据源的名字。 首先使用java.sql包中的Connection类声明一个对象，然后再使用类DriverManager调用它的静态方法getConnection创建这个连接对象，建立连接时应捕获SQLException异常 ,key,建立连接,,,,
+755,:Knowledge,字符串与字符数组String 类的构造方法：String(char[])；String(char[]，int offset，int length)分别用字符数组中的全部字符和部分字符创建字符串对象 ，String类提供了将字符串存放到数组中的方法：， public void getChars(int start int end char c[] int offset ) ，将字符串中的全部字符存放在一个字符数组中的方，public char[] toCharArray() 字符串与字节数组 ，String(byte[])用指定的字节数组构造一个字符串对象。，String(byte[]，int offset，int length) 用指定的字节数组的一部分，即从数组起始位置offset开始取length个字节构造一个字符串对象。public byte[] getBytes() 方法使用平台默认的字符编码，将当前字符串转化为一个字节数组。public byte[] getBytes(String charsetName) 使用参数指定字符编码，将当前字符串转化为一个字节数组。,key,字符串与字符数组,,,,
+756,:Knowledge,public int executeUpdate（String sqlStatement）;,common,Statement对象调用方法,,,,
+757,:Knowledge,Object类有一个public String toString()方法，一个对象通过调用该方法可以获得该对象的字符串表示。,key,对象的字符串表示,,,,
+758,:Knowledge,String getName() 返回类的名字◆ Constructor[] getDeclaredConstructors()  返回类的全部构造方法。◆ Field[] getDeclaredFields()  返回类的全部成员变量。◆ Method[] getDeclaredMethods()  返回类的全部方法。,common,Class类常用类方法,,,,
+759,:Knowledge,1．public int length():获取一个字符串的长度 2．public boolean equals(String s):比较当前字符串对象的实体是否与参数s指定的字符串的实体相同  例题1  说明了equals的用法。3．public boolean startsWith(String s)public boolean endsWith(String s方法:判断当前字符串对象的前缀（后缀）是否参数s指定的字符串  4. public int compareTo(String s):按字典序与参数s指定的字符串比较大小 5.public boolean contains(String s):判断当前字符串对象是否含有参数指定的字符串s 6.public int indexOf (String s):从当前字符串的头开始检索字符串s，并返回首次出现s的位置其相关方法： indexOf(String s int startpoint)lastIndexOf (String s)7. public String substring(int startpoint):获得一个当前字符串的子串  8．public String trim() :得到一个s去掉前后空格后的字符串对象。,key,String 类的常用方法,,,,
+760,:Knowledge,方法调用语句：如：System.out.println(" Hello");表达式语句：表达式尾加上分号。比如赋值语句：x=23;复合语句：可以用{  }把一些语句括起来构成复合语句，  空语句：一个分号也是一条语句，称做空语句。控制语句：控制语句分为条件分支语句、开关（switch)语句和循环语句。package语句和 import语句：它们和类、对象有关,key,语句概述,,,,
+761,:Knowledge,使用JDBC─ODBC桥接器连接数据库的3个步骤(1)建立JDBC-ODBC桥接器(2)建ODBC数据源(3)和ODBC数据源建立连接,common,连接方式的选择,,,,
+762,:Knowledge,while语句的语法格式： while (表达式) {若干语句 }while语句的执行规则是：(1)计算表达式的值如果该值是true时，就进行(2)否则执行(3)。 (2)执行循环体，再进行(1)。 (3)结束while语句的执行。,key,while 循环,,,,
+763,:Knowledge,1) StringBuffer append(String s):将一个字符串对象追加到当前StringBuffer对象中 StringBuffer append(int n)：将一个int型数据转化为字符串对象后再追加到当前StringBuffer对象中  StringBuffer append(Object o)：将一个Object对象的字符串表示追加到当前StringBuffer对象中 2)public char charAt(int n ):得到参数n指定的置上的单个字符 ：public void setCharAt(int n char ch):将当前StringBuffer对象实体中的字符串位置n处的字符用参数ch指定的字符替换3)StringBuffer insert(int index String str) :将参数str指定的字符串插入到参数index指定的位置 4)public StringBuffer reverse() :将该对象实体中的字符翻转5)StringBuffer delete(int startIndex int endIndex):从当前StringBuffer对象实体中的字符串中删除一个子字符串 ,common,StringBuffer类的常用方法,,,,
+764,:Knowledge,=,key,赋值运算符,,,,
+765,:Knowledge,1．使用setAutoCommit(boolean autoCommit)方法 2．使用commit()方法 3．使用rollback()方法 ,common,JDBC事务处理步骤,,,,
+766,:Knowledge,创建子类对象时，除了使用父类的构造方法外还有类体，此类体被认为是一个子类去掉类声明后的类体，称作匿名类。 ,common,和子类有关的匿名类,,,,
+767,:Knowledge,如果在某次循环中执行了break语句，那么整个循环语句就结束。如果在某次循环中执行了continue语句，那么本次循环就结束，即不再执行本次循环中循环体中continue语句后面的语句，而转入进行下一次循环。,key,break和continue语句,,,,
+768,:Knowledge,模式对象pattern调用matcher(CharSequence input)方法返回一个Matcher对象matcher，称为匹配对象 Matcher matcher = pattern.matcher(input); Matcher对象matcher可以使用下列方法寻找字符串input中是否有和模式regex匹配的子序列（regex是创建模式对象pattern时使用的正则表达式）。public boolean find():寻找input和regex匹配的下一子序列，如果成功该方法返回true，否则返回false。public boolean matches()：matcher调用该方法判断input是否完全和regex匹配。public boolean lookingAt()：matcher调用该方法判断从input的开始位置是否有和regex匹配的子序列。public boolean find(int start) : matcher调用该方法判断input从参数start指定位置开始是否有和regex匹配的子序列 。public String replaceAll(String replacement) matcher调用该方法可以返回一个字符串该字符串是通过把input中与模式regex匹配的子字符串全部替换为参数replacement指定的字符串得到的.public String replaceFirst(String replacement) matcher调用该方法可以返回一个字符串，该字符串是通过把input中第1个与模式regex匹配的子字符串替换为参数replacement指定的字符串得到的,common,得到匹配对象,,,,
+769,:Knowledge,Java的表达式就是用运算符连接起来的符合Java规则的式子。运算符的优先级决定了表达式中运算执行的先后顺序。在编写程序时尽量使用括号（）运算符号来实现想要的运算次序，以免产生难以阅读或含糊不清的计算顺序。运算符的结合性决定了具有相同级别运算符的先后顺序 。 ,key,运算符综述,,,,
+770,:Knowledge,&，|，^，~,key,位运算符,,,,
+771,:Knowledge,如果想用特定地区的星期格式来表示日期中的星期，可以用format的重载方法： format (Locale locale格式化模式，日期列表);其中的参数locale是一个Locale类的实例，用于表示地域。Locale类的static常量都是Locale对象，其中US是表示美国的static常量。,common,不同区域的星期格式重载,,,,
+772,:Knowledge,加减运算符:  +，-乘、除和求余运算符： *    /      %,key,算数运算符,,,,
+773,:Knowledge,语法格式如下：for(声明循环变量：数组的名字) { …… },key,for语句与数组,,,,
+774,:Knowledge,Java提供了专门用于操作数据库的API，即JDBC （Java DataBase Connection）。,common,JDBC,,,,
+775,:Knowledge,Math类的常用类方法：public static long abs(double a)  返回a的绝对值。public static double max(double a，double b) 返回a、b的最大值。public static double min(double a，double b) 返回a、b的最小值。public static double random()  产生一个0到1之间的随机数（不包括0和1）。public static double pow(double a，double b) 返回a的b次幂。public static double sqrt(double a) 返回a的平方根。public static double log(double a)  返回a的对数。public static double sin(double a) 返回正弦值。public static double asin(double a)  返回反正弦值。,key,Math类,,,,
+776,:Knowledge,Java使用try~catch语句来处理异常，将可能出现的异常操作放在try~catch语句的try部分，将发生异常后的处理放在catch部分。 try~catch语句的格式如下： try {包含可能发生异常的语句 }catch(ExceptionSubClass1  e) {  …}catch(ExceptionSubClass2  e) { …},key,try~catch语句,,,,
+777,:Knowledge,1．正则表达式：一个正则表达式是含有一些具有特殊意义字符的字符串，这些特殊字符称作正则表达式中的元字符2．字符串的替换 public String replaceAll(String regexString replacement)方法返回一个字符串，该字符串是当前字符串中所有和参数regex指定的正则表达式匹配的子字符串被参数replacement指定的字符串替换后的字符串3．字符串的分解public String[] split(String regex)使用参数指定的正则表达式regex做为分隔标记分解出其中的单词，并将分解出的单词存放在字符串数组中。,key,正则表达式及字符串的替换与分解 ,,,,
+778,:Knowledge,com.sun.rowset包提供了CachedRowSetImpl类，该类实现了CachedRowSet接口。CachedRowSetImpl对象可以保存ResultSet对象中的数据，而且CachedRowSetImpl对象不依赖Connnection对象.将ResultSet对象rs中的数据保存到CachedRowSetImpl对象rowSet中的代码如下： rowSet.populate(rs); ,common,CachedRowSetImpl类,,,,
+779,:Knowledge, Random类的如下构造方法：public Random();public Random(long seed);使用参数seek指定的种子创建一个Random对象随机数生成器random调用不带参数的nextInt()方法：Random random=new Random(); random.nextInt();返回一个0至n之间（包括0，但不包括n）的随机数 随机数生成器random调用带参数的nextInt(int m)方法（参数m必须取正整数值）,key,Random类,,,,
+780,:Knowledge,Java支持在一个类中声明另一个类，这样的类称作内部类，而包含内部类的类成为内部类的外嵌类,key,内部类介绍,,,,
+781,:Knowledge,声明内部类如同在类中声明方法或变量一样，一个类把内部类看作是自己的成员。外嵌类的类体中可以用内部类声明的对象，作为外嵌类的成员。外嵌类的成员变量在内部类中仍然有效，内部类中的方法也可以调用外嵌类中的方法。内部类的类体中不可以声明类变量和方法。外嵌类和内部类在编译时，生成两个.class文件。  ,key,内部类的使用规则,,,,
+782,:Knowledge,事务由一组SQL语句组成，所谓事务处理是指：应用程序保证事务中的SQL语句要么全部都执行，要么一个都不执行。,common,事务及处理,,,,
+783,:Knowledge,java中数据类型的精度从“低”到“高”排列的顺序是：byte  short  char  int  long  float  double,key,算术混合运算的精度,,,,
+784,:Knowledge,预处理不仅减轻了数据库的负担，而且也提高了访问数据库的速度,common,预处理语句优点,,,,
+785,:Knowledge,1) nextToken()：逐个获取字符串中的语言符号（单词），字符串分析器中的负责计数的变量的值就自动减一  。(2) hasMoreTokens()：只要字符串中还有语言符号，即计数变量的值大于0，该方法就返回true，否则返回false。 (3)countTokens()：得到分析器中计数变量的值。,key,StringTokenizer对象方法,,,,
+786,:Knowledge,JDBC为Statement对象提供了批处理功能，即Statement对象调用executeBatch()方法可以一次执行多个SQL语句，只要事先让Statement对象调用addBatch(String sql)方法将要执行的SQL语句添加到该对象中即可,common,批处理,,,,
+787,:Knowledge,假设Computable是一个接口，那么，Java允许直接用接口名和一个类体创建一个匿名对象，此类体被认为是实现了Computable接口的类去掉类声明后的类体，称作匿名类,common,和接口有关的匿名类,,,,
+788,:Knowledge,Scanner对象可以调用 useDelimiter(正则表达式); 方法将一个正则表达式作为分隔标记，即和正则表达式匹配的字符串都是分隔标记。 ,key,使用正则表达式作为分隔标记解析字符串 ,,,,
+789,:Knowledge,分别按类查询。主类将查询条件传递Query类的实例,key,条件查询,,,,
+790,:Knowledge,++，--,key,自增、自减运算符,,,,
+791,:Knowledge,逻辑运算符包括： &&、||、!，其中：&&、|| 为二目运算符，实现逻辑与、逻辑或；！为单目运算符，实现逻辑非。,key,逻辑运算符,,,,
+792,:Knowledge,可以用SQL语句操作符LIKE进行模式般配，使用“%”代替零个或多个字符，用一个下划线“_”代替一个字符，用[abc]代替a、b、c中的任何一个。,key,模糊查询,,,,
+793,:Knowledge,1）格式化模式  format方法中的“格式化模式”是一个用双引号括起的字符序列(字符串)，该字符序列中的字符由格式符和普通字符所构成。format方法返回的字符串就是“格式化模式”中的格式符被替换为它得到的格式化结果后的字符串。2）值列表   format方法中的“值列表”是用逗号分隔的变量、常量或表达式。 3）格式化顺序 format方法默认按从左到右的顺序使用“格式化模式”中的格式符来格式化“值列表”中对应的值，而“格式化模式”中的普通字符保留原样,common,Formatter 类方法,,,,
+794,:Knowledge,if-else 语句是双条件分支语句，即根据一个条件来控制程序执行的流程。,key,if-else 语句,,,,
+795,:Knowledge,建立一个名字为shop的数据库。操作步骤如下：单击“开始”→“所有程序”→“Microsoft Access”，在新建数据库界面选择“空Access数据库”，然后命名、保存新建的数据库,key,建立数据库,,,,
+796,:Knowledge,Formatter类的format方法：format(格式化模式，日期列表)，按着“格式化模式”返回“日期列表”中所列各个日期中所含数据（年，月，日，小时等数据）的字符串表示。format方法中的“格式化模式”是一个用双引号括起的字符序列（字符串），该字符序列中的字符由时间格式符和普通字符所构成。 可以在“格式化模式”中使用“<”，比如："%ty-%<tm-%<td"中的三个格式符将格式化同一日期，即含有“<”的格式符和它前面的格式符格式同一个日期,common,format方法 ,,,,
+797,:Knowledge,在shop数据库中创建名字为goods的表。在shop管理的“表”的界面上选择“使用设计器创建表”，然后单击界面上的“设计”菜单，将出现相应的建表界面，我们建立的表是goods，该表的字段(属性)为：number(文本)  name(文本)  madeTime(日期)  price(数字，双精度)。,key,创建表,,,,
+798,:Knowledge,使用正则表达式regex做参数得到一个称为模式的Pattern类的实例pattern.模式对象是对正则表达式的封装。Pattern类调用类方法compile(String regex)返回一个模式对象，其中的参数regex是一个正则表达式称为模式对象使用的模式。                               ,common,建立模式对象,,,,
+799,:Knowledge,do-while语句的语法格式： do {若干语句} while(表达式);  do- while语句的执行规则是：(1)执行循环体，再进行(2)。 (2)计算表达式的值，如果该值是true时，就进行(1)否则执行(3)。 (3)结束while语句的执行。    ,key,do-while循环,,,,
+800,:Knowledge,instanceof 运算符是二目运算符，左面的操作元是一个对象；右面是一个类。当左面的对象是右面的类或子类创建的对象时，该运算符运算的结果是true ，否则是false。,key,instanceof 运算符,,,,
+801,:Knowledge,for (表达式1; 表达式2; 表达式3) { 若干语句 } ,key,for循环语句,,,,
+802,:Knowledge,StringBuffer类有三个构造方法：1)StringBuffer()2)StringBuffer(int size)3)StringBuffer(String s),common, StringBuffer对象的创建,,,,
+803,:Knowledge,StringTokenizer(String s)StringTokenizer(String s，String delim),key,构造方法,,,,
+804,:Knowledge,1)创建、修改或删除数据源2)为数据源选择驱动程序 3)数据源名称及对应数据库的所在位置   ,common,ODBC数据源,,,,
+805,:Knowledge,calendar对象可以调用方法：public long getTimeInMillis() 可以将时间表示为毫秒。public final void setTime(Date?date)使用给定的 Date 设置此 Calendar 的时间 ，public int get(int field) ：可以获取有关年份、月份、小时、星期等信息,key,Calendar类,,,,
+806,:Knowledge, > ， <，>= ，<=，== ，!=,key,关系运算符,,,,
+807,:Knowledge,assert booleanExpression;assert booleanExpression:messageException;,common,断言格式,,,,
+808,:Knowledge,当一个类被加载且创建对象时，和该类相关的一个类型为Calss的对象就会自动创建，任何对象调用getClass()方法都可以获取和该对象相关的一个Class对象，这个Class对象调用如下的方法可以获取对象的有关信息,common,获取类的有关信息,,,,
+809,:Knowledge,构造方法：public BigInteger(String val)  构造一个十进制的BigInteger对象。 常用类方法：public BigInteger add(BigInteger val)  返回当前大整数对象与参数指定的大整数对象的和。public BigInteger subtract(BigInteger val)返回当前大整数对象与参数指定的大整数对象的差。public BigInteger multiply(BigInteger val)返回当前大整数对象与参数指定的大整数对象的积。public BigInteger divide(BigInteger val)返回当前大整数对象与参数指定的大整数对象的商。public BigInteger remainder(BigInteger val)返回当前大整数对象与参数指定的大整数对象的余。public int compareTo(BigInteger val) 返回当前大整数对象与参数指定的大整数的比较结果，返回值是1、-1或0，分别表示当前大整数对象大于、小于或等于参数指定的大整数。public BigInteger pow(int a)  返回当前大整数对象的a次幂。public String toString()  返回当前大整数对象十进制的字符串表示。public String toString(int p)  返回当前大整数对象p进制的字符串表示。,key,BigInteger类,,,,
+810,:Knowledge,字符串对象声明：String s; String类较常用构造方法:String(s)，String(char a[]，int startIndex，int count),key,构造字符串对象,,,,
+811,:Knowledge,断言语句用于调试代码阶段。在调试代码阶段让断言语句发挥作用，这样就可以发现一些致命的错误，当程序正式运行时就可以关闭断言语句，但仍把断言语句保留在源代码中，如果以后应用程又需要调试，可以重新启用断言语句。,common,断言概念,,,,
+812,:Knowledge,JDBC使用java.lang包中的Class类建立JDBC-ODBC桥接器。,common,建立JDBC-ODBC桥接器,,,,
+813,:Knowledge,一个方法在声明时可以使用throws关键字声明要产生的若干个异常，并在该方法的方法体中具体给出产生异常的操作，即用相应的异常类创建对象，并使用throw关键字抛出该异常对象，导致该方法结束执行。,key,自定义异常类,,,,
+814,:Knowledge,UPDATE <表名>  SET <字段名> = 新值 WHERE <条件子句>，INSERT INTO 表(字段列表) VALUES （对应的具体的记录）或INSERT INTO 表(VALUES （对应的具体的记录），DELETE  FROM  <表名> WHERE <条件子句> ,common,更新、添加和删除记录的SQL语法,,,,
+815,:Knowledge,public static int parseInt(String s)public static String valueOf(byte/int/long/float n) public static String valueOf(byte n)public static String valueOf(int n)public static String valueOf(long n)  public static String valueOf(float n)public static String valueOf(double n),key,符串与基本数据的相互转化,,,,
+816,:Knowledge,1）%d，%o，%x和%格式符可格式化byte、Byte、short、Short、int、Integer、long和Long型数据2）修饰符：加号修饰符"+"格式化正整数时，强制添加上正号，例如，%+d将123格式化为"+123"。,common,格式化整数 ,,,,
+817,:Knowledge,if-elseif 语句是多条件分支语句，即根据多个条件来控制程序执行的流程。,key,if-else if-else 语句,,,,
+818,:Knowledge,%d，%o，%x和%格式符,common,格式化浮点数 ,,,,
+819,:Knowledge,在对SQL进行预处理时可以使用统配符“？”来代替字段的值，只要在预处理语句执行之前再设置统配符所表示的具体值即可。预处理语句设置统配符“？”的值的常用方法有： void setDate(int parameterIndex，Date x)；void setDouble(int parameterIndex，double x)；void setFloat(int parameterIndex，float x)；void setInt(int parameterIndex，int x)；void setLong(int parameterIndex，long x)；void setString(int parameterIndex，String x) ,common,使用统配符,,,,
+,,,,,2,1,Content_Of,知识点9.1
+,,,,,19,1,Content_Of,知识点9.2
+,,,,,20,19,Knowledge_Of,知识点9.2.1
+,,,,,52,19,Knowledge_Of,知识点9.2.2
+,,,,,171,0,ChapterOf,第四章
+,,,,,7,6,Knowledge_Of,知识点4.1.1
+,,,,,8,6,Knowledge_Of,知识点4.1.2
+,,,,,9,6,Knowledge_Of,知识点4.1.3
+,,,,,53,1,Content_Of,知识点9.3
+,,,,,54,53,Knowledge_Of,知识点9.3.1
+,,,,,55,53,Knowledge_Of,知识点9.3.2
+,,,,,4,3,Knowledge_Of,知识点4.2.1
+,,,,,12,3,Knowledge_Of,知识点4.2.4
+,,,,,15,5,Knowledge_Of,知识点4.3.1
+,,,,,16,5,Knowledge_Of,知识点4.3.2
+,,,,,18,5,Knowledge_Of,知识点4.3.4
+,,,,,14,3,Knowledge_Of,知识点4.2.6
+,,,,,13,3,Knowledge_Of,知识点4.2.5
+,,,,,11,3,Knowledge_Of,知识点4.2.3
+,,,,,10,3,Knowledge_Of,知识点4.2.2
+,,,,,17,5,Knowledge_Of,知识点4.3.3
+,,,,,56,53,Knowledge_Of,知识点9.3.1
+,,,,,57,1,Content_Of,知识点9.4
+,,,,,23,22,Knowledge_Of,知识点4.5.1
+,,,,,24,22,Knowledge_Of,知识点4.5.2
+,,,,,25,22,Knowledge_Of,知识点4.5.3
+,,,,,58,57,Knowledge_Of,知识点9.4.1
+,,,,,27,26,Knowledge_Of,知识点4.6.1
+,,,,,28,26,Knowledge_Of,知识点4.6.2
+,,,,,59,57,Knowledge_Of,知识点9.4.2
+,,,,,60,57,Knowledge_Of,知识点9.4.3
+,,,,,61,57,Knowledge_Of,知识点9.4.4
+,,,,,33,32,Knowledge_Of,知识点4.10.1
+,,,,,34,32,Knowledge_Of,知识点4.10.2
+,,,,,35,32,Knowledge_Of,知识点4.10.3
+,,,,,62,57,Knowledge_Of,知识点9.4.5
+,,,,,37,36,Knowledge_Of,知识点4.11.2
+,,,,,63,57,Knowledge_Of,知识点9.4.6
+,,,,,39,38,Knowledge_Of,知识点4.12.1
+,,,,,40,38,Knowledge_Of,知识点4.12.2
+,,,,,41,38,Knowledge_Of,知识点4.12.3
+,,,,,43,38,Knowledge_Of,知识点4.12.5
+,,,,,42,38,Knowledge_Of,知识点4.12.4
+,,,,,64,57,Knowledge_Of,知识点9.4.7
+,,,,,45,44,Knowledge_Of,知识点4.13.1
+,,,,,46,44,Knowledge_Of,知识点4.13.2
+,,,,,47,44,Knowledge_Of,知识点4.13.3
+,,,,,65,57,Knowledge_Of,知识点9.4.8
+,,,,,66,57,Knowledge_Of,知识点9.4.9
+,,,,,67,57,Knowledge_Of,知识点9.4.10
+,,,,,68,1,Content_Of,知识点9.5
+,,,,,69,1,Content_Of,知识点9.6
+,,,,,70,69,Knowledge_Of,知识点9.5.1
+,,,,,71,69,Knowledge_Of,知识点9.5.2
+,,,,,72,69,Knowledge_Of,知识点9.5.3
+,,,,,73,69,Knowledge_Of,知识点9.5.4
+,,,,,74,69,Knowledge_Of,知识点9.6.5
+,,,,,75,1,Content_Of,知识点9.7
+,,,,,76,75,Knowledge_Of,知识点9.7.1
+,,,,,77,75,Knowledge_Of,知识点9.7.2
+,,,,,78,1,Content_Of,知识点9.8
+,,,,,79,1,Content_Of,知识点9.9
+,,,,,80,1,Content_Of,知识点9.10
+,,,,,1,0,ChapterOf,第九章
+,,,,,3,171,Content_Of,知识点4.2
+,,,,,5,171,Content_Of,知识点4.3
+,,,,,6,171,Content_Of,知识点4.1
+,,,,,21,171,Content_Of,知识点4.4
+,,,,,22,171,Content_Of,知识点4.5
+,,,,,26,171,Content_Of,知识点4.6
+,,,,,29,171,Content_Of,知识点4.7
+,,,,,30,171,Content_Of,知识点4.8
+,,,,,31,171,Content_Of,知识点4.9
+,,,,,32,171,Content_Of,知识点4.10
+,,,,,36,171,Content_Of,知识点4.11
+,,,,,38,171,Content_Of,知识点4.12
+,,,,,44,171,Content_Of,知识点4.13
+,,,,,48,171,Content_Of,知识点4.14
+,,,,,49,171,Content_Of,知识点4.15
+,,,,,50,171,Content_Of,知识点4.16
+,,,,,51,171,Content_Of,知识点4.17
+,,,,,203,210,Content_Of,知识点10.1
+,,,,,204,210,Content_Of,知识点10.2
+,,,,,207,210,Content_Of,知识点10.3
+,,,,,208,210,Content_Of,知识点10.4
+,,,,,209,210,Content_Of,知识点10.5
+,,,,,234,210,Content_Of,知识点10.6
+,,,,,235,210,Content_Of,知识点10.7
+,,,,,244,210,Content_Of,知识点10.8
+,,,,,245,210,Content_Of,知识点10.9
+,,,,,250,210,Content_Of,知识点10.10
+,,,,,263,210,Content_Of,知识点10.11
+,,,,,296,207,Knowledge_Of,知识点10.3.1
+,,,,,356,209,Knowledge_Of,知识点10.5.1
+,,,,,298,203,Knowledge_Of,知识点10.1.1
+,,,,,334,203,Knowledge_Of,知识点10.1.2
+,,,,,342,203,Knowledge_Of,知识点10.1.3
+,,,,,343,203,Knowledge_Of,知识点10.1.4
+,,,,,344,204,Knowledge_Of,知识点10.2.1
+,,,,,345,204,Knowledge_Of,知识点10.2.2
+,,,,,346,204,Knowledge_Of,知识点10.2.3
+,,,,,297,203,Knowledge_Of,知识点10.1.5
+,,,,,347,208,Knowledge_Of,知识点10.4.1
+,,,,,348,235,Knowledge_Of,知识点10.7.1
+,,,,,349,244,Knowledge_Of,知识点10.8.1
+,,,,,350,245,Knowledge_Of,知识点10.9.1
+,,,,,351,250,Knowledge_Of,知识点10.10.1
+,,,,,352,250,Knowledge_Of,知识点10.10.2
+,,,,,353,263,Knowledge_Of,知识点10.11.1
+,,,,,354,210,Content_Of,知识点10.12
+,,,,,355,354,Knowledge_Of,知识点10.12.1
+,,,,,357,234,Knowledge_Of,知识点10.6.1
+,,,,,205,200,ChapterOf,第五章
+,,,,,206,200,ChapterOf,第六章
+,,,,,210,200,ChapterOf,第十章
+,,,,,211,200,ChapterOf,第一章
+,,,,,201,200,ChapterOf,第二章
+,,,,,275,201,Content_Of,知识点2.6
+,,,,,212,211,Content_Of,知识点1.1
+,,,,,213,211,Content_Of,知识点1.2
+,,,,,214,211,Content_Of,知识点1.3
+,,,,,215,211,Content_Of,知识点1.4
+,,,,,216,211,Content_Of,知识点1.5
+,,,,,217,211,Content_Of,知识点1.6
+,,,,,249,201,Content_Of,知识点2.2
+,,,,,267,201,Content_Of,知识点2.5
+,,,,,276,201,Content_Of,知识点2.1
+,,,,,281,201,Content_Of,知识点2.3
+,,,,,282,201,Content_Of,知识点2.4
+,,,,,284,205,Content_Of,知识点5.1
+,,,,,285,205,Content_Of,知识点5.2
+,,,,,286,205,Content_Of,知识点5.3
+,,,,,287,205,Content_Of,知识点5.4
+,,,,,288,205,Content_Of,知识点5.5
+,,,,,289,205,Content_Of,知识点5.6
+,,,,,290,205,Content_Of,知识点5.7
+,,,,,291,205,Content_Of,知识点5.8
+,,,,,292,205,Content_Of,知识点5.9
+,,,,,293,205,Content_Of,知识点5.10
+,,,,,294,205,Content_Of,知识点5.11
+,,,,,218,212,Knowledge_Of,知识点1.1.1
+,,,,,219,212,Knowledge_Of,知识点1.1.2
+,,,,,220,212,Knowledge_Of,知识点1.1.3
+,,,,,221,213,Knowledge_Of,知识点1.2.1
+,,,,,222,213,Knowledge_Of,知识点1.2.2
+,,,,,223,214,Knowledge_Of,知识点1.3.1
+,,,,,224,214,Knowledge_Of,知识点1.3.2
+,,,,,225,214,Knowledge_Of,知识点1.3.3
+,,,,,226,214,Knowledge_Of,知识点1.3.4
+,,,,,227,214,Knowledge_Of,知识点1.3.5
+,,,,,228,214,Knowledge_Of,知识点1.3.6
+,,,,,229,215,Knowledge_Of,知识点1.4.1
+,,,,,230,215,Knowledge_Of,知识点1.4.2
+,,,,,232,215,Knowledge_Of,知识点1.4.3
+,,,,,233,215,Knowledge_Of,知识点1.4.4
+,,,,,236,216,Knowledge_Of,知识点1.5.1
+,,,,,237,216,Knowledge_Of,知识点1.5.2
+,,,,,238,216,Knowledge_Of,知识点1.5.3
+,,,,,239,216,Knowledge_Of,知识点1.5.4
+,,,,,240,216,Knowledge_Of,知识点1.5.5
+,,,,,241,217,Knowledge_Of,知识点1.6.1
+,,,,,242,217,Knowledge_Of,知识点1.6.2
+,,,,,243,217,Knowledge_Of,知识点1.6.3
+,,,,,246,276,Knowledge_Of,知识点2.1.2
+,,,,,247,276,Knowledge_Of,知识点2.1.3
+,,,,,248,276,Knowledge_Of,知识点2.1.1
+,,,,,261,281,Knowledge_Of,知识点2.3.2
+,,,,,262,281,Knowledge_Of,知识点2.3.1
+,,,,,264,282,Knowledge_Of,知识点2.4.1
+,,,,,265,282,Knowledge_Of,知识点2.4.2
+,,,,,266,282,Knowledge_Of,知识点2.4.3
+,,,,,270,267,Knowledge_Of,知识点2.5.2
+,,,,,271,267,Knowledge_Of,知识点2.5.3
+,,,,,272,267,Knowledge_Of,知识点2.5.4
+,,,,,273,267,Knowledge_Of,知识点2.5.5
+,,,,,274,267,Knowledge_Of,知识点2.5.5
+,,,,,277,249,Knowledge_Of,知识点2.2.1
+,,,,,278,249,Knowledge_Of,知识点2.2.2
+,,,,,279,249,Knowledge_Of,知识点2.2.3
+,,,,,280,249,Knowledge_Of,知识点2.2.4
+,,,,,283,267,Knowledge_Of,知识点2.5.1
+,,,,,295,275,Knowledge_Of,知识点2.6.1
+,,,,,300,284,Knowledge_Of,知识点5.1.1
+,,,,,301,284,Knowledge_Of,知识点5.1.2
+,,,,,302,284,Knowledge_Of,知识点5.1.3
+,,,,,303,284,Knowledge_Of,知识点5.1.4
+,,,,,304,284,Knowledge_Of,知识点5.1.5
+,,,,,305,284,Knowledge_Of,知识点5.1.6
+,,,,,306,285,Knowledge_Of,知识点5.2.1
+,,,,,307,285,Knowledge_Of,知识点5.2.2
+,,,,,308,285,Knowledge_Of,知识点5.2.3
+,,,,,309,286,Knowledge_Of,知识点5.3.1
+,,,,,310,286,Knowledge_Of,知识点5.3.2
+,,,,,311,287,Knowledge_Of,知识点5.4.1
+,,,,,312,287,Knowledge_Of,知识点5.4.2
+,,,,,313,288,Knowledge_Of,知识点5.5.1
+,,,,,314,288,Knowledge_Of,知识点5.5.2
+,,,,,315,289,Knowledge_Of,知识点5.5.2
+,,,,,316,290,Knowledge_Of,知识点5.7.1
+,,,,,299,290,Knowledge_Of,知识点5.7.2
+,,,,,317,291,Knowledge_Of,知识点5.8.1
+,,,,,318,292,Knowledge_Of,知识点5.9.1
+,,,,,319,292,Knowledge_Of,知识点5.9.2
+,,,,,320,293,Knowledge_Of,知识点5.10.1
+,,,,,321,294,Knowledge_Of,知识点5.11.1
+,,,,,322,206,Content_Of,知识点6.1
+,,,,,323,206,Content_Of,知识点6.2
+,,,,,324,206,Content_Of,知识点6.3
+,,,,,325,206,Content_Of,知识点6.4
+,,,,,326,206,Content_Of,知识点6.5
+,,,,,327,206,Content_Of,知识点6.6
+,,,,,328,206,Content_Of,知识点6.7
+,,,,,335,327,Knowledge_Of,知识点6.6.1
+,,,,,336,328,Knowledge_Of,知识点6.7.1
+,,,,,337,206,Content_Of,知识点6.8
+,,,,,338,206,Content_Of,知识点6.9
+,,,,,329,322,Knowledge_Of,知识点6.1.1
+,,,,,330,322,Knowledge_Of,知识点6.1.2
+,,,,,331,323,Knowledge_Of,知识点6.2.1
+,,,,,332,324,Knowledge_Of,知识点6.3.1
+,,,,,333,325,Knowledge_Of,知识点6.4.1
+,,,,,339,326,Knowledge_Of,知识点6.5.1
+,,,,,340,337,Knowledge_Of,知识点6.8.1
+,,,,,341,338,Knowledge_Of,知识点6.9.1
+,,,,,715,710,Content_Of,知识点3.3
+,,,,,736,713,Content_Of,知识点11.1
+,,,,,729,711,Content_Of,知识点8.8
+,,,,,738,713,Content_Of,知识点11.3
+,,,,,727,711,Content_Of,知识点8.6
+,,,,,732,712,Content_Of,知识点7.1
+,,,,,741,713,Content_Of,知识点11.6
+,,,,,722,711,Content_Of,知识点8.2
+,,,,,737,713,Content_Of,知识点11.2
+,,,,,739,713,Content_Of,知识点11.4
+,,,,,720,710,Content_Of,知识点3.1
+,,,,,726,711,Content_Of,知识点8.5
+,,,,,731,711,Content_Of,知识点8.10
+,,,,,717,710,Content_Of,知识点3.5
+,,,,,734,712,Content_Of,知识点7.3
+,,,,,743,713,Content_Of,知识点11.8
+,,,,,719,710,Content_Of,知识点3.7
+,,,,,744,713,Content_Of,知识点11.9
+,,,,,742,713,Content_Of,知识点11.7
+,,,,,723,711,Content_Of,知识点8.3
+,,,,,714,710,Content_Of,知识点3.2
+,,,,,740,713,Content_Of,知识点11.5
+,,,,,721,711,Content_Of,知识点8.1
+,,,,,735,712,Content_Of,知识点7.4
+,,,,,725,711,Content_Of,知识点8.4
+,,,,,730,711,Content_Of,知识点8.9
+,,,,,716,710,Content_Of,知识点3.4
+,,,,,724,711,Content_Of,知识点8.4
+,,,,,733,712,Content_Of,知识点7.2
+,,,,,718,710,Content_Of,知识点3.6
+,,,,,728,711,Content_Of,知识点8.7
+,,,,,756,740,Knowledge_Of,知识点11.5.1
+,,,,,762,717,Knowledge_Of,知识点3.5.2
+,,,,,770,720,Knowledge_Of,知识点3.1.7
+,,,,,791,720,Knowledge_Of,知识点3.1.5
+,,,,,748,723,Knowledge_Of,知识点8.3.1
+,,,,,775,727,Knowledge_Of,知识点8.6.1
+,,,,,763,729,Knowledge_Of,知识点8.8.2
+,,,,,799,717,Knowledge_Of,知识点3.5.3
+,,,,,765,742,Knowledge_Of,知识点11.7.2
+,,,,,810,721,Knowledge_Of,知识点8.1.1
+,,,,,750,734,Knowledge_Of,知识点7.3.2
+,,,,,764,720,Knowledge_Of,知识点3.1.6
+,,,,,807,735,Knowledge_Of,知识点7.4.2
+,,,,,781,732,Knowledge_Of,知识点7.1.2
+,,,,,814,740,Knowledge_Of,知识点11.5.2
+,,,,,752,716,Knowledge_Of,知识点3.4.1
+,,,,,816,728,Knowledge_Of,知识点8.7.2
+,,,,,758,731,Knowledge_Of,知识点8.10.3
+,,,,,811,735,Knowledge_Of,知识点7.4.1
+,,,,,817,715,Knowledge_Of,知识点3.3.3
+,,,,,796,726,Knowledge_Of,知识点8.5.1
+,,,,,801,717,Knowledge_Of,知识点3.5.1
+,,,,,761,738,Knowledge_Of,知识点11.3.1
+,,,,,771,726,Knowledge_Of,知识点8.5.2
+,,,,,766,733,Knowledge_Of,知识点7.2.1
+,,,,,802,729,Knowledge_Of,知识点8.8.1
+,,,,,786,743,Knowledge_Of,知识点11.8.1
+,,,,,774,737,Knowledge_Of,知识点11.2.1
+,,,,,803,722,Knowledge_Of,知识点8.2.1
+,,,,,759,721,Knowledge_Of,知识点8.1.2
+,,,,,812,738,Knowledge_Of,知识点11.3.2
+,,,,,792,739,Knowledge_Of,知识点11.4.5
+,,,,,782,742,Knowledge_Of,知识点11.7.1
+,,,,,772,720,Knowledge_Of,知识点3.1.1    
+,,,,,776,734,Knowledge_Of,知识点7.3.1
+,,,,,815,721,Knowledge_Of,知识点8.1.3
+,,,,,751,739,Knowledge_Of,知识点11.4.2
+,,,,,777,721,Knowledge_Of,知识点8.1.6
+,,,,,804,738,Knowledge_Of,知识点11.3.3
+,,,,,789,739,Knowledge_Of,知识点11.4.3
+,,,,,805,725,Knowledge_Of,知识点8.4.2
+,,,,,797,736,Knowledge_Of,知识点11.1.2
+,,,,,798,730,Knowledge_Of,知识点8.9.1
+,,,,,760,714,Knowledge_Of,知识点3.2.1
+,,,,,767,718,Knowledge_Of,知识点3.6.1
+,,,,,806,720,Knowledge_Of,知识点3.1.4
+,,,,,753,739,Knowledge_Of,知识点11.4.4
+,,,,,745,724,Knowledge_Of,知识点8.4.1
+,,,,,813,734,Knowledge_Of,知识点7.3.3
+,,,,,818,728,Knowledge_Of,知识点8.7.3
+,,,,,785,722,Knowledge_Of,知识点8.2.2
+,,,,,746,731,Knowledge_Of,知识点8.10.1
+,,,,,768,730,Knowledge_Of,知识点8.9.2
+,,,,,787,733,Knowledge_Of,知识点7.2.2
+,,,,,808,731,Knowledge_Of,知识点8.10.2
+,,,,,790,720,Knowledge_Of,知识点3.1.2
+,,,,,773,719,Knowledge_Of,知识点3.7.1
+,,,,,778,744,Knowledge_Of,知识点11.9.1
+,,,,,779,727,Knowledge_Of,知识点8.6.3
+,,,,,800,720,Knowledge_Of,知识点3.1.8
+,,,,,755,721,Knowledge_Of,知识点8.1.5
+,,,,,780,732,Knowledge_Of,知识点7.1.1
+,,,,,754,738,Knowledge_Of,知识点11.3.4
+,,,,,769,720,Knowledge_Of,知识点3.1.9
+,,,,,809,727,Knowledge_Of,知识点8.6.2
+,,,,,783,720,Knowledge_Of,知识点3.1.3
+,,,,,793,728,Knowledge_Of,知识点8.7.1
+,,,,,747,739,Knowledge_Of,知识点11.4.1
+,,,,,794,715,Knowledge_Of,知识点3.3.2
+,,,,,795,736,Knowledge_Of,知识点11.1.1
+,,,,,784,741,Knowledge_Of,知识点11.6.1
+,,,,,788,723,Knowledge_Of,知识点8.3.2
+,,,,,749,715,Knowledge_Of,知识点3.3.1
+,,,,,819,741,Knowledge_Of,知识点11.6.2
+,,,,,757,721,Knowledge_Of,知识点8.1.4
+,,,,,710,820,Chapter_Of,第三章
+,,,,,711,820,Chapter_Of,第八章
+,,,,,712,820,Chapter_Of,第七章
+,,,,,713,820,Chapter_Of,第十一章

@@ -1,0 +1,393 @@
+_id,_labels,description,feature,name,_start,_end,_type,name
+4,:Knowledge,"写类的目的是为了描述一类事物共有的属性和功能。给类命名时，遵守下列编程风格(这不是语法要求,但应当遵守):
+1.如果类名使用拉丁字母，那么名字的首字母使用大写字母。
+2.类名最好容易识别、见名知意。当类名由几个“单词”复合而成时，每个单词的首字母使用大写。 
+",common,类声明,,,,
+7,:Knowledge,计算机处理信息的早期语言是所谓的机器语言，使用机器语言进行程序设计需要面向机器来编写代码，即需要针对不同的机器编写诸如0101 1100这样的指令序列。 ,common,面向机器语言,,,,
+8,:Knowledge,"随着计算机硬件功能的提高,在20世纪60年代出现了面向过程设计语言，如C语言等。用这些语言编程也称为面向过程编程。语言把代码组成叫做过程或函数的块。每个块的目标是完成某个任务。使用这些语言编写代码指令时，不必再去考虑机器指令的细节，只要按着具体语言的语法要求去编写“源文件”。",common,面向过程语言,,,,
+9,:Knowledge,基于对象的编程更加符合人的思维模式，使得编程人员更容易编写出易维护、易扩展和易复用的程序代码，更重要的是，面向对象编程鼓励创造性的程序设计。面向对象编程主要体现下列三个特性：封装性 ；继承；多态,common,面向对象语言,,,,
+10,:Knowledge,"类声明之后的一对大括号“{”，“}”以及它们之间的内容称作类体，大括号之间的内容称作类体的内容。 
+类体的内容由两部分构：一部分是变量的声明，用来刻画属性；另一部分是方法的定义，用来刻画行为功能。",key,类体,,,,
+11,:Knowledge,"1.变量分为成员变量和局部变量
+类体中变量定义部分所定义的变量被称为类的成员变量。
+成员变量在整个类内都有效，其有效性与它在类体中书写的先后位置无关。
+成员变量在定义时有默认值。
+在方法体中定义的变量和方法的参数被称为局部变量。
+局部变量只在定义它的方法内有效。
+局部变量在定义时没有默认值。
+2.成员变量又分为实例成员变量（简称实例变量）和类变量（也称静态变量）。
+如果成员变量的类型前面加上关键字static，这样的成员变量称做是类变量或静态变量。 
+其他的变量统称为实例变量。
+3．区分成员变量和局部变量
+如果局部变量的名字与成员变量的名字相同，则成员变量被隐藏，即该成员变量在这个方法内暂时失效。
+4．局部变量没有默认值
+成员变量有默认值（见后面的4.3节），但局部变量没有默认值，因此在使用局部变量之前，必须保证局部变量有具体的值 。例如:下列InitError类无法通过编译。
+",key,成员变量与局部变量,,,,
+12,:Knowledge,"方法的定义包括两部分:方法声明和方法体.一般格式为：
+            方法声明部分 {
+                 方法体的内容
+            } ",key,方法,,,,
+13,:Knowledge,"类体的内容由两部分构成：一部分是变量的声明，另一部分是方法的定义。
+定义类需要注意的地方：
+1)对成员变量的操作只能放在方法中，方法可以对成员变量和该方法体中声明的局部变量进行操作。在声明成员变量时可以同时赋予初值，但是不可以在类体中有单独的赋值语句，但局部变量必须赋初值。
+2)实例方法既能对类(静态）变量操作也能对实例变量操作，而类（静态方法）方法只能对类（静态）变量进行操作
+3)一个类中的方法可以互相调用，实例方法可以调用该类中的其他方法，类中的类（静态）方法只能调用该类的类（静态）方法。 ",key,需要注意的问题,,,,
+14,:Knowledge,"UML(Unified Modeling Language Diagram)
+是被用于描述一个系统的静态结构。一个UML中通常包含有类(Class)的UML图，接口(Interface)的UML图以及泛化关系(Generalization)的UML图、关联关系(Association)的UML图、依赖关系(Dependency)的UML图和实现关系(Realization)的UML图。 
+在类的UML图中，使用一个长方形描述一个类的主要构成，将长方形垂直地分为三层。
+第1层是名字层；
+第2层是变量层，也称属性层；
+第3层是方法层，也称操作层。",common,类的UML图,,,,
+15,:Knowledge,"构造方法： 
+构造方法是一种特殊方法，它的名字必须与它所在的类的名字完全相同，而且没有类型。
+允许一个类中编写若干个构造方法，但必须保证他们的参数不同，即参数的个数不同，或者是参数的类型不同。
+他的作用是在创建对象时使用，主要是用来初始化各个成员变量，以便给类所创建的对象一个合理的初始状态。 
+
+需要注意的是如果类中没有编写构造方法，系统会默认该类只有一个构造方法，该默认的构造方法是无参数的，且方法体中没有语句。
+如果类里定义了一个或多个构造方法，那么Java不提供默认的构造方法。 
+需要特别注意的是，构造方法没有类型。
+",common,构造方法,,,,
+16,:Knowledge,"创建一个对象包括对象的声明和为对象分配变量两个步骤。
+    1.对象的声明
+     一般格式为：    类的名字   对象名字;
+          如： XiyoujiRenwu zhubajie;
+    2.为声明的对象分配变量
+使用new运算符和类的构造方法为声明的对象分配变量，并返回一个引用值给对象名称。即创建对象。如果类中没有构造方法，系统会调用默认的构造方法，默认的构造方法是无参数的，且方法体中没有语句。
+例如:  zhubajie = new XiyoujiRenwu(); 
+当用类创建一个对象时，类中的成员变量被分配内存空间，这些内存空间称作该对象的实体或对象的变量，而对象中存放着引用值。
+",key,创建对象,,,,
+17,:Knowledge,"对象创建成功后，可以操作类中的变量和方法：
+1．对象操作自己的变量（体现对象的属性）
+通过使用运算符“.” 对象操作自己的变量（对象的属性）。 
+2．对象调用类中的方法（体现对象的行为） 
+对象创建之后，可以使用点运算符“.”调用创建它的类中的方法，从而产生一定的行为（功能）。
+★强调：当对象调用变量时，是指调用分配给该对象自己的变量。在讲述类的时候讲过：类中的方法可以操作成员变量；当对象调用方法时，方法中出现的成员变量就是指分配给该对象的那个变量。",common,使用对象,,,,
+18,:Knowledge,一个类创建的两个对象，如果具有相同的引用，那么就具有完全相同的实体。,key,对象的引用和实体,,,,
+20,:Knowledge,"JFrame构造方法:
+      JFrame() 创建一个无标题的窗口。
+    JFrame(String s) 创建标题为s的窗口。
+常用方法:
+ 1)public void setBounds(int a,int b,int width,int height 设置窗口的初始位置是(a,b)，即距屏幕左面a个像素、距屏幕上方b个像素；窗口的宽是width，高是height。
+ 2)public void setSize(int width,int height) 设置窗口的大小。
+ 3)public void setLocation(int x,int y) 设置窗口的位置，默认位置是(0,0)。
+ 4)public void setVisible(boolean b) 设置窗口是否可见，窗口默认是不可见的。
+ 5)public void setResizable(boolean b) 设置窗口是否可调整大小，默认可调整大小。
+ 6)public void dispose() 撤消当前窗口，并释放当前窗口所使用的资源。
+7)public void setExtendedState(int state) 设置窗口的扩展状态.
+8)public void setDefaultCloseOperation(int operation)  该方法用来设置单击窗体右上角的关闭图标后，程序会做出怎样的处理。如：EXIT_ON_CLOSE
+9)public void setLayout(LayoutManager?mgr) 设置此容器的布局管理器。
+10)public Component add(Component?comp) 将指定组件追加到此容器的尾部。
+11)public void setMenuBar(MenuBar?mb) 将此 frame 的菜单栏设置为指定的菜单栏。
+12)public void validate() 使用 validate 方法会使容器再次布置其子组件。在修改此容器的子组件的时候（在容器中添加或移除组件，或者更改与布局相关的信息），应该调用上述方法。",common,JFrame常用方法,,,,
+23,:Knowledge,"在Java中，方法的所有参数都是“传值”的，也就是说，方法中参数变量的值是调用者指定的值的拷贝。
+ 1）对于基本数据类型的参数，向该参数“传值”，传递的是值的拷贝.
+ 例如，如果向方法的int型参数x传递一个int值，那么参数x得到的值是传递的值的拷贝。
+ 2）对于参数是引用类型时，“传值”传递的是变量的引用而不是变量所引用的实体。Java的引用型数据包括对象、数组和接口。",common,传值机制,,,,
+24,:Knowledge,对于基本数据类型的参数，传递的是值的拷贝。同时向该参数传递的值的级别不可以高于该参数的级别 。,common,基本数据类型参数的传值,,,,
+25,:Knowledge,当参数是引用类型时，“传值”传递的是变量中存放的“引用”，而不是变量所引用的实体。,common,引用类型参数的传值,,,,
+27,:Knowledge,如果一个对象a组合了对象b，那么对象a就可以委托对象b调用其方法，即对象a以组合的方式复用对象b的方法。,common,组合与复用,,,,
+28,:Knowledge,/,common,关联关系和依赖关系的UML图,,,,
+33,:Knowledge,"通过关键字package声明包语句。
+package语句作为Java源文件的第一条语句， 为该源文件中声明的类指定包名。
+package语句的一般格式为：
+                  package 包名;",common,包语句,,,,
+34,:Knowledge,"程序如果使用了包语句，例如：
+             package tom.jiafei;
+那么存储文件的目录结构中必须包含有如下的结构    
+          …\tom\jiafei
+ 如：c:\1000\tom\jiafei
+并且要将源文件编译得到的类的字节码文件保存在目录c:\1000\tom\jiafei中（源文件可以任意存放）。",common,有包名的类的存储目录,,,,
+35,:Knowledge,"如果主类的包名是tom.jiafei，那么主类的字节码一定存放在…\tom\jiefei目录中，运行时必须到tom\jiefei的上一层（即tom的父目录）目录中去运行主类。
+假设tom\jiefei的上一层目录是1000，那么，必须如下格式来运行：
+  C:\1000\java tom.jiafei.主类名 ",common,运行有包名的主类,,,,
+37,:Knowledge,"用户程序也可以使用import语句引入非类库中有包名的类，如：
+         import tom.jiafei.*;
+在用户程序所在目录下建立和包相对应的子目录结构，比如用户程序所在目录是C:\ch4，想使用import语句引入tom.jiafei包中的类，那么根据包名建立如下的目录结构：
+        C:\ch4\tom\jiafei",common,引入自定义包中的类,,,,
+39,:Knowledge,"用关键字private修饰的成员变量和方法称为私有变量和私有方法。
+对于私有成员变量或方法，只有在本类中创建该类的对象时，这个对象才能访问自己的私有成员变量和类中的私有方法。
+某个类在另外一个类中创建对象后，如果不希该对象直接访问自己的变量，即通过“.”运算符来操作自己的成员变量，就应当将该成员变量访问权限设置为private。
+面向对象编程提倡对象应当调用方法来改变自己的属性，类应当提供操作数据的方法，这些方法可以经过精心的设计，使得对数据的操作更加合理。",common,私有变量和私有方法,,,,
+40,:Knowledge,"用public修饰的成员变量和方法被称为公有变量和公有方法 。 
+我们在任何一个类中用类Tom 创建了一个对象后，该对象能访问自己的public变量和类中的public方法（也可以通过类名来操作成员变量、方法） 。",common,公有变量和公有方法,,,,
+41,:Knowledge,"当在另外一个类中用类Tom 创建了一个对象后，如果这个类与Tom类在同一个包中，那么该对象能访问自己的友好变量和友好方法。
+在任何一个与Tom同一包中的类中，也可以通过Tom类的类名访问Tom类的类友好成员变量和类友好方法。",common,友好变量和友好方法,,,,
+42,:Knowledge,用protected修饰的成员变量和方法被称为受保护的成员变量和受保护的方法 。,common,受保护的成员变量和方法,,,,
+43,:Knowledge,"类声明时，如果在关键字class前面加上public关键字，就称这样的类是一个public 类 。
+可以在任何另外一个类中,使用public类创建对象。 
+如果一个类不加public修饰，这样的类被称作友好类。
+在另外一个类中使用友好类创建对象时，要保证它们是在同一包中。",common,public类与友好类,,,,
+45,:Knowledge,"Double类和Float类实现了对double和float基本型数据的类包装。
+Double类的构造方法：Double(double num)
+Float类的构造方法：   Float(float num)
+Double对象调用doubleValue()方法可以返回该对象中含有的double型数据。
+Float对象调用floatValue()方法可以返回该对象中含有的float型数据。 ",common,Double和Float类,,,,
+46,:Knowledge,"上述类的构造方法分别 ：
+            Byte(byte num)
+            Short(short num)
+            Integer(int num)
+            Long(long num)
+Byte、Short、Integer和Long对象分别调用byteValue ()、shortValue()、intValue()和longValue ()方法返回该对象含有的基本型数据。",common,Byte、Short 、Integer、Long类,,,,
+47,:Knowledge,"Character类实现了对char基本型数据的类包装。
+      Character类的构造方法：Character(char c)
+Character类中的一些常用类方法：
+public static boolean isDigit(char ch)  ch是数字字符返回true.
+public static boolean isLetter(char ch) ch是字母返回 true。",common,Character类,,,,
+52,:Knowledge,"1．菜单条
+  JComponent类的子类JMenubar负责创建菜单条，JFrame类有一个将菜单条放置到窗口中的方法:setJMenuBar(JMenuBar bar);该方法将菜单条添加到窗口的顶端。
+菜单条JMenuBar类构造方法：JMenuBar(); JMenuBar  Mbar=new JMenuBar()
+2．菜单
+  JComponent类的子类JMenu负责创建菜单。
+菜单JMenu类构造方法：JMenu() ; JMenu(String?s) ; JMenu m=new JMenu();
+常用方法：
+    public void add(JMenuItem item) 向菜单增加由参数item指定的菜单项
+  public JMenuItem getItem(int n) 得到指定索引处的菜单选项。
+  public int getItemCount() 得到菜单选项的数目。
+3.菜单项 
+  JComponent类的子类JMenuItem负责创建菜单项,JMenuItem类的主要方法有以下几种：
+  JMenuItem(String s) 构造有标题的菜单项。
+  JMenuItem(String text, Icon icon) 构造有标题和图标的菜单项
+  public void setAccelerator(KeyStroke keyStroke)为菜单项设置快捷键",common,菜单条、菜单、菜单项,,,,
+54,:Knowledge,"1．文本框：由JComponent的子类JTextField创建文本框。
+构造函数：JTextField( ) ; JTextField(int?columns) ;
+常用方法：public String getText();
+                    public void setText(String?t);
+2．文本区：由JComponent的子类JTexArea创建文本区。
+构造函数：JTextArea() ;JTextArea(int?rows, int?columns) 
+常用方法：public String getText();
+                    public void setText(String?t);
+3．按钮：由JComponent的子类JButton类用来创建按钮。
+构造函数：JButton() ; JButton(String?text) ;
+常用方法：public void addActionListener(ActionListener?l);
+4.标签：由JComponent的子类JLabel类用来创建标签。
+构造函数：JLabel() ; JLabel(String?text) ; JLabel(Icon?image) ;
+常用方法：public String getText(); 
+                    public void setText(String?t);
+5.选择框：由JComponent的子类JCheckBox类用来创建选择框
+构造函数： JCheckBox() ;JCheckBox(String?text) ;
+常用方法： public void addItemListener(ItemListener?l) 
+                     public void addActionListener(ActionListener?l) 
+ItemListener接口中：Object getItemSelectable()相当于getSource();
+                                public int getStateChange();
+                                若被选中SELECTED/DESEELCTED
+6.单选按钮：由JComponent的子类JRadioButton类用来创建单项选择框。
+构造函数： JRadioButton() ; JRadioButton(String?text) ;
+常用方法： public void addItemListener(ItemListener?l)
+7.下拉列表：由JComponent的子类JComboBox类用来创建下拉列表。
+构造函数：JComboBox() ; JComboBox(Object[]?items) 
+常用方法： public void addItemListener(ItemListener?l) 
+                    public Object getSelectedItem();
+                    public int getSelectedIndex()
+8.密码框：由JComponent的子类JPasswordField创建密码框.
+构造函数：JPasswordField() ; JPasswordField(int?columns) 
+常用方法：public String getText();
+                    public void setText(String?t);
+public void setEchoChar(char?c)使用该方法重新设置回显字符.                       
+public char[] getPassword()方法可以返回实际的密码",key,常用组件,,,,
+55,:Knowledge,"JComponent是Container的子类，因此JComponent子类创建的组件也都是容器。容器经常用来添加组件。JFrame是底层容器，本节提到的容器被习惯地称做中间容器，中间容器必须被添加到底层容器中才能发挥作用。
+1．JPanel 面板: 
+   构造方法：JPanel() ；如： JPanel p=new JPanel(); 
+   常用方法：public void add();
+   使用JPanel创建面板，再向这个面板添加组件，然后把这个面板添加到其它容器中。JPanel面板的默认布局是FlowLayout布局。
+2．滚动窗格JScrollPane:
+  构造方法：JScrollPane() ;JScrollPane(Component?view)                       JScrollPane(int?vsbPolicy, int?hsbPolicy) 
+  其中参数：int HORIZONTAL_SCROLLBAR_ALWAYS 等
+  常用方法：public JViewport getViewport()
+                      public void setViewport(JViewport?viewport)  
+  例如：可以将文本区放到一个滚动窗格中。
+       JScorollPane scroll=new JScorollPane(new JTextArea()); 
+3.拆分窗格JSplitPane:窗格有两种类型：水平拆分和垂直拆分
+ 常用的构造方法：
+  (1)JSplitPane(int a,Component left,Component right) 
+    创建一个具有指定方向和不连续重绘的指定组件的新 JSplitPane.
+其中:JSplitPane.HORIZONTAL_SPLIT 或 JSplitPane.VERTICAL_SPLIT  
+  (2)JSplitPane(int a, boolean b,Component c,Component d)  
+   创建一个具有指定方向、重绘方式和指定组件的新 JSplitPane.
+ 常用方法：
+   public void setLeftComponent(Component?comp)
+   public void setRightComponent(Component?comp) ",key,常用容器,,,,
+56,:Knowledge,"当把组件添加到容器中时，希望控制组件在容器中的位置，这就需要学习布局设计的知识。
+我们将分别介绍java.awt包中的FlowLayout、BorderLayout、CardLayout、GridLayout布局类和java.swing.border包中的BoxLayout布局类。
+   
+容器可以使用方法：
+           setLayout(布局对象);
+   来设置自己的布局，控制组件在容器中的位置
+1．FlowLayout布局:是JPanel型容器的默认布局
+ 1)创建布局对象 : FlowLayout flow=new FlowLayout();
+ 2)容器con使用布局对象: con.setLayout(flow);
+ 3)con可以使用Container类提供的add方法将组件顺序地添加到容器中
+    FlowLayout布局对象调用相应的方法可以重新设置布局的对齐方式等.
+    如： public void setAlignment(int?align) 
+2．BorderLayout布局:
+ BorderLayout 布局是Window型容器的默认布局 。
+ 使用BorderLayout布局的容器con，可以使用add方法将一个组件b添加到中心区域：con.add(b,BorderLayout.CENTER);
+            或  con.add(BorderLayour.CENTER,b); 
+3．CardLayout 布局 :  使用CardLayout的一般步骤如下：
+   1)创建CardLayout对象 CardLayout card=new CardLayout();
+   2)为容器设置布局 con.setLayout(card);
+   3)容器调用add(String s,Component b)将组件b加入容器，并给出了显示该组件的代号s。
+   4)布局对象card用CardLayout类提供的show()方法，显示容器con中组件代号为s的组件：card.show(con,s);
+   使用CardLayout 的容器可以容纳多个组件，但是实际上同一时刻容器只能从这些组件中选出一个来显示，就像一叠“扑克牌”每次只能显示最上面一张一样，这个被显示的组件将占据所有的容器空间，依次排序
+4．GridLayout布局 :
+   GridLayout布局策略是把容器划分成若干行乘若干列的网格区域，组件就位于这些划分出来的小格中。 GridLayout布局编辑器的一般步骤如下：
+   1)创建布局对象，指定划分网格的行数m和列数n
+   GridLayout grid=new new GridLayout(10,8); 
+   2)使用GridLayout布局的容器调用方法add(Component c)将组件c加入容器。 
+5．BoxLayout布局:
+   使用盒式布局的容器将组件排列在一行或一列 .BoxLayout布局的一般步骤如下：
+   1)创建布局对象，使用BoxLayou的构造方法BoxLayout(Container con，,int axis)可以创建一个盒式布局对象. 
+  2)可以使用Box类的类（静态）方法 createHorizontalBox()获得一个具有行型盒式布局的盒式容器；  使用Box类的类（静态）方法 createVerticalBox()获得一个具有列型盒式布局的盒式容器。 
+   3)控制盒式布局容器中组件之间的距离 
+   Box类调用静态方法createHorizontalStrut(int width)可以得到一个不可见的水平Struct对象，称做水平支撑。 Box类调用静态方法createVertialStrut(int height)可以得到一个不可见的垂直Struct对象，称做垂直支撑。
+   例子5  Example9_5.java  WindowBoxLayout.java 
+   两个列型盒式容器boxV1、boxV2和一个行型盒式容器baseBox。
+   在列型盒式容器的组件之间添加垂直支撑，控制组件之间的距离，将boxV1、boxV2添加到baseBox中，并在它俩之间添加了水平支撑。程序运行效果如图9.6。
+ 6．null布局 : 
+   空布局容器可以准确地定位组件在容器的位置和大小。组件调用setBounds(int a,int b,int width,int height)方法可以设置本身的大小和在容器中的位置     
+
+",key,常用布局,,,,
+58,:Knowledge,"1．事件源 :能够产生事件的对象都可以成为事件源 .
+
+ 2．监视器 :事件源通过调用相应的方法将某个对象注册为自己的监视器。对于文本框，这个方法是：addActionListener(监视器);
+       java语言中监视器都是使用接口来实现的。事件源注册监视器之后，相应的操作就会导致相应的事件的发生，并通知监视器，监视器就会作出相应的处理。 
+ 3．处理事件的接口:
+   监视器负责处理事件源发生的事件。监视器是一个对象，为了处理事件源发生的事件，监视器这个对象会自动调用接口中一个方法来处理事件。 
+    Java规定：为了让监视器这个对象能对事件源发生的事件进行处理，创建该监视器对象的类必须声明实现相应的接口，那么当事件源发生事件时，监视器就自动调用被类重写的某个接口方法(如图9.7)。
+
+",key,事件处理模式,,,,
+59,:Knowledge,"1.ActionEvent事件源 :
+    文本框、按纽、菜单项、密码框和单选按纽都可以触发ActionEvent事件，即都可以成为ActionEvent事件的事件源。 
+ 2.注册监视器: ActionListener接口作为监视器
+    事件源.addActionListener(ActionListener listen)
+   将实现ActionListener接口的类的实例注册为事件源的监视器。 
+ 3.ActionListener接口：重写接口中的方法作为事件处理。
+    ActionListener接口在java.awt.event包中,该接口中只有一个方法:
+    public void actionPerformed(ActinEvent e) 
+        事件源触发ActionEvent事件后，监视器将发现触发的ActionEvent事件，然后调用接口中的这个方法对发生的事件作出处理。ActionEvent类事先创建的事件对象就会传递给该方法的参数e。  
+4.ActionEvent类中的方法:下面的方法能够获取发生动作的事件源。
+   public Object getSource() 
+      调用该方法可以获取发生ActionEvent事件的事件源对象的引用。
+   public String getActionCommand() 
+      调用该方法可以获取发生ActionEvent事件时，和该事件相关的一个命令字符串",key,ActionEvent事件,,,,
+60,:Knowledge,"1．ItemEvent事件源 :选择框、下拉列表都可以触发ItemEvent事件。
+2．注册监视器:ItemListener接口作为监视器
+     事件源.addItemListener(ItemListener listen)
+     将实现ItemListener接口的类的实例注册为事件源的监视器。 
+3．ItemListener接口:重写方法作为事件处理
+    ItemListener接口在java.awt.event包中,该接口中只有一个方法
+    public void itemStateChanged(ItemEvent e) 
+    事件源触发ItemEvent事件后，监视器将发现触发的ItemEvent事件，然后调用接口中的itemStateChanged(ItemEvent  e)方法对发生的事件作出处理。ItemEvent类事先创建的事件对象就会传递给该方法的参数e。 
+4．ItemEvent类中的方法 :
+    getSource()方法返回发生Itemevent事件的事件源外
+    getItemSelectable()方法返回发生Itemevent事件的事件源。",key,ItemEvent事件,,,,
+61,:Knowledge,"1．DocumentEvent事件源 :文本区所维护的文档能触发DocumentEvent事件  2．注册监视器:DocumentListener作为监视器
+     addDucumentListener(DocumentListener listen)
+     将实现DocumentListener接口的类的实例注册为事件源的监视器。 
+3．DocumentListener接口:重写接口中的方法作为事件处理
+    DocumentListener接口在javax.swing.event包中，该接口中有三个方法：
+          public void changedUpdate(DocumentEvent e)    
+    public void removeUpdate(DocumentEvent e)
+    public void insertUpdate(DocumentEvent e)
+",key,DocumentEvent事件,,,,
+62,:Knowledge,"任何组件上都可以发生鼠标事件，如：鼠标进入组件、退出组件、在组件上方单击鼠标、拖动鼠标等都触发鼠标事件，即导致MouseEvent类自动创建一个事件对象。 
+1．使用MouseListener接口可以处理以下5种操作触发的鼠标事件
+    在事件源上按下鼠标键、在事件源上释放鼠标键、在事件源上击鼠标键、鼠标进入事件源、鼠标退出事件源。
+注册监视器:MouseListener接口作为监视器
+     事件源.addMouseListener(MouseListener listener)。 
+MouseListener接口中有如下方法：重写方法作为事件源的处理 
+   mousePressed(MouseEvent) 负责处理在组件上按下鼠标键触发的鼠标事件
+   mouseReleased(MouseEvent) 负责处理在组件上释放鼠标键触发的鼠标事件
+   mouseEntered(MouseEvent) 负责处理鼠标进入组件触发的鼠标事件
+   mouseExited(MouseEvent) 负责处理鼠标离开组件触发的鼠标事件
+   mouseClicked(MouseEvent) 负责处理在组件上单击鼠标键触发的鼠标事件
+MouseEvent 中有下列几个重要的方法：
+     getX() 获取鼠标指针在事件源坐标系中的x-坐标。
+     getY() 获取鼠标指针在事件源坐标系中的y-坐标。
+     getModifiers() 获取鼠标的左键或右键。
+     getClickCount() 获取鼠标被单击的次数。
+     getSource() 获取发生鼠标事件的事件源。
+2．使用MouseMotionListener接口可以处理以下两种操作触发的鼠标事件，  在事件源上拖动鼠标、在事件源上移动鼠标。
+ 事件源注册监视器的方法是
+     addMouseMotionListener(MouseMotionListener listener)。 
+ MouseMotionListener接口中有如下方法：
+     mouseDragged(MouseEvent)  负责处理拖动鼠标触发的鼠标事件。
+    mouseMoved(MouseEvent)  负责处理移动鼠标触发的鼠标事件。",key,MouseEvent事件,,,,
+63,:Knowledge,"1．焦点事件源 :组件可以触发焦点事件。 
+ 2．注册监视器:组件可以使用
+    addFocusListener(FocusListener listener)
+     注册焦点事件监视器。 
+ 3．FocusListener接口 :
+        创建监视器的类必须要实现FocusListener接口，该接口有两个方法：
+      public void focusGained(FocusEvent e)
+      public void focusLost(FocusEvent e)
+        当发生FocusEvent事件时，监视器调用类实现的接口中的相应方法。
+ 4．组件也可调用
+       public boolean requestFocusInWindow()
+    方法可以获得输入焦点。 ",key,焦点事件,,,,
+64,:Knowledge,"当一个组件处于激活状态时，敲击键盘上一个键就导致这个组件触发键盘事件。
+1.某个组件使用addKeyListener方法注册监视器。
+2.接口KeyListener中有如下方法：
+     public void keyPressed(KeyEvent e),
+  public void keyTyped(KeyEvent e),
+  public void KeyReleased(KeyEvent e)  
+3.相关方法：
+   public int getKeyCode()判断哪个键被按下、敲击或释放,返回一个键码值 。      
+   getKeyChar()判断哪个键被按下、敲击或释放，返回键上的字符。",key,键盘事件,,,,
+65,:Knowledge,"JFrame及子类创建的窗口可以调用
+        setDefaultCloseOperation(int operation);
+方法设置窗口的关闭方式（如前面各个例子所示）.
+但是setDefaultCloseOperation方式可能不能满足程序的需要，比如，用户单击窗口上的关闭图标时，可能程序需要提示用户是否需要保存窗口中的有关数据到磁盘等 .",key,窗口事件,,,,
+66,:Knowledge,"匿名类的方便之处是匿名类的外嵌类的成员变量在匿名类中仍然有效，当发生事件时，监视器就比较容易操作事件源所在的外嵌类中的成员.当事件的处理比较简单、系统也不复杂时，使用匿名类做监视器是一个不错的选择。
+   让事件源所在的类的实例作为监视器，能让事件的处理比较方便，这是因为，监视器可以方便的操作事件源所在的类中的其他成员。当事件的处理比较简单，系统也不复杂时，让事件源所在的类的实例作为监视器是一个不错的选择。",key,匿名类实例或窗口做监视器,,,,
+67,:Knowledge,"1.授权模式
+   Java的事件处理是基于授权模式，即事件源调用调用方法将某个对象注册为自己的监视器。
+2.接口回调 
+   addXXXListener(XXXListener listener)方法中的参数是一个接口，listener可以引用任何实现了该接口的类所创建的对象，当事件源发生事件时，接口listener立刻回调被类实现的接口中的某个方法。
+3.方法绑定 
+   当事件源触发事件发生后，监视器准确知道去调用哪个方法。
+4.保持松耦合 
+   当事件源触发事件发生后，系统知道某个方法会被执行，但无须关心到底是哪个对象去调用了这个方法，因为任何实现接口的类的实例(做为监视器)都可以调用这个方法来处理事件。    ",key,事件总结,,,,
+70,:Knowledge,"消息对话框是有模式对话框，进行一个重要的操作动作之前,最好能弹出一个消息对话框。可以用javax.swing包中的JOptionPane类的静态方法:
+    public static void showMessageDialog(
+                       Component parentComponent,
+                       String message,
+                       String title,
+                       int messageType)
+    创建一个消息对话框。",common,消息对话框,,,,
+71,:Knowledge," 输入对话框含有供用户输入文本的文本框、一个确认和取消按钮，是有模式对话框 。
+     可以用javax.swing包中的JOptionPane类的静态方法：
+  public static 
+         String showInputDialog(Component parentComponent,
+                                      Object message,
+                                      String title,
+                                      int messageType)
+  创建一个输入对话框。",common,输入对话框,,,,
+72,:Knowledge,"确认对话框是有模式对话框。
+可以用javax.swing包中的JOptionPane类的静态方法:
+public static int showConfirmDialog(Component parentComponent,
+                                    Object message,
+                                    String title,
+                                    int optionType)
+得到一个确认对话框。",common,确认对话框,,,,
+73,:Knowledge,"可以用javax.swing包中的JColorChooser类的静态方法: public static Color showDialog（Component component,        
+                                        String title,
+                                        Color initialColor）
+创建一个有模式的颜色对话框。",common,颜色对话框,,,,
+74,:Knowledge,"创建对话框与创建窗口类似，通过建立JDialog的子类来建立一个对话框类，然后这个类的一个实例，即这个子类创建的一个对象，就是一个对话框。对话框是一个容器，它的默认布局是BorderLayout，对话框可以添加组件，实现与用户的交互操作。 
+
+构造对话框的2个常用构造方法
+JDialog() 构造一个无标题的初始不可见的对话框，对话框依赖一个默认的不可见的窗口，该窗口由Java运行环境提供。
+JDialog(JFrame owner) 构造一个无标题的初始不可见的无模式的对话框，owner是对话框所依赖的窗口，如果owner取null，对话框依赖一个默认的不可见的窗口，该窗口由Java运行环境提供。",common,自定义对话框,,,,
+76,:Knowledge,"1．DefaultMutableTreeNode节点
+DefaultMutableTreeNode类的两个常用的构造方法是：
+DefaultMutableTreeNode(Object userObject)
+DefaultMutableTreeNode(Object userObject,boolean allowChildren)
+2．树上的TreeSelectionEvent事件 
+addTreeSelectionListener(TreeSelectionListener listener)
+方法获得一个监视器。",common,树组件,,,,
+77,:Knowledge,"表格组件以行和列的形式显示数据，允许对表格中的数据进行编辑。表格的模型功能强大、灵活并易于执行。表格是最复杂的组件，对于初学者，这里只介绍默认的表格模型。
+ JTable有7个构造方法，这里介绍常用的三个。
+     JTable() 创建默认的表格模型。
+     JTable(int a,int b) 创建a行,b列的默认模型表格
+     JTable (Object data[][],Object  columnName[]) 创建默认表格模型对象，并且显示由data指定的二维数组的值，其列名由数组columnName指定。
+ 通过对表格中的数据进行编辑，可以修改表格中二维数组data中对应的数据数据。在表格中输入或修改数据后，需按回车或用鼠标单击表格的单元格确定所输入或修改的结果。当表格需要刷新显示时，让表格调用repaint方法。",common,表格组件,,,,

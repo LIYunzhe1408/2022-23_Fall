@@ -1,0 +1,213 @@
+_id,_labels,description,feature,name
+2,:Content,"通过图形用户界面（GUI：Graphics User Interface），用户和程序之间可以方便地进行交互。Java的Swing工具包中包含了许多类来支持GUI设计。如：按钮、菜单、列表、文本框等组件类，同时它还包含窗口、面板等容器类。
+
+javax.swing包提供了功能更为强大的用来设计GUI的类。java.awt和javax.swing包中一部分类的层次关系的UML类图
+
+在学习GUI编程时，必须要很好的掌握两个概念：容器类和组件类。
+javax.swing包中JComponent类是java.awt包中Container类的一个直接子类、是java.awt包中Component类的一个间接子类，学习GUI编程主要是学习掌握使用Component类的一些重要的子类及其使用方法。
+以下是GUI编程经常提到的基本知识点 。
+ (1)Java把Component类的子类或间接子类创建的对象称为一个组件.
+ (2)Java把Container的子类或间接子类创建的对象称为一个容器.
+ (3)可以向容器添加组件。Container类提供了一个public方法：add( )，一个容器可以调用这个方法将组件添加到该容器中。
+ (4)容器调用removeAll()方法可以移掉容器中的全部组件；调用remove(Component c)方法可以移掉容器中参数c指定的组件。
+ (5)注意到容器本身也是一个组件，因此可以把一个容器添加到另一个容器中实现容器的嵌套。
+ (6)每当容器添加新的组件或移掉组件时，应当让容器调用validate()方法，以保证容器中的组件能正确显示出来
+如：
+    import javax.swing.*;
+    JFrame f=new JFrame();
+    JButton  button=new JButton(""确定"")
+    f.add(button);
+    …….
+    f.remove(button);
+",common,Java Swing概述
+3,:Content,"Java语言是面向对象语言，它的源程序是由若干个类组成，源文件是扩展名为.java的文本文件。
+类是Java语言中最重要的“数据类型”，类声明的变量被称作对象（见后面的4.3节），即类是用来创建对象的模板。 
+class是关键字，用来定义类。“class  类名”是类的声明部分，类名必须是合法的Java标识符。两个大括号以及之间的内容是类体。",common,类
+5,:Content,"类是面向对象语言中最重要的一种数据类型，那么就可以用它来声明变量。在面向对象语言中，用类声明的变量被称作对象。
+
+和基本数据类型不同，在用类声明对象后，还必须要创建对象，即为声明的对象分配变量(确定对象所具有的属性)，当使用一个类创建一个对象时，也称给出了这个类的一个实例。通俗的讲，类是创建对象的“模板”，没有类就没有对象。构造方法和对象的创建密切相关 。",common,构造方法与对象的创建
+6,:Content,/,common,编程语言的几个发展阶段
+19,:Content,"Java提供的JFrame类的实例是一个底层容器，即通常所称的窗口。其他组件必须被添加到底层容器中，以便借助这个地层容器和操作系统进行信息交互。 
+JFrame类是Container类的间接子类。当需要一个窗口时，可使用JFrame或其子类创建一个对象。",common,窗口
+21,:Content,一个Java应用程序（也称为一个工程）是由若干个类所构成，这些类可以在一个源文件中，也可以分布在若干个源文件中。,common,类与程序的基本结构
+22,:Content,方法中最重要的部分之一就是方法的参数，参数属于局部变量，当对象调用方法时，参数被分配内存空间，并要求调用者向参数传递值，即方法被调用时，参数变量必须有具体的值。,common,参数传值
+26,:Content,一个类可以把对象作为自己的成员变量，如果用这样的类创建对象，那么该对象中就会有其它对象，也就是说该对象将其他对象作为自己的组成部分，或者说该对象是由几个对象组合而成。,common,对象的组合
+29,:Content,"1 实例变量和类变量的声明
+在声明成员变量时，用关键字static给予修饰的称作类变量，否则称作实例变量（类变量也称为static变量，静态变量）。
+2  实例变量和类变量的区别
+不同对象的实例变量互不相同 
+所有对象共享类变量 
+通过类名直接访问类变量
+3  实例方法和类方法的定义
+类中的方法也可分为实例方法和类方法。方法声明时，方法类型前面不加关键字static修饰的是实例方法、加static关键字修饰的是类方法(静态方法)。
+4 实例方法和类方法的区别 
+ 1）对象调用实例方法
+当对象调用实例方法时，该方法中出现的实例变量就是分配给该对象的实例变量；该方法中出现的类变量也是分配给该对象的变量，只不过这个变量和所有的其他对象共享而已。
+ 2）类名调用类方法
+从而类方法不仅可以被类创建的任何对象调用执行，也可以直接通过类名调用。和实例方法不同的是，类方法不可以操作实例变量，这是因为在类创建对象之前，实例成员变量还没有分配内存。",common,实例成员与类成员
+30,:Content,方法重载的意思是：一个类中可以有多个方法具有相同的名字，但这些方法的参数必须不同，即或者是参数的个数不同，或者是参数的类型不同。,common,方法重载与多态
+31,:Content,"this是Java的一个关键字，表示某个对象。this可以出现在实例方法和构造方法中，但不可以出现在类方法中。
+this关键字出现在类的构造方法中时，代表使用该构造方法所创建的对象.
+当this关键字出现实例方法中时，this就代表正在调用该方法的当前对象。
+
+实例方法必须只能通过对象来调用，不能用类名来调用。
+实例方法可以操作类的成员变量，当实例成员变量在实例方法中出现时，默认的格式是：
+ this.成员变量;
+当static成员变量在实例方法中出现时，默认的格式是：
+           类名.成员变量; ",common,this关键字
+32,:Content,"包是Java语言中有效地管理类的一个机制。
+包名的目的是有效的区分名字相同的类。不同Java源文件中两个类名字相同时，它们可以通过隶属不同的包来相互区分。 ",common,包
+36,:Content,"一个类可能需要另一个类声明的对象作为自己的成员或方法中的局部变量，如果这两个类在同一个包中，当然没有问题。 
+如果一个类想要使用的那个类和它不在一个包中，要使用import语句完成使命。",key,import语句
+38,:Content,"当用一个类创建了一个对象之后，该对象可以通过“.”运算符操作自己的变量、使用类中的方法，但对象操作自己的变量和使用类中的方法是有一定限制的。
+所谓访问权限是指对象是否可以通过“.”运算符操作自己的变量或通过“.”运算符使用类中的方法。 
+访问限制修饰符有private、protected和public，都是Java的关键字，用来修饰成员变量或方法。",key,访问权限
+44,:Content,"Java的基本数据类型包括
+byte、int、short、long、float、double、char。
+Java提供了基本数据类型相关的类，实现了对基本数据类型的封装。
+Byte、Integer、Short、Long、Float、Double和Character类。这些类在java.lang包中。",common,基本类型的类封装
+48,:Content,"如果程序需要某个类的若干个对象，比如Student类的10个对象，显然如下声明10个Student对象是不可取的：
+    Student stu1,stu2, stu3,stu4,stu5,stu6,stu7,stu8, stu9,stu10;
+正确的做法是使用对象数组，即数组的元素是对象，例如：
+       Student [] stu;
+       stu = new Student[10];
+需要注意的是，上述代码仅仅定义了数组stu有10个元素，并且每个元素都是一个Student类型的对象，但这些对象目前都是空对象，因此在使用数组stu中的对象之前，应当创建数组所包含的对象。
+    例如：            stu[0] = new Student();  ",common,对象数组
+49,:Content,"反编译器javap.exe可以将字节码反编译为源码，以便查看源码类中的public方法名字和public成员变量的名字。
+            例如：javap java.awt.Button
+使用javadoc.exe可以制做源文件类结构的html格式文档。
+            例如： javadoc  Example.java ",common,反编译和文档生成器
+50,:Content,可以使用jar.exe命令把一些类的字节码文件压缩成一个jar文件，然后将这个jar文件存放到Java运行环境的扩展中，即将该jar文件存放在JDK安装目录的jre\lib\ext文件夹中。这样，Java应用程序就可以使用这个jar文件中的类来创建对象了。,common,jar文件
+51,:Content,有理数有两个重要的成员：分子和分母，另外还有重要的四则运算。,common,应用举例
+53,:Content,"可以使用JComponent的子类JTextField创建各种组件。利用组件可以完成应用程序与用户的交互及事件处理等。
+也可以在命令行窗口反编译组件即时查看组件所具有的属性及常用方法，例如：
+          C:\>javap javax.swing.JComponent
+也可以查看类库帮助文档.例如下载Java类库帮助文档：jdk-6-doc.zip。",common,常用组件与布局
+57,:Content,"学习组件除了要熟悉组件的属性和功能外，一个更重要的方面是学习怎样处理组件上发生的界面事件。当用户在文本框中键入文本后按回车键、单击按钮、在一个下拉式列表中选择一个条目等操作时，都发生界面事件。
+
+程序有时需对发生的事件作出反应，来实现特定的任务，例如，用户单击一个名字叫“确定”或名字叫“取消”的按钮，程序可能需要作出不同的处理。",key,处理事件
+68,:Content,"模型-视图-控制器（Model-View-Controller），简称为MVC。
+MVC是一种先进的设计结构，其目的是以会话形式提供方便的GUI支持。
+MVC是一种通过三个不同部分构造一个软件或组件的理想办法：
+模型(model)  用于存储数据的对象。
+视图(view)   为模型提供数据显示的对象。
+控制器(controller)处理用户的交互操作，对于用户的操作作出响应，让模型和视图进行必要的交互，即通过视图修改、获取模型中的数据；当模型中的数据变化时，让视图更新显示。",common,使用MVC结构
+69,:Content,"JDialog类和JFrame都是Window的子类，二者的实例都是底层容器。
+JDialog类创建的对话框必须要依赖于某个窗口。 
+对话框分为无模式和有模式两种。
+有模式的对话框：当这个对话框处于激活状态时，只让程序响应对话框内部的事件，而且将堵塞其它线程的执行，用户不能再激活对话框所在程序中的其它窗口，直到该对话框消失不可见。
+无模式对话框：当这个对话框处于激活状态时，能再激活其它窗口，也不堵塞其它线程的执行。",common,对话框
+75,:Content,,common,树组件与表格组件
+78,:Content,"按钮帮定到键盘的步骤如下:
+(1) 获取输入映射.   按钮首先调用
+   public final InputMap getInputMap(int condition)  
+   方法返回一个InputMap对象.
+(2)绑定按钮的键盘操作.   步骤（1）返回的输入映射首先调用方法
+   public void put(KeyStroke keyStroke,Object actionMapKey)
+  将敲击键盘上的某键指定为按钮的键盘操作.
+(3)为按钮的键盘操作指定监视器.    按钮调用方法
+    public final ActionMap getActionMap()
+    返回一个ActionMap对象：
+    ActionMap actionmap = button.getActionMap();
+    然后，该对象actionmap调用方法：
+    public void put(Object key,Action action) 
+    为按钮的键盘操作指定监视器",common,按钮绑定到键盘
+79,:Content,"步骤如下：
+1.获取ToolKit对象
+       让组件调用getToolkit()方法返回系统提供的Toolkit对象。
+2.获得PrintJob对象
+       Toolkit对象调用getPrintJob()方法返回一个PrintJob对象。
+3.获取Graphics对象
+       PrintJob对象使用getGraphics()方法获得一个Graphics对象。
+4.打印组件
+      步骤3获取的Graphics对象是g，组件调用
+ paintAll(g)
+ 将打印出该组件及其子组件。如果调用方法：
+ pain(g)
+ 将打印出该组件本身，但不打印子组件。",common,打印组件
+80,:Content,"可以使用jar.exe把一些文件压缩成一个JAR文件，来发布我们的应用程序。
+生成一个Jar文件的步骤如下：
+ 1．首先用文本编辑器（比如Windows下的记事本）编写一个清单文件 ，扩展名为.mf，如Mymoon.mf 。 
+ 2．生成JAR文件 
+如果目录test下的字节码文件刚好是应用程序需要的全部字节码文件，也可以如下生成JAR文件：
+ D:\test\jar cfm Tom.jar Mymoon.mf  *.class 
+可以将Tom.jar文件复制到任何一个安装了java运行环境的计算机上，只要用鼠标双击该文件就可以运行该java应用程序了。 ",common,发布GUI程序
+203,:Content,,common,File类
+204,:Content,,common,文件字节输入、输出流
+207,:Content,,common,文件字符输入、输出流
+208,:Content,,common,缓冲流
+209,:Content,,common,随机流
+212,:Content,,common,地位
+213,:Content,,common,诞生
+214,:Content,,common,特点
+215,:Content,,common,JDK安装
+216,:Content,,common,简单程序
+217,:Content,,common,编程风格
+234,:Content,,common,数组流
+235,:Content,,common,数据流
+244,:Content,,common,对象流
+245,:Content,,common,序列化与对象克隆
+249,:Content,"8种基本数据类型习惯上可分为以下四大类型：
+逻辑类型：boolean
+整数类型：byte、short、int、long
+字符类型：char
+浮点类型：float、double ",common,基本数据类型
+250,:Content,,common,使用Scanner解析文件
+263,:Content,,common,文件锁
+267,:Content,数组是相同类型的数据按顺序组成的一种复合数据类型。通过数组名加数组下标，来使用数组中的数据。下标从0开始排序。,common,数组
+275,:Content,应用举例,common,数组的应用
+276,:Content,,common,标识符和关键字
+281,:Content,,common,类型转换
+282,:Content,从命令行输入与输出数据,common,输入与输出
+284,:Content,,common,子类与父类
+285,:Content,类可以有两种重要的成员：成员变量和方法。子类的成员中有一部分是子类自己声明定义的，另一部分是从它的父类继承的。 所谓子类继承父类的成员变量就是把继承来的变量作为自己的一个成员变量，就好象它们是在子类中直接声明一样，可以被子类中自己定义的任何实例方法操作。所谓子类继承父类的方法就是把继承来的方法作为子类中的一个方法，就好象它们是在子类中直接定义了一样，可以被子类中自己定义的任何实例方法调用。,common,子类的继承性
+286,:Content,类继承了父类的很多东西，那么子类在创建对象的时候，他又是怎么生成自己的对象的呢。子类生成的对象会有哪些东西呢。,common,子类与对象
+287,:Content,,common,成员变量的隐藏和方法重写
+288,:Content,,common,super关键字
+289,:Content,,common,final关键字
+290,:Content,,common,对象的上转型对象
+291,:Content,,common,继承与多态
+292,:Content,,common,abstract类与abstract方法
+293,:Content,,common,面向抽象编程
+294,:Content,,common,开闭原则
+322,:Content,,common,接口
+323,:Content,,common,实现接口
+324,:Content,,common,理解接口
+325,:Content,,common,接口回调
+326,:Content,,common,接口与多态
+327,:Content,,common,接口变量作参数
+328,:Content,,common,面向接口编程
+337,:Content,,common,接口的UML图
+338,:Content,,common,abstract类与接口的比较
+354,:Content,,common,文件对话框
+714,:Content,,common,语句概述
+715,:Content,,common,if条件分支语句
+716,:Content,,common,switch开关语句
+717,:Content,,common,循环语句
+718,:Content,,common,break和continue语句
+719,:Content,,common,for语句与数组
+720,:Content,,common,运算符与表达式
+721,:Content,,common,String类
+722,:Content,,common,StringTokenizer类 
+723,:Content,,common,Scanner类
+724,:Content,,common,Date与Calendar类
+725,:Content,,common,Calendar类
+726,:Content,,common,日期的格式化
+727,:Content,,common,Math、BigInteger和Random类
+728,:Content,,common,数字格式化
+729,:Content,,common,StringBuffer类
+730,:Content,,common,Pattern与Matcher类
+731,:Content,,common,Class类
+732,:Content,,common,内部类
+733,:Content,,common,匿名类
+734,:Content,,key,异常类
+735,:Content,,common,断言
+736,:Content,,common,Microsoft Access 数据库管理系统 
+737,:Content,,common,JDBC
+738,:Content,,common,连接数据库 
+739,:Content,,common,查询操作
+740,:Content,,common,更新、添加与删除操作
+741,:Content,,common,使用预处理语句
+742,:Content,,common,事务
+743,:Content,,key,批处理
+744,:Content,,common,CachedRowSetImpl类

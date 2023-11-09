@@ -1,0 +1,30 @@
+本体是一种层次结构，一种是is_a，一种是泛化的，part_of的整体部分层次结构
+
+RDF描述客观世界的各种资源的语言。
+
+
+
+
+# RDFs @20220914
+
+RDF描述事实，现实的一些案例，facts；
+while RDFs 则是描述模式schema知识（学生要选课），facts为张三要学c++
+mothers are female
+
+rdf:type instance of a class
+book:uri  rdf:type   ex:Textbook  book is a instance of a textbook
+每个uri表示一个类，即：ex:Textbook     rdf:type   rdfs:class  【自反关系】ex:class     rdf:type   rdfs:class  
+
+
+命题的命题
+the detective *supposes* that the butler killed the gardener
+
+ex:detective ex:supposes  ex:"the butler...."
+
+
+物化
+ex:detective  ex:supposes  ex:theory
+ex:theory     rdf:subject     ex:bulter
+ex:theory     rdf:predicate     ex:haskilled
+ex:theory     rdf:object     ex:gardener
+ex:theory     rdf:type    rdf:statement
